@@ -41,25 +41,111 @@
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
         <div class="flex flex-col gap-12">
-            <div class="flex flex-col md:flex-row gap-8 items-center bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 p-8">
-                <div class="md:w-1/3 aspect-square rounded-xl overflow-hidden"><img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1549487501-c88c75dd9b31?q=80&w=2070&auto=format&fit=crop" alt="Lonja"></div>
-                <div class="md:w-2/3">
-                    <span class="text-amber-500 font-bold text-xs uppercase tracking-widest mb-2 block">UNESCO World Heritage</span>
-                    <h3 class="text-2xl font-black mb-3">La Lonja de la Seda</h3>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-lg">The Silk Exchange is a masterpiece of late Gothic architecture. Built between 1482 and 1533, its spectacular spiral columns in the main trading hall perfectly illustrate the wealth of Valencia's Golden Age.</p>
+            <button onclick="openModal('lonja-modal')" class="cursor-pointer block text-left">
+                <div class="flex flex-col md:flex-row gap-8 items-center bg-white dark:bg-slate-900 rounded-2xl shadow-sm hover:shadow-xl border border-slate-100 dark:border-slate-800 p-8 transition-all">
+                    <div class="md:w-1/3 aspect-square rounded-xl overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="img/history_heritage/image_1.jpg" alt="La Lonja de la Seda"></div>
+                    <div class="md:w-2/3">
+                        <span class="text-amber-500 font-bold text-xs uppercase tracking-widest mb-2 block">UNESCO World Heritage</span>
+                        <h3 class="text-2xl font-black mb-3">La Lonja de la Seda</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-lg">The Silk Exchange is a masterpiece of late Gothic architecture. Built between 1482 and 1533, its spectacular spiral columns in the main trading hall perfectly illustrate the wealth of Valencia's Golden Age.</p>
+                        <div class="mt-6 text-amber-500 font-bold text-sm">Learn More →</div>
+                    </div>
                 </div>
-            </div>
-            <div class="flex flex-col md:flex-row-reverse gap-8 items-center bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 p-8">
-                <div class="md:w-1/3 aspect-square rounded-xl overflow-hidden"><img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1552520779-1662fbdeab97?q=80&w=2070&auto=format&fit=crop" alt="Cathedral"></div>
-                <div class="md:w-2/3">
-                    <span class="text-amber-500 font-bold text-xs uppercase tracking-widest mb-2 block">13th Century Architecture</span>
-                    <h3 class="text-2xl font-black mb-3">Valencia Cathedral</h3>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-lg">A brilliant mixture of Romanesque, French Gothic, Renaissance, Baroque and Neo-Classical styles. It also famously houses the Holy Chalice, widely revered as the true Holy Grail.</p>
+            </button>
+            <button onclick="openModal('cathedral-modal')" class="cursor-pointer block text-left">
+                <div class="flex flex-col md:flex-row-reverse gap-8 items-center bg-white dark:bg-slate-900 rounded-2xl shadow-sm hover:shadow-xl border border-slate-100 dark:border-slate-800 p-8 transition-all">
+                    <div class="md:w-1/3 aspect-square rounded-xl overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="img/history_heritage/image_2.jpg" alt="Valencia Cathedral"></div>
+                    <div class="md:w-2/3">
+                        <span class="text-amber-500 font-bold text-xs uppercase tracking-widest mb-2 block">13th Century Architecture</span>
+                        <h3 class="text-2xl font-black mb-3">Valencia Cathedral</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-lg">A brilliant mixture of Romanesque, French Gothic, Renaissance, Baroque and Neo-Classical styles. It also famously houses the Holy Chalice, widely revered as the true Holy Grail.</p>
+                        <div class="mt-6 text-amber-500 font-bold text-sm">Learn More →</div>
+                    </div>
                 </div>
-            </div>
+            </button>
         </div>
         
     </section>
+
+    <!-- La Lonja de la Seda Modal -->
+    <div id="lonja-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="sticky top-0 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 p-6 flex items-center justify-between">
+                <h2 class="text-2xl font-bold">La Lonja de la Seda</h2>
+                <button onclick="closeModal('lonja-modal')" class="text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white text-2xl">✕</button>
+            </div>
+            <div class="p-6">
+                <img src="img/history_heritage/image_1.jpg" alt="La Lonja de la Seda" class="w-full h-64 object-cover rounded-xl mb-6" />
+                <div class="space-y-4 text-slate-700 dark:text-slate-300">
+                    <p><strong class="text-amber-600">La Lonja de la Seda</strong> (The Silk Exchange) is one of the finest examples of late Gothic architecture in Europe. Built between 1482 and 1533, this magnificent structure was the epicenter of Valencia's thriving silk trade during the city's Golden Age.</p>
+                    <p>The building's most distinctive feature is its <strong>main trading hall</strong> with graceful spiral columns that rise to ornate capitals. These columns are a testament to the skilled craftsmen and architects who designed this masterpiece. The hall once echoed with the voices of merchants negotiating the finest silk from the Valencian region.</p>
+                    <p>In 1996, La Lonja de la Seda was recognized as a <strong>UNESCO World Heritage Site</strong>, acknowledging its outstanding cultural and architectural significance. The building stands as a symbol of Valencia's prosperity, trade prowess, and artistic excellence during the Renaissance period.</p>
+                    <p>Today, visitors can admire the intricate stone carvings, gothic vaulting, and historical significance of this remarkable building. The interior retains much of its original character, allowing visitors to step back into the gilded age of Valencia's merchant class.</p>
+                </div>
+                <div class="mt-6 flex gap-4 justify-between">
+                    <a href="https://www.lalonjadevalencia.es" target="_blank" class="text-amber-600 font-bold hover:underline">Official Website →</a>
+                    <button onclick="closeModal('lonja-modal')" class="text-amber-600 font-bold hover:underline">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Valencia Cathedral Modal -->
+    <div id="cathedral-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="sticky top-0 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 p-6 flex items-center justify-between">
+                <h2 class="text-2xl font-bold">Valencia Cathedral</h2>
+                <button onclick="closeModal('cathedral-modal')" class="text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white text-2xl">✕</button>
+            </div>
+            <div class="p-6">
+                <img src="img/history_heritage/image_2.jpg" alt="Valencia Cathedral" class="w-full h-64 object-cover rounded-xl mb-6" />
+                <div class="space-y-4 text-slate-700 dark:text-slate-300">
+                    <p>The <strong class="text-amber-600">Valencia Cathedral</strong> is a breathtaking architectural monument that showcases a stunning blend of <strong>Romanesque</strong>, <strong>French Gothic</strong>, <strong>Renaissance</strong>, <strong>Baroque</strong>, and <strong>Neo-Classical</strong> styles. Construction began in the 13th century on the site of a former Roman temple and Muslim mosque, making it a living chronicle of Valencia's diverse history.</p>
+                    <p>What sets this cathedral apart from other European religious buildings is its housing of the <strong>Holy Chalice</strong>, widely revered by many Christians as the true Holy Grail used by Jesus Christ at the Last Supper. The chalice is displayed in a specially adorned chapel and has attracted pilgrims from around the world for centuries, adding to the cathedral's spiritual and cultural significance.</p>
+                    <p>The cathedral's stunning exterior features an impressive <strong>Baroque façade</strong> and three distinctive towers. Inside, visitors marvel at the soaring columns, delicate stone carvings, and extraordinary stained glass windows that fill the interior with ethereal light. The main altarpiece is a masterwork of Renaissance art.</p>
+                    <p>The cathedral's bell tower, known as the <strong>Miguelete</strong>, stands 68 meters tall and offers panoramic views of Valencia's cityscape. Climbing its 207 steps rewards visitors with breathtaking vistas of the surrounding architecture, the Turia Gardens, and the city beyond. This cathedral remains an essential pilgrimage site and one of Valencia's most treasured landmarks.</p>
+                </div>
+                <div class="mt-6 flex gap-4 justify-between">
+                    <a href="https://catedraldevalencia.org" target="_blank" class="text-amber-600 font-bold hover:underline">Visit Cathedral →</a>
+                    <button onclick="closeModal('cathedral-modal')" class="text-amber-600 font-bold hover:underline">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('hidden');
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+        }
+
+        // Escape key handler
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('[id$="-modal"]').forEach(modal => {
+                    modal.classList.add('hidden');
+                });
+            }
+        });
+
+        // Click outside modal to close
+        document.querySelectorAll('[id$="-modal"]').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </main>
 
             <!-- Footer -->
