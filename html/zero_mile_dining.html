@@ -16,82 +16,7 @@
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
         <div class="layout-container flex h-full grow flex-col">
             <!-- Top Navigation Bar -->
-            <header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex h-16 items-center justify-between">
-                                        <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                    <span class="material-symbols-outlined text-primary text-3xl">eco</span>
-                    <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Valencia</h2>
-                </a>
-                                                        <nav class="hidden md:flex items-center gap-8 z-50">
-                    <div class="relative group">
-                        <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4"
-                            href="discover.html">
-                            Discover
-                            <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
-                        </a>
-                        <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
-                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words"
-                                href="itineraries.html">Itineraries</a>
-                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words"
-                                href="green_spaces.html">Green Spaces</a>
-                        </div>
-                    </div>
-
-                    <div class="relative group">
-                        <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4"
-                            href="gastronomy.html">
-                            Gastronomy
-                            <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
-                        </a>
-                        <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
-                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words"
-                                href="traditional_dishes.html">Traditional Dishes</a>
-                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words"
-                                href="zero_mile_dining.html">Zero-Mile Dining</a>
-                        </div>
-                    </div>
-
-                    <div class="relative group">
-                        <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4"
-                            href="events.html">
-                            Events
-                            <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
-                        </a>
-                        <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
-                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words"
-                                href="cultural_festivals.html">Cultural Festivals</a>
-                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words"
-                                href="local_workshops.html">Local Workshops</a>
-                        </div>
-                    </div>
-
-                    <div class="relative group">
-                        <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4"
-                            href="about.html">
-                            About
-                            <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
-                        </a>
-                        <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
-                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words"
-                                href="history_heritage.html">History &amp; Heritage</a>
-                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words"
-                                href="our_mission.html">Our Mission</a>
-                        </div>
-                    </div>
-                </nav>
-                        <div class="flex items-center gap-4">
-                            <button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all">
-                                <span class="material-symbols-outlined text-sm">language</span>
-                                <span>ES / EN</span>
-                            </button>
-                            <div class="size-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden border border-slate-200 dark:border-slate-800">
-                                <img alt="User Profile" src="../img/zero_mile_dining/image_3.jpg" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
+            <div id="header-container"></div>
 
             <main class="flex-1 w-full mx-auto pb-20">
     <!-- Hero Section -->
@@ -132,71 +57,7 @@
 </main>
 
             <!-- Footer -->
-            <footer class="bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 pt-16 pb-8">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                        <div class="col-span-1 md:col-span-1">
-                            <a href="index.html" class="flex items-center gap-2 mb-6 hover:opacity-80 transition-opacity">
-                                <span class="material-symbols-outlined text-primary text-3xl">eco</span>
-                                <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Valencia</h2>
-                            </a>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
-                                Leading the Mediterranean in sustainable urban tourism through conservation, community support,
-                                and green infrastructure.
-                            </p>
-                            <div class="flex gap-4">
-                                <a class="size-8 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-all"
-                                    href="#">
-                                    <span class="material-symbols-outlined text-base">share</span>
-                                </a>
-                                <a class="size-8 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-all"
-                                    href="#">
-                                    <span class="material-symbols-outlined text-base">public</span>
-                                </a>
-                                <a class="size-8 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-all"
-                                    href="#">
-                                    <span class="material-symbols-outlined text-base">camera</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 dark:text-white mb-6">Discover</h4>
-                            <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
-                                <li><a class="hover:text-primary transition-colors" href="#">Turia Garden</a></li>
-                                <li><a class="hover:text-primary transition-colors" href="#">City of Arts &amp; Sciences</a></li>
-                                <li><a class="hover:text-primary transition-colors" href="#">Eco-Gastronomy</a></li>
-                                <li><a class="hover:text-primary transition-colors" href="#">Sustainable Lodging</a></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 dark:text-white mb-6">Commitment</h4>
-                            <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
-                                <li><a class="hover:text-primary transition-colors" href="#">2030 Green Plan</a></li>
-                                <li><a class="hover:text-primary transition-colors" href="#">Carbon Neutral Goal</a></li>
-                                <li><a class="hover:text-primary transition-colors" href="#">Local Artisans</a></li>
-                                <li><a class="hover:text-primary transition-colors" href="#">Reports &amp; Data</a></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 dark:text-white mb-6">Newsletter</h4>
-                            <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Stay updated on our latest green initiatives.</p>
-                            <div class="flex flex-col gap-2">
-                                <input class="w-full rounded-lg border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-sm focus:ring-primary focus:border-primary"
-                                    placeholder="Email address" type="email" />
-                                <button class="w-full bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-bold py-2 rounded-lg text-sm hover:opacity-90 transition-opacity">Subscribe</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-                        <p>© 2024 Sustainable Valencia Tourism Board. All rights reserved.</p>
-                        <div class="flex gap-6">
-                            <a class="hover:text-slate-900 dark:hover:text-white" href="#">Privacy Policy</a>
-                            <a class="hover:text-slate-900 dark:hover:text-white" href="#">Terms of Use</a>
-                            <a class="hover:text-slate-900 dark:hover:text-white" href="#">Cookie Settings</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <div id="footer-container"></div>
         </div>
     </div>
 </body>
