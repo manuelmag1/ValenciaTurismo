@@ -1,25 +1,15 @@
-node_modules/
+# Local development files - not tracked in deployment
+/node_modules/
 .DS_Store
 *.log
 .env
-.vscode/
-
-# Archivos fuente locales (desarrollo)
-html/
-css/
-js/
-img/
+/.vscode/
+/html/
+/dist/
 package.json
 SKILL.md
 *.py
-
-# URLs y outputs temporales
 failed_urls.json
 paella_urls.txt
 output.txt
 
-# Permitir dist/ (compilado para deploy)
-!dist/
-!dist/css/
-!dist/js/
-!dist/img/
