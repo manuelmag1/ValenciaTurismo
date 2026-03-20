@@ -1,12 +1,19 @@
 node_modules/
 .DS_Store
 *.log
+.env
+.vscode/
+
+# Archivos fuente locales - solo mantener docs/ en GitHub
+html/
+css/
+js/
+img/
+package.json
+SKILL.md
+*.py
+
+# URLs y outputs temporales
 failed_urls.json
 paella_urls.txt
 output.txt
-fix_nav.py
-fix_styles.py
-restore_nav.py
-nav_updater.py
-generate_pages.py
-download_screens.py
