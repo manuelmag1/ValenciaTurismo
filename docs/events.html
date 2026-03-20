@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="js/scripts.js"></script>
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="js/header.js"></script>
+    <script src="js/footer.js"></script>
+    <title>Valencia Events | Festivals & Celebrations</title>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-200">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <!-- Top Navigation Bar -->
+            <div id="header-container"></div>
+
+            <main class="flex-1 w-full mx-auto pb-20">
+                <!-- Hero Section -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <div class="relative min-h-[400px] rounded-2xl overflow-hidden flex flex-col justify-end p-8 lg:p-14 bg-slate-900 shadow-2xl">
+                        <img alt="Valencia Fallas Festival Fire" class="absolute inset-0 w-full h-full object-cover opacity-60" src="https://images.unsplash.com/photo-1533174000255-1adfb2402bc5?q=80&w=2070&auto=format&fit=crop" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                        <div class="relative z-10 max-w-3xl">
+                            <span class="inline-flex items-center gap-2 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold mb-4 uppercase tracking-wider">
+                                <span class="material-symbols-outlined text-sm">celebration</span> Global Festivals
+                            </span>
+                            <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-tight mb-4">Feel the <span class="text-primary italic">Energy</span></h1>
+                            <p class="text-slate-200 text-lg md:text-xl font-medium max-w-2xl leading-relaxed">
+                                Join us in the streets. From the roaring flames of Las Fallas to the exhilarating Valencia Marathon, our city never stops celebrating life.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div class="flex items-center justify-between mb-10">
+                        <div>
+                            <h2 class="text-3xl font-bold text-slate-900 dark:text-slate-100">Featured Events</h2>
+                            <p class="text-slate-500 mt-2">The most anticipated celebrations of the year</p>
+                        </div>
+                        <div class="hidden md:flex gap-2">
+                            <select class="rounded-lg border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm font-medium py-2 px-4 shadow-sm focus:ring-primary focus:border-primary">
+                                <option>All Categories</option>
+                                <option>Culture & Heritage</option>
+                                <option>Sports</option>
+                                <option>Music & Arts</option>
+                            </select>
+                            <select class="rounded-lg border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm font-medium py-2 px-4 shadow-sm focus:ring-primary focus:border-primary">
+                                <option>Any Month</option>
+                                <option>March</option>
+                                <option>August</option>
+                                <option>December</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Las Fallas -->
+                        <div class="group flex flex-col md:flex-row bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-100 dark:border-slate-800 h-auto md:h-72">
+                            <div class="md:w-5/12 h-64 md:h-full relative overflow-hidden">
+                                <img alt="Las Fallas of Valencia" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1543881656-788dfc480ad2?q=80&w=2070&auto=format&fit=crop" />
+                                <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/50 to-transparent opacity-80"></div>
+                                <div class="absolute top-4 left-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-lg flex flex-col items-center justify-center p-3 rounded-xl border border-primary/20 text-primary min-w-[70px]">
+                                    <span class="text-xl font-black leading-none">19</span>
+                                    <span class="text-[10px] font-bold uppercase mt-1">March</span>
+                                </div>
+                            </div>
+                            <div class="p-6 md:p-8 md:w-7/12 flex flex-col justify-center">
+                                <span class="text-primary font-bold text-xs uppercase tracking-widest mb-2">Heritage • Festival</span>
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3">Las Fallas</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                                    The ultimate festival of fire and art. Witness gigantic sculptures filling the streets before being burned in an epic nocturnal spectacle.
+                                </p>
+                                <div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+                                    <div class="flex items-center gap-1 text-slate-500 text-sm font-medium">
+                                        <span class="material-symbols-outlined text-[18px]">location_on</span> City Center
+                                    </div>
+                                    <button class="text-primary font-bold text-sm hover:underline flex items-center gap-1">
+                                        Details <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- La Tomatina -->
+                        <div class="group flex flex-col md:flex-row bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-100 dark:border-slate-800 h-auto md:h-72">
+                            <div class="md:w-5/12 h-64 md:h-full relative overflow-hidden">
+                                <img alt="La Tomatina Buñol" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1518388656627-88baec8ae7b3?q=80&w=2015&auto=format&fit=crop" />
+                                <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/50 to-transparent opacity-80"></div>
+                                <div class="absolute top-4 left-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-lg flex flex-col items-center justify-center p-3 rounded-xl border border-rose-500/20 text-rose-600 min-w-[70px]">
+                                    <span class="text-xl font-black leading-none">28</span>
+                                    <span class="text-[10px] font-bold uppercase mt-1">August</span>
+                                </div>
+                            </div>
+                            <div class="p-6 md:p-8 md:w-7/12 flex flex-col justify-center">
+                                <span class="text-rose-600 font-bold text-xs uppercase tracking-widest mb-2">Tradition • Fun</span>
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3">La Tomatina</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                                    Join thousands of people in the nearby town of Buñol for the world's largest food fight, throwing over a hundred metric tons of tomatoes.
+                                </p>
+                                <div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+                                    <div class="flex items-center gap-1 text-slate-500 text-sm font-medium">
+                                        <span class="material-symbols-outlined text-[18px]">location_on</span> Buñol
+                                    </div>
+                                    <button class="text-rose-600 font-bold text-sm hover:underline flex items-center gap-1">
+                                        Details <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Valencia Marathon -->
+                        <div class="group flex flex-col md:flex-row bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-100 dark:border-slate-800 h-auto md:h-72">
+                            <div class="md:w-5/12 h-64 md:h-full relative overflow-hidden">
+                                <img alt="Street life Valencia" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="img/events/image_1.jpg" />
+                                <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/50 to-transparent opacity-80"></div>
+                                <div class="absolute top-4 left-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-lg flex flex-col items-center justify-center p-3 rounded-xl border border-blue-500/20 text-blue-600 min-w-[70px]">
+                                    <span class="text-xl font-black leading-none">01</span>
+                                    <span class="text-[10px] font-bold uppercase mt-1">Dec</span>
+                                </div>
+                            </div>
+                            <div class="p-6 md:p-8 md:w-7/12 flex flex-col justify-center">
+                                <span class="text-blue-600 font-bold text-xs uppercase tracking-widest mb-2">Sports • Global</span>
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3">Valencia Marathon</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                                    Known as "The City of Running," Valencia hosts one of the fastest and highly acclaimed marathons on a completely flat, beautiful course.
+                                </p>
+                                <div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+                                    <div class="flex items-center gap-1 text-slate-500 text-sm font-medium">
+                                        <span class="material-symbols-outlined text-[18px]">location_on</span> Turia Garden
+                                    </div>
+                                    <button class="text-blue-600 font-bold text-sm hover:underline flex items-center gap-1">
+                                        Details <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gran Feria -->
+                        <div class="group flex flex-col md:flex-row bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-100 dark:border-slate-800 h-auto md:h-72">
+                            <div class="md:w-5/12 h-64 md:h-full relative overflow-hidden">
+                                <img alt="Batalla de flores" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1563241527-3004b732e7fa?q=80&w=2000&auto=format&fit=crop" />
+                                <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/50 to-transparent opacity-80"></div>
+                                <div class="absolute top-4 left-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-lg flex flex-col items-center justify-center p-3 rounded-xl border border-amber-500/20 text-amber-600 min-w-[70px]">
+                                    <span class="text-xl font-black leading-none">28</span>
+                                    <span class="text-[10px] font-bold uppercase mt-1">July</span>
+                                </div>
+                            </div>
+                            <div class="p-6 md:p-8 md:w-7/12 flex flex-col justify-center">
+                                <span class="text-amber-600 font-bold text-xs uppercase tracking-widest mb-2">Culture • Summer</span>
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3">Gran Feria (Batalla de Flores)</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                                    A spectacular summer fair culminating in the Battle of Flowers, where a million marigolds are thrown in a breathtaking parade.
+                                </p>
+                                <div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+                                    <div class="flex items-center gap-1 text-slate-500 text-sm font-medium">
+                                        <span class="material-symbols-outlined text-[18px]">location_on</span> Paseo de la Alameda
+                                    </div>
+                                    <button class="text-amber-600 font-bold text-sm hover:underline flex items-center gap-1">
+                                        Details <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </main>
+
+            <!-- Footer -->
+            <div id="footer-container"></div>
+        </div>
+    </div>
+</body>
+</html>
