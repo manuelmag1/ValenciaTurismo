@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="../js/scripts.js"></script>
+    <link href="../css/styles.css" rel="stylesheet" />
+    <script src="../js/header.js"></script>
+    <script src="../js/footer.js"></script>
+    <title>Interactive Route Explorer | Valencia Sustainable Tourism</title>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+    <div class="relative flex h-screen w-full flex-col overflow-hidden">
+        <!-- Header Component -->
+        <!-- Top Navigation Bar -->
+    <div id="header-container"></div>
+        <main class="flex flex-1 overflow-hidden relative">
+            <!-- Sidebar: Filters and Route Cards -->
+            <aside
+                class="w-full md:w-[420px] bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 overflow-y-auto z-10">
+                <div class="p-6">
+                    <h1 class="text-2xl font-bold mb-1">Route Explorer</h1>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Sustainable paths through Valencia</p>
+                    <!-- Category Filters -->
+                    <div class="flex gap-2 overflow-x-auto pb-4 no-scrollbar">
+                        <button
+                            class="flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-white text-sm font-medium shrink-0">
+                            <span class="material-symbols-outlined text-lg">directions_bike</span> Bike
+                        </button>
+                        <button
+                            class="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium shrink-0 hover:bg-slate-200">
+                            <span class="material-symbols-outlined text-lg">directions_walk</span> Walk
+                        </button>
+                        <button
+                            class="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium shrink-0 hover:bg-slate-200">
+                            <span class="material-symbols-outlined text-lg">directions_boat</span> Boat
+                        </button>
+                        <button
+                            class="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium shrink-0 hover:bg-slate-200">
+                            <span class="material-symbols-outlined text-lg">accessible</span> Accessible
+                        </button>
+                    </div>
+                    <div class="flex flex-col gap-4 mt-2">
+                        <!-- Route Card 1: Turia Garden -->
+                        <div
+                            class="group flex flex-col rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-lg transition-shadow bg-background-light dark:bg-slate-800/50">
+                            <div class="h-40 w-full relative">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="Green lush park with walking paths in Turia Garden"
+                                    src="../img/itineraries/image_2.jpg" />
+                                <div
+                                    class="absolute top-3 right-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur px-2 py-1 rounded text-xs font-bold text-primary">
+                                    RECOMMENDED</div>
+                            </div>
+                            <div class="p-4 flex flex-col gap-2">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="font-bold text-lg">Turia Garden Green Belt</h3>
+                                    <span
+                                        class="text-xs bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 px-2 py-0.5 rounded-full font-medium">Easy</span>
+                                </div>
+                                <div class="flex gap-4 text-xs text-slate-500 dark:text-slate-400">
+                                    <span class="flex items-center gap-1"><span
+                                            class="material-symbols-outlined text-sm">schedule</span> 45 min</span>
+                                    <span class="flex items-center gap-1"><span
+                                            class="material-symbols-outlined text-sm">distance</span> 7.2 km</span>
+                                </div>
+                                <div class="mt-2 space-y-2">
+                                    <p
+                                        class="text-sm leading-relaxed text-slate-600 dark:text-slate-300 italic border-l-2 border-primary/30 pl-3">
+                                        Ride through the historic riverbed park, from the Bioparc to the City of Arts
+                                        and Sciences.
+                                    </p>
+                                    <p
+                                        class="text-sm leading-relaxed text-slate-500 dark:text-slate-400 italic border-l-2 border-slate-300/30 pl-3">
+                                        Recorre el antiguo cauce del río, desde el Bioparc hasta la Ciudad de las Artes
+                                        y las Ciencias.
+                                    </p>
+                                </div>
+                                <button
+                                    class="mt-4 w-full py-3 bg-primary text-white rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
+                                    <span class="material-symbols-outlined">navigation</span> Start Navigation
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Route Card 2: Albufera -->
+                        <div
+                            class="group flex flex-col rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-lg transition-shadow bg-background-light dark:bg-slate-800/50">
+                            <div class="h-40 w-full relative">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="Beautiful sunset over the Albufera lake in Valencia"
+                                    src="../img/itineraries/image_1.jpg" />
+                            </div>
+                            <div class="p-4 flex flex-col gap-2">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="font-bold text-lg">Albufera Lake Sunset Boat</h3>
+                                    <span
+                                        class="text-xs bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400 px-2 py-0.5 rounded-full font-medium">Moderate</span>
+                                </div>
+                                <div class="flex gap-4 text-xs text-slate-500 dark:text-slate-400">
+                                    <span class="flex items-center gap-1"><span
+                                            class="material-symbols-outlined text-sm">schedule</span> 1.5 hours</span>
+                                    <span class="flex items-center gap-1"><span
+                                            class="material-symbols-outlined text-sm">directions_boat</span> Solar
+                                        Powered</span>
+                                </div>
+                                <div class="mt-2 space-y-2">
+                                    <p
+                                        class="text-sm leading-relaxed text-slate-600 dark:text-slate-300 italic border-l-2 border-primary/30 pl-3">
+                                        Discover the traditional fishing routes and rice fields using eco-friendly solar
+                                        boats.
+                                    </p>
+                                    <p
+                                        class="text-sm leading-relaxed text-slate-500 dark:text-slate-400 italic border-l-2 border-slate-300/30 pl-3">
+                                        Descubre las rutas de pesca tradicionales y los campos de arroz en barcas
+                                        solares ecológicas.
+                                    </p>
+                                </div>
+                                <button
+                                    class="mt-4 w-full py-3 bg-primary text-white rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
+                                    <span class="material-symbols-outlined">navigation</span> Start Navigation
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Route Card 3: Bioparc Valencia -->
+                        <div
+                            class="group flex flex-col rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-lg transition-shadow bg-background-light dark:bg-slate-800/50">
+                            <div class="h-40 w-full relative">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="Modern wildlife zoo with immersive habitat displays"
+                                    src="../img/sustainable_natural_wonders/image_4.jpg" />
+                            </div>
+                            <div class="p-4 flex flex-col gap-2">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="font-bold text-lg">Bioparc Valencia Conservation</h3>
+                                    <span
+                                        class="text-xs bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 px-2 py-0.5 rounded-full font-medium">New</span>
+                                </div>
+                                <div class="flex gap-4 text-xs text-slate-500 dark:text-slate-400">
+                                    <span class="flex items-center gap-1"><span
+                                            class="material-symbols-outlined text-sm">schedule</span> 3-4 hours</span>
+                                    <span class="flex items-center gap-1"><span
+                                            class="material-symbols-outlined text-sm">eco</span> 100% Renewable</span>
+                                </div>
+                                <div class="mt-2 space-y-2">
+                                    <p
+                                        class="text-sm leading-relaxed text-slate-600 dark:text-slate-300 italic border-l-2 border-primary/30 pl-3">
+                                        Experience cutting-edge wildlife conservation in immersive natural habitats powered by renewable energy.
+                                    </p>
+                                    <p
+                                        class="text-sm leading-relaxed text-slate-500 dark:text-slate-400 italic border-l-2 border-slate-300/30 pl-3">
+                                        Experimenta la conservación de vida silvestre en hábitats naturales inmersivos.
+                                    </p>
+                                </div>
+                                <button
+                                    class="mt-4 w-full py-3 bg-primary text-white rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
+                                    <span class="material-symbols-outlined">navigation</span> Plan Visit
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Route Card 4: Dehesa del Saler -->
+                        <div
+                            class="group flex flex-col rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-lg transition-shadow bg-background-light dark:bg-slate-800/50">
+                            <div class="h-40 w-full relative">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="Pristine coastal pine forest with Mediterranean vegetation"
+                                    src="../img/sustainable_natural_wonders/image_5.jpg" />
+                            </div>
+                            <div class="p-4 flex flex-col gap-2">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="font-bold text-lg">Dehesa del Saler Coastal Trail</h3>
+                                    <span
+                                        class="text-xs bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-400 px-2 py-0.5 rounded-full font-medium">Scenic</span>
+                                </div>
+                                <div class="flex gap-4 text-xs text-slate-500 dark:text-slate-400">
+                                    <span class="flex items-center gap-1"><span
+                                            class="material-symbols-outlined text-sm">schedule</span> 1.5-2 hours</span>
+                                    <span class="flex items-center gap-1"><span
+                                            class="material-symbols-outlined text-sm">pedal_bike</span> 8 km</span>
+                                </div>
+                                <div class="mt-2 space-y-2">
+                                    <p
+                                        class="text-sm leading-relaxed text-slate-600 dark:text-slate-300 italic border-l-2 border-primary/30 pl-3">
+                                        Cycle through pristine dune ecosystems and Mediterranean pine forests along protected coastal paths.
+                                    </p>
+                                    <p
+                                        class="text-sm leading-relaxed text-slate-500 dark:text-slate-400 italic border-l-2 border-slate-300/30 pl-3">
+                                        Pedalea a través de ecosistemas dunares prístinos y bosques de pinar mediterráneo.
+                                    </p>
+                                </div>
+                                <button
+                                    class="mt-4 w-full py-3 bg-primary text-white rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
+                                    <span class="material-symbols-outlined">navigation</span> Start Navigation
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Route Card 5: Eco-Friendly Activities -->
+                        <div
+                            class="group flex flex-col rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-lg transition-shadow bg-background-light dark:bg-slate-800/50">
+                            <div class="h-40 w-full relative">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="Zero carbon eco tourism activities in nature"
+                                    src="../img/eco_friendly_activities/image_1.jpg" />
+                            </div>
+                            <div class="p-4 flex flex-col gap-2">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="font-bold text-lg">Zero Carbon Activities Guide</h3>
+                                    <span
+                                        class="text-xs bg-lime-100 text-lime-700 dark:bg-lime-900/30 dark:text-lime-400 px-2 py-0.5 rounded-full font-medium">Popular</span>
+                                </div>
+                                <div class="flex gap-4 text-xs text-slate-500 dark:text-slate-400">
+                                    <span class="flex items-center gap-1"><span
+                                            class="material-symbols-outlined text-sm">eco</span> Zero Emissions</span>
+                                    <span class="flex items-center gap-1"><span
+                                            class="material-symbols-outlined text-sm">groups</span> Group Tours</span>
+                                </div>
+                                <div class="mt-2 space-y-2">
+                                    <p
+                                        class="text-sm leading-relaxed text-slate-600 dark:text-slate-300 italic border-l-2 border-primary/30 pl-3">
+                                        Discover bird watching, traditional boats, eco-bikes, and sustainable picnics—all with zero carbon impact.
+                                    </p>
+                                    <p
+                                        class="text-sm leading-relaxed text-slate-500 dark:text-slate-400 italic border-l-2 border-slate-300/30 pl-3">
+                                        Observación de aves, paseos en barca eléctrica, bicicletas ecológicas y picnics sostenibles.
+                                    </p>
+                                </div>
+                                <button
+                                    class="mt-4 w-full py-3 bg-primary text-white rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
+                                    <span class="material-symbols-outlined">navigation</span> Explore Activities
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <!-- Map Mockup Interface -->
+            <section
+                class="hidden md:flex flex-1 relative bg-slate-200 dark:bg-slate-900 items-center justify-center overflow-hidden">
+                <!-- Fullscreen Map Background -->
+                <div class="absolute inset-0 opacity-50 dark:opacity-30">
+                    <img class="w-full h-full object-cover" data-alt="Topographic map style abstract pattern of a city"
+                        data-location="Valencia"
+                        src="../img/itineraries/image_5.jpg" />
+                </div>
+                <!-- Interactive Map Elements Overlay -->
+                <div class="relative w-full h-full flex flex-col">
+                    <!-- Map Controls -->
+                    <div class="absolute top-6 right-6 flex flex-col gap-2 z-10">
+                        <div
+                            class="flex flex-col rounded-lg bg-white dark:bg-slate-800 shadow-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                            <button
+                                class="p-3 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200">
+                                <span class="material-symbols-outlined">add</span>
+                            </button>
+                            <div class="h-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+                            <button
+                                class="p-3 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200">
+                                <span class="material-symbols-outlined">remove</span>
+                            </button>
+                        </div>
+                        <button
+                            class="p-3 rounded-lg bg-white dark:bg-slate-800 shadow-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200">
+                            <span class="material-symbols-outlined">my_location</span>
+                        </button>
+                        <button
+                            class="p-3 rounded-lg bg-white dark:bg-slate-800 shadow-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200">
+                            <span class="material-symbols-outlined">layers</span>
+                        </button>
+                    </div>
+                    <!-- Map Markers (Mock) -->
+                    <div class="absolute top-1/3 left-1/4 group cursor-pointer">
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="bg-primary text-white p-2 rounded-full shadow-lg ring-4 ring-primary/20 animate-pulse">
+                                <span class="material-symbols-outlined text-sm">directions_bike</span>
+                            </div>
+                            <div
+                                class="mt-2 bg-white dark:bg-slate-800 px-3 py-1 rounded-lg shadow-md border border-slate-200 dark:border-slate-700 whitespace-nowrap">
+                                <span class="text-xs font-bold">Turia Green Belt</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-1/4 right-1/3 group cursor-pointer">
+                        <div class="flex flex-col items-center">
+                            <div class="bg-blue-500 text-white p-2 rounded-full shadow-lg ring-4 ring-blue-500/20">
+                                <span class="material-symbols-outlined text-sm">directions_boat</span>
+                            </div>
+                            <div
+                                class="mt-2 bg-white dark:bg-slate-800 px-3 py-1 rounded-lg shadow-md border border-slate-200 dark:border-slate-700 whitespace-nowrap">
+                                <span class="text-xs font-bold">Albufera Boat Route</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Legend / Map Info -->
+                    <div
+                        class="absolute bottom-6 right-6 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md p-4 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 flex flex-col gap-2 min-w-[200px]">
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400">Map Legend</h4>
+                        <div class="flex items-center gap-2 text-sm">
+                            <span class="w-3 h-3 rounded-full bg-primary"></span>
+                            <span>Bike Routes</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm">
+                            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+                            <span>Boat / Water Routes</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm">
+                            <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                            <span>Nature Preserves</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

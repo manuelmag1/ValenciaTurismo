@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="../js/scripts.js"></script>
+    <link href="../css/styles.css" rel="stylesheet" />
+    <script src="../js/header.js"></script>
+    <script src="../js/footer.js"></script>
+    <title>Cultural Festivals | Valencia</title>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-200">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <!-- Top Navigation Bar -->
+            <div id="header-container"></div>
+
+            <main class="flex-1 w-full mx-auto pb-20">
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-8">
+        <div class="relative min-h-[400px] rounded-2xl overflow-hidden flex flex-col justify-end p-8 lg:p-14 bg-slate-900 shadow-2xl">
+            <img alt="Cultural Festivals" class="absolute inset-0 w-full h-full object-cover opacity-60" src="https://images.unsplash.com/photo-1533174000255-1adfb2402bc5?q=80&w=2070&auto=format&fit=crop" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+            <div class="relative z-10 max-w-3xl">
+                <span class="inline-flex items-center gap-2 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold mb-4 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">celebration</span> Festivities
+                </span>
+                <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-tight mb-4">Cultural Festivals</h1>
+                <p class="text-slate-200 text-lg md:text-xl font-medium max-w-2xl mb-8 leading-relaxed">
+                    Immerse yourself in our world-renowned celebrations of art, gunpowder, and history. We host the most vibrant and passionate festivals in all of Europe.
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- Content Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 group">
+                <div class="aspect-[16/10] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1543881656-788dfc480ad2?q=80&w=2070&auto=format&fit=crop" alt="Las Fallas"></div>
+                <div class="p-8">
+                    <span class="text-primary font-bold text-xs uppercase tracking-widest mb-2 block">March 15 - 19</span>
+                    <h3 class="text-2xl font-black mb-3">Las Fallas</h3>
+                    <p class="text-slate-600 dark:text-slate-400">Giant satirical monuments, thundering fireworks (mascletàs), stunning lights, and passionate parades culminate in a massive night of fire where all art is ceremoniously burnt.</p>
+                </div>
+            </div>
+            <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 group">
+                <div class="aspect-[16/10] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1518388656627-88baec8ae7b3?q=80&w=2015&auto=format&fit=crop" alt="La Tomatina"></div>
+                <div class="p-8">
+                    <span class="text-primary font-bold text-xs uppercase tracking-widest mb-2 block">August</span>
+                    <h3 class="text-2xl font-black mb-3">La Tomatina</h3>
+                    <p class="text-slate-600 dark:text-slate-400">Held in the nearby town of Buñol, this is the world's largest food fight. Tens of thousands of participants throw over 100 metric tons of over-ripe tomatoes in the streets.</p>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+</main>
+
+            <!-- Footer -->
+            <div id="footer-container"></div>
+        </div>
+    </div>
+</body>
+</html>
