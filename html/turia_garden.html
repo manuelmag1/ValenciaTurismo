@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="../js/scripts.js"></script>
+    <link href="../css/styles.css" rel="stylesheet" />
+    <title>Turia Garden | Sustainable Natural Wonders</title>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+    <div class="relative flex h-auto min-screen w-full flex-col overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <!-- Top Navigation Bar -->
+            <header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex h-16 items-center justify-between">
+                        <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                            <span class="material-symbols-outlined text-primary text-3xl">eco</span>
+                            <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Valencia</h2>
+                        </a>
+                        <nav class="hidden md:flex items-center gap-8 z-50">
+                            <div class="relative group">
+                                <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4" href="discover.html">
+                                    Discover
+                                    <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+                                </a>
+                                <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="itineraries.html">Itineraries</a>
+                                    <div class="relative group/sub">
+                                        <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words flex items-center justify-between">
+                                            Sustainable Natural
+                                            <span class="material-symbols-outlined text-sm">chevron_right</span>
+                                        </a>
+                                        <div class="absolute left-full top-0 w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-300 z-50">
+                                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1" href="albufera.html">Albufera Natural Park</a>
+                                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1" href="turia_garden.html">Turia Garden</a>
+                                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1" href="bioparc_valencia.html">Bioparc Valencia</a>
+                                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1" href="dehesa_saler.html">Dehesa del Saler</a>
+                                        </div>
+                                    </div>
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="eco_friendly_activities.html">Eco-Friendly Activities</a>
+                                </div>
+                            </div>
+
+                            <div class="relative group">
+                                <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4" href="gastronomy.html">
+                                    Gastronomy
+                                    <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+                                </a>
+                                <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="traditional_dishes.html">Traditional Dishes</a>
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="zero_mile_dining.html">Zero-Mile Dining</a>
+                                </div>
+                            </div>
+
+                            <div class="relative group">
+                                <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4" href="events.html">
+                                    Events
+                                    <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+                                </a>
+                                <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="cultural_festivals.html">Cultural Festivals</a>
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="local_workshops.html">Local Workshops</a>
+                                </div>
+                            </div>
+
+                            <div class="relative group">
+                                <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4" href="about.html">
+                                    About
+                                    <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+                                </a>
+                                <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="history_heritage.html">History &amp; Heritage</a>
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="our_mission.html">Our Mission</a>
+                                </div>
+                            </div>
+                        </nav>
+                        <div class="flex items-center gap-4">
+                            <button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all">
+                                <span class="material-symbols-outlined text-sm">language</span>
+                                <span>ES / EN</span>
+                            </button>
+                            <div class="size-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden border border-slate-200 dark:border-slate-800">
+                                <img alt="User Profile" src="../img/discover/image_3.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="flex-1 w-full mx-auto pb-20">
+                <!-- Hero Section -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-8">
+                    <div class="relative min-h-[400px] rounded-2xl overflow-hidden flex flex-col justify-end p-8 lg:p-14 bg-slate-900 shadow-2xl">
+                        <img alt="Turia Garden Cycling" class="absolute inset-0 w-full h-full object-cover opacity-60" src="../img/discover/image_3.jpg" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                        <div class="relative z-10 max-w-3xl">
+                            <span class="inline-flex items-center gap-2 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold mb-4 uppercase tracking-wider">
+                                <span class="material-symbols-outlined text-sm">pedal_bike</span> Active Travel
+                            </span>
+                            <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-tight mb-4">Turia <span class="text-primary italic">Garden</span></h1>
+                            <p class="text-slate-200 text-lg md:text-xl font-medium max-w-2xl mb-8 leading-relaxed">
+                                9 kilometers of green space in a former riverbed. The city's longest linear park connecting nature, culture, and active recreation.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Main Content Section -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+                        <div class="flex flex-col gap-2">
+                            <h2 class="text-slate-900 dark:text-slate-100 text-4xl font-black tracking-tight">Urban Green Corridor</h2>
+                            <p class="text-slate-600 dark:text-slate-400 text-lg">The longest and most sustainable park in Europe</p>
+                        </div>
+                    </div>
+
+                    <!-- Main Info Section -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                        <div class="flex flex-col bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-800">
+                            <div class="h-64 overflow-hidden">
+                                <img alt="Turia Garden Path" class="w-full h-full object-cover" src="../img/discover/image_3.jpg" />
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold mb-3">A Sustainable City Planning Marvel</h3>
+                                <p class="text-slate-600 dark:text-slate-400 mb-6">
+                                    In 1957, Valencia decided to redirect the Turia river, transforming 9 kilometers of riverbed into a green park. Today it's a global example of sustainable urban design, connecting the Bioparc to the City of Arts & Sciences.
+                                </p>
+                                <div class="space-y-3">
+                                    <div class="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                                        <span class="material-symbols-outlined text-primary">directions_walk</span>
+                                        <span class="text-sm">Accessible from anywhere in the city center</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                                        <span class="material-symbols-outlined text-primary">pedal_bike</span>
+                                        <span class="text-sm">Valenbisi stations every 200 meters</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                                        <span class="material-symbols-outlined text-primary">nature</span>
+                                        <span class="text-sm">100+ tree species, 8 parks, 3 museums</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col bg-primary/5 dark:bg-primary/10 rounded-xl p-6 border border-primary/20">
+                            <h3 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">info</span> Explore Guide
+                            </h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-slate-100 mb-2">Length &amp; Duration</h4>
+                                    <p class="text-slate-600 dark:text-slate-400">9 km, walking ~2 hours, cycling ~30 minutes</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-slate-100 mb-2">Starting Points</h4>
+                                    <p class="text-slate-600 dark:text-slate-400">Bioparc (north) or City of Arts (south)</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-slate-100 mb-2">Highlights</h4>
+                                    <p class="text-slate-600 dark:text-slate-400">Ecological zones, museums, playgrounds, restaurants</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-slate-100 mb-2">Best For</h4>
+                                    <p class="text-slate-600 dark:text-slate-400">Walking, cycling, running, family outings</p>
+                                </div>
+                            </div>
+                            <button class="w-full mt-6 py-3 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 transition-all">
+                                Get Map &amp; Guide
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Activities Grid -->
+                    <div class="mb-16">
+                        <h3 class="text-3xl font-bold mb-8">Things to Do Along the Way</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <span class="material-symbols-outlined text-4xl text-primary mb-4">pedal_bike</span>
+                                <h4 class="font-bold text-lg mb-2">Cycling</h4>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm">160km of protected bikeway network throughout the city</p>
+                            </div>
+                            <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <span class="material-symbols-outlined text-4xl text-primary mb-4">directions_run</span>
+                                <h4 class="font-bold text-lg mb-2">Running Path</h4>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm">Safe, shaded running routes through green corridors</p>
+                            </div>
+                            <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <span class="material-symbols-outlined text-4xl text-primary mb-4">museum</span>
+                                <h4 class="font-bold text-lg mb-2">Museums</h4>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm">3 major museums: Science, Hemisfèric, IMAX</p>
+                            </div>
+                            <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                                <span class="material-symbols-outlined text-4xl text-primary mb-4">local_cafe</span>
+                                <h4 class="font-bold text-lg mb-2">Dining Spots</h4>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm">Cafés and restaurants with local sustainable menus</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sustainability Info -->
+                    <div class="bg-gradient-to-r from-primary to-primary/80 rounded-2xl p-8 lg:p-12 text-white mb-16">
+                        <h3 class="text-2xl font-bold mb-4">A Model for Sustainable Urban Planning</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <h4 class="font-bold mb-2 flex items-center gap-2">
+                                    <span class="material-symbols-outlined">eco</span> Zero Carbon Routes
+                                </h4>
+                                <p class="text-white/90 text-sm">Entirely pedestrian &amp; bike-friendly paths with zero emissions</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-2 flex items-center gap-2">
+                                    <span class="material-symbols-outlined">nature_people</span> Biodiversity
+                                </h4>
+                                <p class="text-white/90 text-sm">Native plants and wildlife habitats integrated throughout</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-2 flex items-center gap-2">
+                                    <span class="material-symbols-outlined">public</span> Community Space
+                                </h4>
+                                <p class="text-white/90 text-sm">Brings together culture, recreation, and nature for all</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Call to Action -->
+                    <div class="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-8 lg:p-12">
+                        <h3 class="text-2xl font-bold mb-4">Plan Your Turia Adventure</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6">
+                            Whether you're walking, cycling, or visiting museums, the Turia Garden offers an unforgettable sustainable urban experience. Most areas are accessible year-round.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <button class="px-6 py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-all">
+                                Download App
+                            </button>
+                            <button class="px-6 py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary/10 transition-all">
+                                View Calendar
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- Footer -->
+            <footer class="bg-slate-900 dark:bg-slate-950 text-white mt-20 py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                        <div>
+                            <h4 class="font-bold mb-4">Quick Links</h4>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li><a href="discover.html" class="hover:text-primary">Back to Discover</a></li>
+                                <li><a href="index.html" class="hover:text-primary">Home</a></li>
+                                <li><a href="about.html" class="hover:text-primary">About Us</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-4">Contact</h4>
+                            <p class="text-sm text-slate-300">Turia Garden Info Center</p>
+                            <p class="text-sm text-slate-300">+34 96 352 5478</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-4">Follow Us</h4>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li><a href="#" class="hover:text-primary">Facebook</a></li>
+                                <li><a href="#" class="hover:text-primary">Instagram</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-4">Resources</h4>
+                            <p class="text-sm text-slate-300">Urban Planning Award Winner</p>
+                        </div>
+                    </div>
+                    <div class="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
+                        <p>&copy; 2024 Valencia Sustainable Tourism. All rights reserved.</p>
+                        <div class="flex gap-4">
+                            <a href="#" class="hover:text-primary">Privacy Policy</a>
+                            <a href="#" class="hover:text-primary">Terms of Use</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

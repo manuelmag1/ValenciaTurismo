@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="../js/scripts.js"></script>
+    <link href="../css/styles.css" rel="stylesheet" />
+    <title>Eco-Friendly Activities | Sustainable Valencia</title>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+    <div class="relative flex h-auto min-screen w-full flex-col overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <!-- Top Navigation Bar -->
+            <header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex h-16 items-center justify-between">
+                        <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                            <span class="material-symbols-outlined text-primary text-3xl">eco</span>
+                            <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Valencia</h2>
+                        </a>
+                        <nav class="hidden md:flex items-center gap-8 z-50">
+                            <div class="relative group">
+                                <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4" href="discover.html">
+                                    Discover
+                                    <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+                                </a>
+                                <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="itineraries.html">Itineraries</a>
+                                    <div class="relative group/sub">
+                                        <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words flex items-center justify-between">
+                                            Sustainable Natural
+                                            <span class="material-symbols-outlined text-sm">chevron_right</span>
+                                        </a>
+                                        <div class="absolute left-full top-0 w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-300 z-50">
+                                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1" href="albufera.html">Albufera Natural Park</a>
+                                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1" href="turia_garden.html">Turia Garden</a>
+                                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1" href="bioparc_valencia.html">Bioparc Valencia</a>
+                                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1" href="dehesa_saler.html">Dehesa del Saler</a>
+                                        </div>
+                                    </div>
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="eco_friendly_activities.html">Eco-Friendly Activities</a>
+                                </div>
+                            </div>
+
+                            <div class="relative group">
+                                <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4" href="gastronomy.html">
+                                    Gastronomy
+                                    <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+                                </a>
+                                <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="traditional_dishes.html">Traditional Dishes</a>
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="zero_mile_dining.html">Zero-Mile Dining</a>
+                                </div>
+                            </div>
+
+                            <div class="relative group">
+                                <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4" href="events.html">
+                                    Events
+                                    <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+                                </a>
+                                <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="cultural_festivals.html">Cultural Festivals</a>
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="local_workshops.html">Local Workshops</a>
+                                </div>
+                            </div>
+
+                            <div class="relative group">
+                                <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4" href="about.html">
+                                    About
+                                    <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+                                </a>
+                                <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="history_heritage.html">History &amp; Heritage</a>
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="our_mission.html">Our Mission</a>
+                                </div>
+                            </div>
+                        </nav>
+                        <div class="flex items-center gap-4">
+                            <button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all">
+                                <span class="material-symbols-outlined text-sm">language</span>
+                                <span>ES / EN</span>
+                            </button>
+                            <div class="size-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden border border-slate-200 dark:border-slate-800">
+                                <img alt="User Profile" src="../img/eco_friendly_activities/image_3.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="flex-1 w-full mx-auto pb-20">
+                <!-- Hero Section -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-8">
+                    <div class="relative min-h-[400px] rounded-2xl overflow-hidden flex flex-col justify-end p-8 lg:p-14 bg-slate-900 shadow-2xl">
+                        <img alt="Eco-Friendly Activities in Valencia" class="absolute inset-0 w-full h-full object-cover opacity-60" src="../img/eco_friendly_activities/image_1.jpg" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                        <div class="relative z-10 max-w-3xl">
+                            <span class="inline-flex items-center gap-2 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold mb-4 uppercase tracking-wider">
+                                <span class="material-symbols-outlined text-sm">eco</span> Zero Carbon Adventures
+                            </span>
+                            <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-tight mb-4">Experience <span class="text-primary italic">Sustainably</span></h1>
+                            <p class="text-slate-200 text-lg md:text-xl font-medium max-w-2xl mb-8 leading-relaxed">
+                                Discover Valencia's most eco-friendly activities designed to minimize your carbon footprint while maximizing unforgettable experiences.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Main Content Section -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+                        <div class="flex flex-col gap-2">
+                            <h2 class="text-slate-900 dark:text-slate-100 text-4xl font-black tracking-tight">Eco Activities Catalog</h2>
+                            <p class="text-slate-600 dark:text-slate-400 text-lg">Choose responsible adventures with zero environmental impact</p>
+                        </div>
+                    </div>
+
+                    <!-- Activities Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                        <!-- Bird Watching -->
+                        <div class="group flex flex-col bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow border border-slate-200 dark:border-slate-800">
+                            <div class="h-64 overflow-hidden relative">
+                                <img alt="Bird Watching in Albufera" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="../img/eco_friendly_activities/image_4.jpg" />
+                                <span class="absolute top-4 right-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full">Popular</span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold mb-3">Bird Watching Adventures</h3>
+                                <p class="text-slate-600 dark:text-slate-400 mb-4">
+                                    Embark on guided expeditions through Albufera's wetlands with expert ornithologists. Spot rare migratory species and learn about ecosystem conservation.
+                                </p>
+                                <div class="space-y-2 mb-6">
+                                    <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                        <span class="material-symbols-outlined text-sm text-primary">favorite</span>
+                                        <span class="text-sm">200+ bird species documented</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                        <span class="material-symbols-outlined text-sm text-primary">schedule</span>
+                                        <span class="text-sm">3-4 hour guided tours</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                        <span class="material-symbols-outlined text-sm text-primary">group</span>
+                                        <span class="text-sm">Small groups (max 8 people)</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-primary font-bold text-lg">From €35</span>
+                                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-sm font-bold">
+                                        Book Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Traditional Boat Tours -->
+                        <div class="group flex flex-col bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow border border-slate-200 dark:border-slate-800">
+                            <div class="h-64 overflow-hidden relative">
+                                <img alt="Traditional Albuferenc Boats" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="../img/eco_friendly_activities/image_2.jpg" />
+                                <span class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Zero Carbon</span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold mb-3">Traditional Albuferenc Boat Tours</h3>
+                                <p class="text-slate-600 dark:text-slate-400 mb-4">
+                                    Experience authentic Valencian traditions with electric or sail-powered traditional boats. Navigate the ancient rice fields and lagoon ecosystem sustainably.
+                                </p>
+                                <div class="space-y-2 mb-6">
+                                    <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                        <span class="material-symbols-outlined text-sm text-primary">directions_boat</span>
+                                        <span class="text-sm">Electric or wind-powered vessels</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                        <span class="material-symbols-outlined text-sm text-primary">schedule</span>
+                                        <span class="text-sm">2 hour traditional routes</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                        <span class="material-symbols-outlined text-sm text-primary">info</span>
+                                        <span class="text-sm">Sunset and sunrise tours available</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-primary font-bold text-lg">From €25</span>
+                                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-sm font-bold">
+                                        Book Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Eco Bike Rentals -->
+                        <div class="group flex flex-col bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow border border-slate-200 dark:border-slate-800">
+                            <div class="h-64 overflow-hidden relative">
+                                <img alt="Eco Bike Rentals" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="../img/eco_friendly_activities/image_5.jpg" />
+                                <span class="absolute top-4 right-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">Active Travel</span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold mb-3">Eco Bike Rentals</h3>
+                                <p class="text-slate-600 dark:text-slate-400 mb-4">
+                                    Explore Valencia's 160km of protected bike lanes. Rent eco-friendly bicycles and discover the city and nature trails at your own pace.
+                                </p>
+                                <div class="space-y-2 mb-6">
+                                    <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                        <span class="material-symbols-outlined text-sm text-primary">directions_bike</span>
+                                        <span class="text-sm">160km protected bike network</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                        <span class="material-symbols-outlined text-sm text-primary">schedule</span>
+                                        <span class="text-sm">Hourly to weekly rental options</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                        <span class="material-symbols-outlined text-sm text-primary">location_on</span>
+                                        <span class="text-sm">20+ rental stations citywide</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-primary font-bold text-lg">From €12/day</span>
+                                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-sm font-bold">
+                                        Book Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sustainable Picnics -->
+                        <div class="group flex flex-col bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow border border-slate-200 dark:border-slate-800">
+                            <div class="h-64 overflow-hidden relative">
+                                <img alt="Zero-Waste Picnics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="../img/eco_friendly_activities/image_6.jpg" />
+                                <span class="absolute top-4 right-4 bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full">Local Food</span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold mb-3">Sustainable Eco-Picnics</h3>
+                                <p class="text-slate-600 dark:text-slate-400 mb-4">
+                                    Enjoy locally-sourced zero-waste picnics in Valencia's natural areas. All food comes from local farmers and packaging is fully compostable.
+                                </p>
+                                <div class="space-y-2 mb-6">
+                                    <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                        <span class="material-symbols-outlined text-sm text-primary">local_dining</span>
+                                        <span class="text-sm">100% local farmers sourced</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                        <span class="material-symbols-outlined text-sm text-primary">eco</span>
+                                        <span class="text-sm">Compostable packaging</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                        <span class="material-symbols-outlined text-sm text-primary">groups</span>
+                                        <span class="text-sm">Customizable for groups</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-primary font-bold text-lg">From €40</span>
+                                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-sm font-bold">
+                                        Book Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Activities -->
+                    <div class="mb-16">
+                        <h3 class="text-3xl font-bold mb-8">More Sustainable Experiences</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div class="bg-primary/5 dark:bg-primary/10 p-4 rounded-lg border border-primary/20">
+                                <span class="material-symbols-outlined text-3xl text-primary mb-2">nature_people</span>
+                                <h4 class="font-bold mb-2">Conservation Volunteering</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Help restore habitats and support research</p>
+                            </div>
+                            <div class="bg-primary/5 dark:bg-primary/10 p-4 rounded-lg border border-primary/20">
+                                <span class="material-symbols-outlined text-3xl text-primary mb-2">photo_camera</span>
+                                <h4 class="font-bold mb-2">Photography Walks</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Capture nature with expert guides</p>
+                            </div>
+                            <div class="bg-primary/5 dark:bg-primary/10 p-4 rounded-lg border border-primary/20">
+                                <span class="material-symbols-outlined text-3xl text-primary mb-2">school</span>
+                                <h4 class="font-bold mb-2">Eco Workshops</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Learn sustainable living practices</p>
+                            </div>
+                            <div class="bg-primary/5 dark:bg-primary/10 p-4 rounded-lg border border-primary/20">
+                                <span class="material-symbols-outlined text-3xl text-primary mb-2">kayaking</span>
+                                <h4 class="font-bold mb-2">Kayaking Adventures</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Paddle through protected waterways</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Benefits Section -->
+                    <div class="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-8 lg:p-12 mb-16">
+                        <h3 class="text-2xl font-bold mb-6">Why Choose Eco-Activities?</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <h4 class="font-bold mb-2 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-primary">eco</span> Zero Carbon Impact
+                                </h4>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm">All activities use renewable energy or muscle power</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-2 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-primary">favorite</span> Authentic Experiences
+                                </h4>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm">Connect with Valencia's nature and culture genuinely</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-2 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-primary">support_agent</span> Local Support
+                                </h4>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm">100% of profits support local conservation</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Call to Action -->
+                    <div class="bg-gradient-to-r from-primary to-primary/80 rounded-2xl p-8 lg:p-12 text-white">
+                        <h3 class="text-3xl font-bold mb-4">Start Your Eco Adventure Today</h3>
+                        <p class="text-white/90 mb-6">Join thousands of sustainable travelers exploring Valencia responsibly while supporting local conservation efforts.</p>
+                        <div class="flex flex-wrap gap-4">
+                            <button class="px-6 py-3 bg-white text-primary font-bold rounded-lg hover:bg-slate-100 transition-all">
+                                Browse All Activities
+                            </button>
+                            <button class="px-6 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition-all">
+                                Create Custom Package
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- Footer -->
+            <footer class="bg-slate-900 dark:bg-slate-950 text-white mt-20 py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                        <div>
+                            <h4 class="font-bold mb-4">Quick Links</h4>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li><a href="discover.html" class="hover:text-primary">Back to Discover</a></li>
+                                <li><a href="index.html" class="hover:text-primary">Home</a></li>
+                                <li><a href="about.html" class="hover:text-primary">About Us</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-4">Contact</h4>
+                            <p class="text-sm text-slate-300">Eco Tourism Office</p>
+                            <p class="text-sm text-slate-300">+34 96 398 6400</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-4">Follow Us</h4>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li><a href="#" class="hover:text-primary">Facebook</a></li>
+                                <li><a href="#" class="hover:text-primary">Instagram</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-4">Sustainability</h4>
+                            <p class="text-sm text-slate-300">Carbon Neutral Activities</p>
+                        </div>
+                    </div>
+                    <div class="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
+                        <p>&copy; 2024 Valencia Sustainable Tourism. All rights reserved.</p>
+                        <div class="flex gap-4">
+                            <a href="#" class="hover:text-primary">Privacy Policy</a>
+                            <a href="#" class="hover:text-primary">Terms of Use</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>
