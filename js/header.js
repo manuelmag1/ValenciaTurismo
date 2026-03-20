@@ -65,9 +65,9 @@ const headerHTML = `
                     </div>
                 </nav>
                 <div class="flex items-center gap-4">
-                    <button id="language-toggle" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all cursor-pointer">
+                    <button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all">
                         <span class="material-symbols-outlined text-sm">language</span>
-                        <span id="lang-indicator">ES / EN</span>
+                        <span>ES / EN</span>
                     </button>
                 </div>
             </div>
@@ -80,24 +80,5 @@ document.addEventListener('DOMContentLoaded', function() {
     const headerContainer = document.getElementById('header-container');
     if (headerContainer) {
         headerContainer.insertAdjacentHTML('beforeend', headerHTML);
-        
-        // Setup language button after header is inserted
-        setTimeout(() => {
-            const langButton = document.getElementById('language-toggle');
-            if (langButton && typeof LanguageManager !== 'undefined') {
-                langButton.addEventListener('click', () => {
-                    const currentLang = getCurrentLanguage();
-                    const newLang = currentLang === 'es' ? 'en' : 'es';
-                    const langManager = new LanguageManager();
-                    langManager.setLanguage(newLang);
-                    
-                    // Update indicator
-                    const indicator = document.getElementById('lang-indicator');
-                    if (indicator) {
-                        indicator.textContent = `${newLang.toUpperCase()} / ${newLang === 'es' ? 'EN' : 'ES'}`;
-                    }
-                });
-            }
-        }, 100);
     }
 });
