@@ -4,7 +4,7 @@ node_modules/
 .env
 .vscode/
 
-# Archivos fuente locales - solo mantener docs/ en GitHub
+# Archivos fuente locales (desarrollo)
 html/
 css/
 js/
@@ -17,3 +17,9 @@ SKILL.md
 failed_urls.json
 paella_urls.txt
 output.txt
+
+# Permitir dist/ (compilado para deploy)
+!dist/
+!dist/css/
+!dist/js/
+!dist/img/
