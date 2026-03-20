@@ -14,7 +14,6 @@ const headerHTML = `
                             <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
                         </a>
                         <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
-                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="itineraries.html">Itineraries</a>
                             <div class="relative group/sub">
                                 <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words flex items-center justify-between">
                                     Sustainable Natural
@@ -28,6 +27,7 @@ const headerHTML = `
                                 </div>
                             </div>
                             <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="eco_friendly_activities.html">Eco-Friendly Activities</a>
+                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="itineraries.html">Itineraries</a>
                         </div>
                     </div>
 
@@ -69,9 +69,6 @@ const headerHTML = `
                         <span class="material-symbols-outlined text-sm">language</span>
                         <span>ES / EN</span>
                     </button>
-                    <div class="size-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden border border-slate-200 dark:border-slate-800">
-                        <img alt="User Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-pR-f3oWdptjhTklJ9h_V6yPVQqVtcjeZKGgZEas_rPzB9lfTLEJtdg7XBpkBgbtjFPnVMXJWzdMbPwhAAbCnkPvpXS_XpYbr27ullUL5zvXMspnBIDAcEh7ypASw8WcNAJVR2JqKekR0-DaXZQfK9IXGZKj4MEQhF4bIzQeMwu8Tq9aCfB9GLHkH-r539nUaXT5BHPHYAD6DoBjZ1MZElj4QG6Q3mNIhrT737p3uAmMOylV7ISK1g-72ZPQXRngj8Cj3PdG1H4M" />
-                    </div>
                 </div>
             </div>
         </div>
