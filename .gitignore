@@ -1,4 +1,4 @@
-# Local development files - not tracked in deployment
+# Local development files - not tracked
 /node_modules/
 .DS_Store
 *.log
@@ -12,4 +12,12 @@ SKILL.md
 failed_urls.json
 paella_urls.txt
 output.txt
+
+# Tracked for deployment
+!*.html
+!css/
+!js/
+!img/
+.nojekyll
+README.md
 
