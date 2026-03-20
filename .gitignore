@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+*.log
+failed_urls.json
+paella_urls.txt
+output.txt
+fix_nav.py
+fix_styles.py
+restore_nav.py
+nav_updater.py
+generate_pages.py
+download_screens.py

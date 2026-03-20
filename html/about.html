@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="../js/scripts.js"></script>
+    <link href="../css/styles.css" rel="stylesheet" />
+    <title>About Valencia | Culture & Heritage</title>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-200">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <!-- Top Navigation Bar -->
+            <header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex h-16 items-center justify-between">
+                                        <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                    <span class="material-symbols-outlined text-primary text-3xl">eco</span>
+                    <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Valencia</h2>
+                </a>
+                                                        <nav class="hidden md:flex items-center gap-8 z-50">
+                    <div class="relative group">
+                        <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4"
+                            href="discover.html">
+                            Discover
+                            <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+                        </a>
+                        <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
+                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words"
+                                href="itineraries.html">Itineraries</a>
+                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words"
+                                href="green_spaces.html">Green Spaces</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4"
+                            href="gastronomy.html">
+                            Gastronomy
+                            <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+                        </a>
+                        <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
+                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words"
+                                href="traditional_dishes.html">Traditional Dishes</a>
+                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words"
+                                href="zero_mile_dining.html">Zero-Mile Dining</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4"
+                            href="events.html">
+                            Events
+                            <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+                        </a>
+                        <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
+                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words"
+                                href="cultural_festivals.html">Cultural Festivals</a>
+                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words"
+                                href="local_workshops.html">Local Workshops</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4"
+                            href="about.html">
+                            About
+                            <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+                        </a>
+                        <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
+                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words"
+                                href="history_heritage.html">History &amp; Heritage</a>
+                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words"
+                                href="our_mission.html">Our Mission</a>
+                        </div>
+                    </div>
+                </nav>
+                        <div class="flex items-center gap-4">
+                            <button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all">
+                                <span class="material-symbols-outlined text-sm">language</span>
+                                <span>ES / EN</span>
+                            </button>
+                            <div class="size-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden border border-slate-200 dark:border-slate-800">
+                                <img alt="User Profile" src="../img/about/image_4.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="flex-1 w-full mx-auto">
+                <!-- Hero Section -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <div class="relative min-h-[400px] rounded-2xl overflow-hidden flex flex-col justify-end p-8 lg:p-14 bg-slate-900 shadow-2xl">
+                        <img alt="Valencia Palau de les Arts" class="absolute inset-0 w-full h-full object-cover opacity-60" src="../img/about/image_1.jpg" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                        <div class="relative z-10 max-w-3xl">
+                            <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-tight mb-4">The Soul of <span class="text-primary italic">Valencia</span></h1>
+                            <p class="text-slate-200 text-lg md:text-xl font-medium max-w-2xl leading-relaxed">
+                                A city where over 2,000 years of history seamlessly blend with avant-garde innovation. Discover the roots, traditions, and the radiant culture that define us.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- History & Origins -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                    <div class="flex flex-col lg:flex-row gap-12 items-center">
+                        <div class="lg:w-1/2 space-y-6">
+                            <span class="text-primary font-bold tracking-widest uppercase text-sm flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">public</span> Deep Roots
+                            </span>
+                            <h2 class="text-3xl lg:text-5xl font-bold leading-tight text-slate-900 dark:text-slate-100">Crossroads of Civilizations</h2>
+                            <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                                Founded by the Romans in 138 BC as <strong>Valentia Edetanorum</strong>, our city has been shaped by centuries of Moorish rule followed by the Christian reconquest led by King James I of Aragon. 
+                            </p>
+                            <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                                It is this unique collision of cultures that gave birth to our spectacular historic center, our intricate irrigation systems (like the Tribunal de las Aguas), and the profound Mediterranean character of our people.
+                            </p>
+                            <button class="flex h-12 px-8 mt-4 items-center gap-2 rounded-lg bg-primary/10 text-primary font-bold hover:bg-primary hover:text-white transition-all">
+                                Read Full History <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </button>
+                        </div>
+                        <div class="lg:w-1/2 w-full">
+                            <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800 relative group">
+                                <img alt="Historic streets" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="../img/about/image_3.jpg" />
+                                <div class="absolute bottom-4 left-4 bg-white/90 dark:bg-background-dark/90 backdrop-blur px-4 py-2 rounded-lg text-sm font-bold shadow-lg">Torres de Serranos</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Fire and Passions: Las Fallas -->
+                <section class="bg-primary/5 dark:bg-primary/10 py-20 border-y border-primary/10">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center max-w-3xl mx-auto mb-16">
+                            <span class="material-symbols-outlined text-[4rem] text-primary/40 mb-4 block">local_fire_department</span>
+                            <h2 class="text-4xl font-black mb-6">Las Fallas: Fire & Spirit</h2>
+                            <p class="text-slate-600 dark:text-slate-400 text-lg">
+                                Declared Intangible Cultural Heritage of Humanity by UNESCO, Las Fallas is the ultimate expression of our passion, creativity, and community identity.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:-translate-y-2 transition-transform duration-300">
+                                <div class="size-14 rounded-full bg-orange-100 text-orange-600 dark:bg-orange-900/30 flex items-center justify-center mb-6">
+                                    <span class="material-symbols-outlined text-2xl">palette</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">Monumental Art</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                    Hundreds of giant, satirical sculptures (Fallas) fill the streets, crafted meticulously over an entire year by dedicated local artists.
+                                </p>
+                            </div>
+                            <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:-translate-y-2 transition-transform duration-300">
+                                <div class="size-14 rounded-full bg-rose-100 text-rose-600 dark:bg-rose-900/30 flex items-center justify-center mb-6">
+                                    <span class="material-symbols-outlined text-2xl">celebration</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">Gunpowder & Noise</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                    From daily mascletàs shaking the plaza to stunning nocturnal fireworks over the Turia, noise and light govern the festival.
+                                </p>
+                            </div>
+                            <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:-translate-y-2 transition-transform duration-300">
+                                <div class="size-14 rounded-full bg-amber-100 text-amber-600 dark:bg-amber-900/30 flex items-center justify-center mb-6">
+                                    <span class="material-symbols-outlined text-2xl">local_fire_department</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">La Cremà</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                    On March 19th, all monuments are burned in a spectacular purification ritual, symbolizing spring's renewal and sweeping away the old.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Language & Identity -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 pb-32">
+                    <div class="flex flex-col-reverse lg:flex-row gap-12 items-center">
+                        <div class="lg:w-5/12 w-full grid grid-cols-2 gap-4">
+                            <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-slate-200">
+                                <img alt="Valencian ceramics" class="w-full h-full object-cover" src="../img/about/image_2.jpg" />
+                            </div>
+                            <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-slate-200 mt-8">
+                                <img alt="Valencian silk weaving" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1574691475510-91c260ad19a7?q=80&w=2070&auto=format&fit=crop" />
+                            </div>
+                        </div>
+                        <div class="lg:w-7/12 space-y-6 lg:pl-10">
+                            <h2 class="text-3xl lg:text-4xl font-bold leading-tight">Valencian: A Living Language</h2>
+                            <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                                The heart of our identity lies in the Valencian language (<em>Valencià</em>). Spoken alongside Spanish, it's heard constantly in our markets, streets, and homes. It binds us to our poetry, music, and ancient literature, such as the chivalric romance <em>Tirant lo Blanch</em>.
+                            </p>
+                            
+                            <hr class="border-slate-200 dark:border-slate-800 my-8">
+                            
+                            <h3 class="text-xl font-bold">Traditions of Craft & Music</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-4">
+                                    <span class="flex-shrink-0 size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-sm">auto_awesome</span>
+                                    </span>
+                                    <div>
+                                        <p class="font-bold">Ceramics</p>
+                                        <p class="text-slate-500 text-sm">Manises and Paterna have preserved centuries-old ceramic traditions still active today.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <span class="flex-shrink-0 size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-sm">music_note</span>
+                                    </span>
+                                    <div>
+                                        <p class="font-bold">Music Bands</p>
+                                        <p class="text-slate-500 text-sm">Valencia holds the highest concentration of musical societies in the world.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- Footer -->
+            <footer class="bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 pt-16 pb-8">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                        <div class="col-span-1 md:col-span-1">
+                            <a href="index.html" class="flex items-center gap-2 mb-6 hover:opacity-80 transition-opacity">
+                                <span class="material-symbols-outlined text-primary text-3xl">eco</span>
+                                <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Valencia</h2>
+                            </a>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                                Leading the Mediterranean in sustainable urban tourism through conservation, community support,
+                                and green infrastructure.
+                            </p>
+                            <div class="flex gap-4">
+                                <a class="size-8 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-all"
+                                    href="#">
+                                    <span class="material-symbols-outlined text-base">share</span>
+                                </a>
+                                <a class="size-8 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-all"
+                                    href="#">
+                                    <span class="material-symbols-outlined text-base">public</span>
+                                </a>
+                                <a class="size-8 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-all"
+                                    href="#">
+                                    <span class="material-symbols-outlined text-base">camera</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-6">Discover</h4>
+                            <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
+                                <li><a class="hover:text-primary transition-colors" href="#">Turia Garden</a></li>
+                                <li><a class="hover:text-primary transition-colors" href="#">City of Arts &amp; Sciences</a></li>
+                                <li><a class="hover:text-primary transition-colors" href="#">Eco-Gastronomy</a></li>
+                                <li><a class="hover:text-primary transition-colors" href="#">Sustainable Lodging</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-6">Commitment</h4>
+                            <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
+                                <li><a class="hover:text-primary transition-colors" href="#">2030 Green Plan</a></li>
+                                <li><a class="hover:text-primary transition-colors" href="#">Carbon Neutral Goal</a></li>
+                                <li><a class="hover:text-primary transition-colors" href="#">Local Artisans</a></li>
+                                <li><a class="hover:text-primary transition-colors" href="#">Reports &amp; Data</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-6">Newsletter</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Stay updated on our latest green initiatives.</p>
+                            <div class="flex flex-col gap-2">
+                                <input class="w-full rounded-lg border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-sm focus:ring-primary focus:border-primary"
+                                    placeholder="Email address" type="email" />
+                                <button class="w-full bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-bold py-2 rounded-lg text-sm hover:opacity-90 transition-opacity">Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                        <p>© 2024 Sustainable Valencia Tourism Board. All rights reserved.</p>
+                        <div class="flex gap-6">
+                            <a class="hover:text-slate-900 dark:hover:text-white" href="#">Privacy Policy</a>
+                            <a class="hover:text-slate-900 dark:hover:text-white" href="#">Terms of Use</a>
+                            <a class="hover:text-slate-900 dark:hover:text-white" href="#">Cookie Settings</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
