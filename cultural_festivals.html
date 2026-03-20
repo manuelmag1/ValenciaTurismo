@@ -24,7 +24,7 @@
     <!-- Hero Section -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-8">
         <div class="relative min-h-[400px] rounded-2xl overflow-hidden flex flex-col justify-end p-8 lg:p-14 bg-slate-900 shadow-2xl">
-            <img alt="Cultural Festivals" class="absolute inset-0 w-full h-full object-cover opacity-60" src="https://images.unsplash.com/photo-1533174000255-1adfb2402bc5?q=80&w=2070&auto=format&fit=crop" />
+            <img alt="Cultural Festivals" class="absolute inset-0 w-full h-full object-cover opacity-60" src="/img/cultural_festivals/" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
             <div class="relative z-10 max-w-3xl">
                 <span class="inline-flex items-center gap-2 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold mb-4 uppercase tracking-wider">
@@ -41,25 +41,109 @@
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 group">
-                <div class="aspect-[16/10] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1543881656-788dfc480ad2?q=80&w=2070&auto=format&fit=crop" alt="Las Fallas"></div>
-                <div class="p-8">
-                    <span class="text-primary font-bold text-xs uppercase tracking-widest mb-2 block">March 15 - 19</span>
-                    <h3 class="text-2xl font-black mb-3">Las Fallas</h3>
-                    <p class="text-slate-600 dark:text-slate-400">Giant satirical monuments, thundering fireworks (mascletàs), stunning lights, and passionate parades culminate in a massive night of fire where all art is ceremoniously burnt.</p>
+            <button onclick="openModal('fallas-modal')" class="cursor-pointer block">
+                <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 group hover:shadow-xl transition-all h-full">
+                    <div class="aspect-[16/10] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="img/events/fallas.jpg" alt="Las Fallas"></div>
+                    <div class="p-8">
+                        <span class="text-primary font-bold text-xs uppercase tracking-widest mb-2 block">March 15 - 19</span>
+                        <h3 class="text-2xl font-black mb-3">Las Fallas</h3>
+                        <p class="text-slate-600 dark:text-slate-400">Giant satirical monuments, thundering fireworks (mascletàs), stunning lights, and passionate parades culminate in a massive night of fire where all art is ceremoniously burnt.</p>
+                        <div class="mt-6 text-primary font-bold text-sm">Learn More →</div>
+                    </div>
                 </div>
-            </div>
-            <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 group">
-                <div class="aspect-[16/10] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1518388656627-88baec8ae7b3?q=80&w=2015&auto=format&fit=crop" alt="La Tomatina"></div>
-                <div class="p-8">
-                    <span class="text-primary font-bold text-xs uppercase tracking-widest mb-2 block">August</span>
-                    <h3 class="text-2xl font-black mb-3">La Tomatina</h3>
-                    <p class="text-slate-600 dark:text-slate-400">Held in the nearby town of Buñol, this is the world's largest food fight. Tens of thousands of participants throw over 100 metric tons of over-ripe tomatoes in the streets.</p>
+            </button>
+            <button onclick="openModal('tomatina-modal')" class="cursor-pointer block">
+                <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 group hover:shadow-xl transition-all h-full">
+                    <div class="aspect-[16/10] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="img/events/tomatina.jpeg" alt="La Tomatina"></div>
+                    <div class="p-8">
+                        <span class="text-primary font-bold text-xs uppercase tracking-widest mb-2 block">August</span>
+                        <h3 class="text-2xl font-black mb-3">La Tomatina</h3>
+                        <p class="text-slate-600 dark:text-slate-400">Held in the nearby town of Buñol, this is the world's largest food fight. Tens of thousands of participants throw over 100 metric tons of over-ripe tomatoes in the streets.</p>
+                        <div class="mt-6 text-primary font-bold text-sm">Learn More →</div>
+                    </div>
                 </div>
-            </div>
+            </button>
         </div>
         
     </section>
+
+    <!-- Las Fallas Modal -->
+    <div id="fallas-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="sticky top-0 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 p-6 flex items-center justify-between">
+                <h2 class="text-2xl font-bold">Las Fallas Festival</h2>
+                <button onclick="closeModal('fallas-modal')" class="text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white text-2xl">✕</button>
+            </div>
+            <div class="p-6">
+                <img src="img/events/fallas.jpg" alt="Las Fallas Festival" class="w-full h-64 object-cover rounded-xl mb-6" />
+                <div class="space-y-4 text-slate-700 dark:text-slate-300">
+                    <p><strong class="text-primary">Las Fallas</strong> is Spain's most spectacular fire festival, celebrated between March 15-19 each year. In Valencia, giant wooden statues (called <strong>fallas</strong>) are constructed throughout the city, often reaching heights of up to 15 meters.</p>
+                    <p>Thousands of locals and tourists gather to witness these magnificent artworks being ceremonially burned at midnight on March 18th, creating a breathtaking display of fire and light that illuminates the night sky. The festival also features vibrant <strong>parades</strong>, traditional dress competitions, street parties, and the iconic <strong>flower offering ceremony</strong>.</p>
+                    <p>Participants dress in traditional <strong>fallera</strong> costumes with elaborate decorations. The festival celebrates hope, renewal, and the arrival of spring. It's an unmissable experience for anyone visiting Valencia during this season.</p>
+                </div>
+                <div class="mt-6 flex gap-4 justify-between">
+                    <a href="https://www.visitvalencia.com" target="_blank" class="text-primary font-bold hover:underline">Visit Valencia Website →</a>
+                    <button onclick="closeModal('fallas-modal')" class="text-primary font-bold hover:underline">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- La Tomatina Modal -->
+    <div id="tomatina-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="sticky top-0 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 p-6 flex items-center justify-between">
+                <h2 class="text-2xl font-bold">La Tomatina Festival</h2>
+                <button onclick="closeModal('tomatina-modal')" class="text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white text-2xl">✕</button>
+            </div>
+            <div class="p-6">
+                <img src="img/events/tomatina.jpeg" alt="La Tomatina Festival" class="w-full h-64 object-cover rounded-xl mb-6" />
+                <div class="space-y-4 text-slate-700 dark:text-slate-300">
+                    <p><strong class="text-rose-600">La Tomatina</strong> is the world's largest food fight festival held in Buñol, a town just outside Valencia. Every year on the last Wednesday of August, over 150,000 kilos of ripe tomatoes are distributed to participants of all ages.</p>
+                    <p>In just one hour, the entire town becomes a living tomato battlefield. Streets are stained red, and participants from around the world come together to throw tomatoes, laugh, and create an unforgettable experience. The event originated from a spontaneous tomato fight in 1945 and has grown into an international sensation.</p>
+                    <p>Safety precautions are taken seriously, and the town is thoroughly cleaned afterward. The festival celebrates food, joy, and international friendship. Wearing white clothes is recommended—they're guaranteed to turn red! It's a unique and electrifying celebration unlike any other.</p>
+                </div>
+                <div class="mt-6 flex gap-4 justify-between">
+                    <a href="https://www.tomatina.info" target="_blank" class="text-rose-600 font-bold hover:underline">La Tomatina Official →</a>
+                    <button onclick="closeModal('tomatina-modal')" class="text-rose-600 font-bold hover:underline">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('hidden');
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+        }
+
+        // Escape key handler
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('[id$="-modal"]').forEach(modal => {
+                    modal.classList.add('hidden');
+                });
+            }
+        });
+
+        // Click outside modal to close
+        document.querySelectorAll('[id$="-modal"]').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </main>
 
             <!-- Footer -->
