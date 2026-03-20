@@ -1,56 +1,68 @@
-// Language Manager - handles real-time language switching
+// Advanced Language Manager - Full page translation system
 class LanguageManager {
     constructor() {
         this.currentLanguage = getCurrentLanguage();
-        this.translationMap = new Map();
+        this.isTranslating = false;
         this.init();
     }
 
     init() {
-        // Build translation map from all text content
+        // Build translation map
         this.buildTranslationMap();
         
-        // Load saved language on page load
+        // Apply language on page load
         this.applyLanguage(this.currentLanguage);
         
-        // Setup language button
+        // Setup language button after header is loaded
         this.setupLanguageButton();
+        
+        // Watch for dynamic changes
+        this.observeDOM();
     }
 
     buildTranslationMap() {
-        // Map English strings to their Spanish equivalents
+        // Create bidirectional map of translations (EN ↔ ES)
+        this.translationMap = new Map();
+        
         if (typeof translations !== 'undefined') {
             const es = translations.es;
             const en = translations.en;
             
+            // Sort by length (longest first) for better matching
+            const entries = [];
             for (let key in en) {
                 if (en[key] && es[key]) {
-                    this.translationMap.set(en[key], es[key]);
-                    this.translationMap.set(es[key], en[key]);
+                    entries.push([en[key], es[key]]);
+                    entries.push([es[key], en[key]]);
                 }
             }
+            // Sort by length descending for better partial matches
+            entries.sort((a, b) => b[0].length - a[0].length);
+            entries.forEach(([src, dst]) => {
+                this.translationMap.set(src, dst);
+            });
         }
     }
 
     setupLanguageButton() {
-        // Wait for dynamic header to load, then find and setup button
-        const checkButton = setInterval(() => {
+        // Wait for language button to appear in DOM
+        const waitForButton = setInterval(() => {
             const langButton = document.getElementById('language-toggle');
             if (langButton) {
-                clearInterval(checkButton);
-                langButton.addEventListener('click', () => this.toggleLanguage());
-                this.updateButtonText();
+                clearInterval(waitForButton);
+                langButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.toggleLanguage();
+                });
             }
-        }, 100);
+        }, 50);
         
-        // Clear interval after 5 seconds if button not found
-        setTimeout(() => clearInterval(checkButton), 5000);
+        setTimeout(() => clearInterval(waitForButton), 10000);
     }
 
     toggleLanguage() {
         const newLang = this.currentLanguage === 'es' ? 'en' : 'es';
         this.setLanguage(newLang);
-        this.updateButtonText();
     }
 
     setLanguage(lang) {
@@ -59,91 +71,103 @@ class LanguageManager {
     }
 
     applyLanguage(lang) {
-        // Replace text content of readable elements
-        this.translatePageContent(lang);
+        this.isTranslating = true;
         
-        // Update document language
-        document.documentElement.lang = lang === 'es' ? 'es' : 'en';
+        // Translate all text in the document
+        this.translateAllElements();
+        
+        // Update document language attribute
+        document.documentElement.lang = lang;
+        
+        // Update language button indicator
+        this.updateLanguageIndicator();
+        
+        this.isTranslating = false;
     }
 
-    translatePageContent(lang) {
-        const isSpanish = lang === 'es';
+    translateAllElements() {
+        // Get all text nodes
+        const walker = document.createTreeWalker(
+            document.body,
+            NodeFilter.SHOW_TEXT,
+            null,
+            false
+        );
         
-        // Translate all text nodes in the document
-        this.walkDOM(document.body, (node) => {
-            if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
-                const text = node.textContent.trim();
-                let translated = '';
-                
-                if (isSpanish && this.translationMap.has(text)) {
-                    translated = this.translationMap.get(text);
-                } else if (!isSpanish && this.translationMap.has(text)) {
-                    // Get the English version if we're switching back
-                    const spanishText = this.translationMap.get(text);
-                    if (spanishText !== text) {
-                        translated = spanishText;
+        const nodesToProcess = [];
+        let node = walker.nextNode();
+        
+        while (node) {
+            const text = node.textContent.trim();
+            // Only process meaningful text nodes
+            if (text.length > 0 && text.length < 500 && !this.isCode(node)) {
+                nodesToProcess.push(node);
+            }
+            node = walker.nextNode();
+        }
+        
+        // Process collected nodes - translate text
+        nodesToProcess.forEach(textNode => {
+            let text = textNode.textContent;
+            let translated = text;
+            
+            // Try each translation in the map
+            for (let [source, target] of this.translationMap) {
+                if (text.includes(source)) {
+                    translated = translated.split(source).join(target);
+                }
+            }
+            
+            if (translated !== text) {
+                textNode.textContent = translated;
+            }
+        });
+        
+        // Also translate attributes
+        this.translateAttributes();
+    }
+
+    translateAttributes() {
+        // Translate alt text, titles, placeholders
+        const allElements = document.querySelectorAll('*');
+        
+        allElements.forEach(element => {
+            // Translate alt attribute
+            if (element.alt) {
+                let translated = element.alt;
+                for (let [source, target] of this.translationMap) {
+                    if (translated.includes(source)) {
+                        translated = translated.split(source).join(target);
                     }
                 }
-                
-                if (translated && translated !== text) {
-                    node.textContent = node.textContent.replace(text, translated);
+                if (translated !== element.alt) element.alt = translated;
+            }
+            
+            // Translate title attribute
+            if (element.title) {
+                let translated = element.title;
+                for (let [source, target] of this.translationMap) {
+                    if (translated.includes(source)) {
+                        translated = translated.split(source).join(target);
+                    }
                 }
+                if (translated !== element.title) element.title = translated;
             }
-        });
-        
-        // Specifically translate navigation items
-        this.translateNavigationItems(lang);
-        this.translateModalTitles(lang);
-        this.translateDescriptions(lang);
-    }
-
-    translateNavigationItems(lang) {
-        const isSpanish = lang === 'es';
-        const navItems = document.querySelectorAll('nav a, nav button');
-        
-        navItems.forEach(item => {
-            const text = item.textContent.trim();
-            if (this.translationMap.has(text)) {
-                const translated = isSpanish ? this.translationMap.get(text) : text;
-                if (translated) {
-                    item.textContent = translated;
+            
+            // Translate placeholder attribute
+            if (element.placeholder) {
+                let translated = element.placeholder;
+                for (let [source, target] of this.translationMap) {
+                    if (translated.includes(source)) {
+                        translated = translated.split(source).join(target);
+                    }
                 }
+                if (translated !== element.placeholder) element.placeholder = translated;
             }
         });
     }
 
-    translateModalTitles(lang) {
-        // Translate modal titles if they exist
-        const modalTitles = document.querySelectorAll('[id$="-modal"] h2');
-        modalTitles.forEach(title => {
-            const text = title.textContent.trim();
-            if (this.translationMap.has(text)) {
-                title.textContent = this.translationMap.get(text);
-            }
-        });
-    }
-
-    translateDescriptions(lang) {
-        // Translate common paragraph content
-        const paragraphs = document.querySelectorAll('p, span.text-slate-600, div.text-slate-600');
-        paragraphs.forEach(p => {
-            const text = p.textContent.trim();
-            if (this.translationMap.has(text)) {
-                p.textContent = this.translationMap.get(text);
-            }
-        });
-    }
-
-    walkDOM(node, callback) {
-        callback(node);
-        if (node.hasChildNodes()) {
-            for (let child of node.childNodes) {
-                this.walkDOM(child, callback);
-            }
-        }
-    }
-
-    updateButtonText() {
+    updateLanguageIndicator() {
         const indicator = document.getElementById('lang-indicator');
         if (indicator) {
             const current = this.currentLanguage.toUpperCase();
@@ -151,16 +175,76 @@ class LanguageManager {
             indicator.textContent = `${current} / ${other}`;
         }
     }
-}
 
-// Initialize language manager when document is ready
-if (typeof translations !== 'undefined') {
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-            new LanguageManager();
+    // Detect if node is inside code/script elements
+    isCode(node) {
+        let parent = node.parentElement;
+        while (parent) {
+            if (['CODE', 'PRE', 'SCRIPT', 'STYLE'].includes(parent.tagName)) {
+                return true;
+            }
+            parent = parent.parentElement;
+        }
+        return false;
+    }
+
+    // Watch for dynamic DOM changes
+    observeDOM() {
+        const observer = new MutationObserver((mutations) => {
+            if (this.isTranslating) return;
+            
+            // Re-apply translations if new content is added
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                    // Translate newly added nodes
+                    mutation.addedNodes.forEach((node) => {
+                        if (node.nodeType === Node.ELEMENT_NODE || node.nodeType === Node.TEXT_NODE) {
+                            let text = '';
+                            if (node.nodeType === Node.TEXT_NODE) {
+                                text = node.textContent;
+                            } else {
+                                text = node.textContent;
+                            }
+                            
+                            let translated = text;
+                            for (let [source, target] of this.translationMap) {
+                                if (translated.includes(source)) {
+                                    translated = translated.split(source).join(target);
+                                }
+                            }
+                            
+                            if (translated !== text) {
+                                if (node.nodeType === Node.TEXT_NODE) {
+                                    node.textContent = translated;
+                                } else {
+                                    node.innerHTML = node.innerHTML.split(text).join(translated);
+                                }
+                            }
+                        }
+                    });
+                }
+            });
         });
-    } else {
-        new LanguageManager();
+        
+        // Observe for changes
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            characterData: false
+        });
     }
 }
+
+// Initialize when ready
+(function initLanguageManager() {
+    if (typeof translations !== 'undefined') {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                window.languageManager = new LanguageManager();
+            });
+        } else {
+            window.languageManager = new LanguageManager();
+        }
+    }
+})();
 
