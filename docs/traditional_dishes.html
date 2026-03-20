@@ -7,10 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-    <script src="../js/scripts.js"></script>
-    <link href="../css/styles.css" rel="stylesheet" />
-    <script src="../js/header.js"></script>
-    <script src="../js/footer.js"></script>
+    <script src="js/scripts.js"></script>
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="js/header.js"></script>
+    <script src="js/footer.js"></script>
     <title>Traditional Dishes | Valencia</title>
 </head>
 
@@ -24,7 +24,7 @@
     <!-- Hero Section -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-8">
         <div class="relative min-h-[400px] rounded-2xl overflow-hidden flex flex-col justify-end p-8 lg:p-14 bg-slate-900 shadow-2xl">
-            <img alt="Traditional Dishes" class="absolute inset-0 w-full h-full object-cover opacity-60" src="../img/traditional_dishes/image_1.jpg" />
+            <img alt="Traditional Dishes" class="absolute inset-0 w-full h-full object-cover opacity-60" src="img/traditional_dishes/image_1.jpg" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
             <div class="relative z-10 max-w-3xl">
                 <span class="inline-flex items-center gap-2 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold mb-4 uppercase tracking-wider">
@@ -43,7 +43,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Authentic Paella Card -->
             <button onclick="openModal('paella')" class="group bg-white dark:bg-slate-900 flex flex-col rounded-xl overflow-hidden shadow-md border border-slate-100 dark:border-slate-800 hover:shadow-lg hover:border-primary/40 transition-all cursor-pointer text-left">
-                <div class="h-48 overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="../img/traditional_dishes/image_2.jpg" alt="Paella"></div>
+                <div class="h-48 overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="img/traditional_dishes/image_2.jpg" alt="Paella"></div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-2">Authentic Paella</h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm">Born in the fields of Albufera, true Valencian paella features rabbit, chicken, flat green beans, and garrofó beans slowly cooked over wood fire.</p>
@@ -52,7 +52,7 @@
             
             <!-- Fideuà de Gandia Card -->
             <button onclick="openModal('fideua')" class="group bg-white dark:bg-slate-900 flex flex-col rounded-xl overflow-hidden shadow-md border border-slate-100 dark:border-slate-800 hover:shadow-lg hover:border-primary/40 transition-all cursor-pointer text-left">
-                <div class="h-48 overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="../img/traditional_dishes/fideua.jpg" alt="Seafood"></div>
+                <div class="h-48 overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="img/traditional_dishes/fideua.jpg" alt="Seafood"></div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-2">Fideuà de Gandia</h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm">A delightful seafood dish similar to paella but made with short noodles, bursting with the flavors of the Mediterranean sea.</p>
@@ -62,7 +62,7 @@
             <!-- Horchata & Fartons Card -->
             <button onclick="openModal('horchata')" class="group bg-white dark:bg-slate-900 flex flex-col rounded-xl overflow-hidden shadow-md border border-slate-100 dark:border-slate-800 hover:shadow-lg hover:border-primary/40 transition-all cursor-pointer text-left">
                 <div class="h-48 bg-amber-100 dark:bg-amber-900/40 relative overflow-hidden">
-                    <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="../img/traditional_dishes/horchata.jpg" alt="Horchata">
+                    <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="img/traditional_dishes/horchata.jpg" alt="Horchata">
                 </div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-2">Horchata & Fartons</h3>
@@ -93,7 +93,7 @@
             <div class="p-8">
                 <!-- Paella Modal -->
                 <div id="paella-content" class="hidden">
-                    <img src="../img/traditional_dishes/image_2.jpg" alt="Authentic Paella" class="w-full h-96 object-cover rounded-xl mb-6">
+                    <img src="img/traditional_dishes/image_2.jpg" alt="Authentic Paella" class="w-full h-96 object-cover rounded-xl mb-6">
                     <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Authentic Paella</h2>
                     <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
                         Born in the fields of Albufera, true Valencian paella is a masterpiece of Mediterranean cuisine. This iconic dish features tender rabbit and chicken, fresh flat green beans (judías verdes), and garrofó beans (a local variety), all slowly cooked together in a wide, shallow pan called a "paellera" over a crackling wood fire.
@@ -108,7 +108,7 @@
 
                 <!-- Fideuà Modal -->
                 <div id="fideua-content" class="hidden">
-                    <img src="../img/traditional_dishes/fideua.jpg" alt="Fideuà de Gandia" class="w-full h-96 object-cover rounded-xl mb-6">
+                    <img src="img/traditional_dishes/fideua.jpg" alt="Fideuà de Gandia" class="w-full h-96 object-cover rounded-xl mb-6">
                     <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Fideuà de Gandia</h2>
                     <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
                         Fideuà is a beloved variation of paella that replaces rice with short, thin noodles, creating a unique texture and flavor profile. This seafood-focused dish originated in the coastal town of Gandia and represents the marriage of Mediterranean bounty with Spanish culinary tradition.
@@ -123,7 +123,7 @@
 
                 <!-- Horchata Modal -->
                 <div id="horchata-content" class="hidden">
-                    <img src="../img/traditional_dishes/horchata.jpg" alt="Horchata & Fartons" class="w-full h-96 object-cover rounded-xl mb-6">
+                    <img src="img/traditional_dishes/horchata.jpg" alt="Horchata & Fartons" class="w-full h-96 object-cover rounded-xl mb-6">
                     <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Horchata & Fartons</h2>
                     <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
                         Horchata is Valencia's most beloved sweet treat and a tradition that dates back centuries. This refreshing beverage is made from tiger nuts (chufas), a small tuber native to Valencia that has been cultivated here since the 9th century. The nuts are ground, mixed with water and sugar, and filtered to create a creamy, slightly sweet drink.
