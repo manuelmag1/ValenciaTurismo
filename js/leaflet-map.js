@@ -155,9 +155,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // GEOLOCATION FUNCTION
     // ====================
     function initializeUserLocation(callback) {
-        map.locate({ setView: false, maxZoom: 16 });
+        // Only request location if not already obtained
+        if (userLocation) {
+            console.log('📍 User location already available:', userLocation);
+            if (callback) callback();
+            return;
+        }
+
+        map.locate({ setView: false, maxZoom: 16, timeout: 10000 });
 
         map.on('locationfound', function(e) {
+            // Validate geolocation data
+            if (!e.latlng || typeof e.latlng.lat !== 'number' || typeof e.latlng.lng !== 'number') {
+                console.error('❌ Invalid geolocation data:', e);
+                return;
+            }
+
             userLocation = [e.latlng.lat, e.latlng.lng];
 
             // Remove previous user marker if it exists
@@ -206,16 +219,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Add accuracy circle
             userAccuracyCircle = L.circle([e.latlng.lat, e.latlng.lng], {
-                radius: e.accuracy,
+                radius: e.accuracy || 50,
                 color: '#3b82f6',
                 fillColor: '#3b82f6',
                 fillOpacity: 0.1,
                 weight: 1
             }).addTo(map);
 
-            console.log('User location detected:', userLocation);
+            console.log('✅ User location detected:', userLocation);
 
-            if (callback) {
+            if (callback && typeof callback === 'function') {
                 callback();
             }
         });
@@ -230,84 +243,112 @@ document.addEventListener('DOMContentLoaded', function() {
     // ROUTE CALCULATION FUNCTION
     // ====================
     function calculateRoute(destLat, destLng) {
+        // Ensure destination coordinates are parsed as numbers
+        destLat = parseFloat(destLat);
+        destLng = parseFloat(destLng);
+
+        // Validate coordinates are valid numbers
+        if (isNaN(destLat) || isNaN(destLng)) {
+            console.error('❌ Invalid destination coordinates:', destLat, destLng);
+            return;
+        }
+
         // If user hasn't shared location, request it first
         if (!userLocation) {
             console.log('📍 Requesting user location...');
             initializeUserLocation(function() {
                 // After location is obtained, calculate the route
-                drawRoute(userLocation[0], userLocation[1], destLat, destLng);
+                if (userLocation && userLocation.length === 2) {
+                    drawRoute(userLocation[0], userLocation[1], destLat, destLng);
+                } else {
+                    console.warn('⚠️ User location could not be determined');
+                }
             });
         } else {
             // User location already available, draw route immediately
-            drawRoute(userLocation[0], userLocation[1], destLat, destLng);
+            if (userLocation && userLocation.length === 2) {
+                drawRoute(userLocation[0], userLocation[1], destLat, destLng);
+            } else {
+                console.warn('⚠️ Invalid user location format');
+            }
         }
     }
 
     // Helper function to draw the route using Leaflet Routing Machine
     function drawRoute(startLat, startLng, destLat, destLng) {
-        // Remove previous route if it exists
-        if (currentRoute) {
-            map.removeControl(currentRoute);
+        // Ensure coordinates are numbers, not strings
+        startLat = parseFloat(startLat);
+        startLng = parseFloat(startLng);
+        destLat = parseFloat(destLat);
+        destLng = parseFloat(destLng);
+
+        // Remove previous route if it exists - prevent duplicates
+        if (currentRoute && map.hasLayer(currentRoute.getContainer ? currentRoute.getContainer() : currentRoute)) {
+            try {
+                map.removeControl(currentRoute);
+            } catch (e) {
+                console.warn('Could not remove control:', e);
+            }
         }
 
-        // Create route using Leaflet Routing Machine
+        // Verify map is ready
+        if (!map || !map._renderer) {
+            console.warn('Map not fully initialized yet');
+            return;
+        }
+
+        // Create route using Leaflet Routing Machine with stable configuration
         currentRoute = L.Routing.control({
             waypoints: [
                 L.latLng(startLat, startLng),
                 L.latLng(destLat, destLng)
             ],
             router: L.Routing.osrmv1({
-                serviceUrl: 'https://router.project-osrm.org/route/v1'
+                serviceUrl: 'https://router.project-osrm.org/route/v1' // Demo service - add API key for production
             }),
             routeWhileDragging: false,
-            showAlternatives: false,
+            showAlternatives: false, // Reduce OSRM server load
+            addWaypoints: false, // Prevent adding intermediate waypoints
             lineOptions: {
                 styles: [
                     {
-                        color: '#0ea5e9', // primary color (cyan-500)
-                        opacity: 0.8,
-                        weight: 4,
+                        color: '#10b981', // emerald-500 - visible on dark/light backgrounds
+                        opacity: 0.85,
+                        weight: 5,
                         lineCap: 'round',
-                        lineJoin: 'round'
+                        lineJoin: 'round',
+                        dashArray: '5,5'
                     }
                 ]
             },
-            // Hide/minimize the instruction panel for minimal design impact
+            // Minimize instruction panel to not interfere with design
+            collapsible: true,
             createMarker: function(i, wp, nWps) {
-                const icon = (i === 0) ? '📍' : '🎯';
-                const marker = L.marker(wp.latLng, {
-                    icon: L.divIcon({
-                        html: `<div style="font-size: 20px; text-align: center;">${icon}</div>`,
-                        iconSize: [24, 24],
-                        className: 'waypoint-marker'
-                    })
-                });
-                return marker;
-            },
-            // Keep the instruction summary panel invisible/minimal
-            plan: L.Routing.Plan([], {
-                createMarker: function(i, wp, nWps) {
-                    const icon = (i === 0) ? 'my_location' : 'pin_drop';
-                    return L.marker(wp.latLng, {
-                        icon: L.icon({
-                            iconUrl: '#',
-                            className: 'hidden'
-                        })
-                    });
+                if (i === 0) {
+                    // Start marker - keep user location
+                    return null;
+                } else if (i === nWps - 1) {
+                    // End marker - destination
+                    return null;
                 }
-            })
+                return null; // Hide waypoint markers
+            }
         }).addTo(map);
 
         // Fit map bounds to show entire route
         currentRoute.on('routesfound', function(e) {
-            const route = e.routes[0];
-            const bounds = L.latLngBounds(route.coordinates);
-            map.fitBounds(bounds, { padding: [100, 100], duration: 1.5 });
-            console.log('✅ Route calculated and displayed');
+            if (e.routes && e.routes.length > 0) {
+                const route = e.routes[0];
+                if (route.coordinates && route.coordinates.length > 0) {
+                    const bounds = L.latLngBounds(route.coordinates);
+                    map.fitBounds(bounds, { padding: [150, 150] });
+                    console.log('✅ Route calculated and displayed');
+                }
+            }
         });
 
         currentRoute.on('routingerror', function(e) {
-            console.warn('⚠️ Routing error:', e.error);
+            console.warn('⚠️ Routing error:', e);
         });
     }
 
@@ -408,18 +449,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     viewMapButtons.forEach(button => {
         button.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent card click event
+            e.stopPropagation(); // Prevent card click event propagation
             
             // Get parent card to extract coordinates
             const card = this.closest('[data-lat][data-lng]');
             if (card) {
+                // Parse coordinates as numbers
                 const destLat = parseFloat(card.getAttribute('data-lat'));
                 const destLng = parseFloat(card.getAttribute('data-lng'));
                 
-                console.log('🗺️ View on Map clicked for destination:', destLat, destLng);
-                
-                // Calculate and display route to destination
-                calculateRoute(destLat, destLng);
+                // Validate coordinates before proceeding
+                if (!isNaN(destLat) && !isNaN(destLng)) {
+                    console.log('🗺️ View on Map clicked for destination:', destLat, destLng);
+                    // Calculate and display route to destination
+                    calculateRoute(destLat, destLng);
+                } else {
+                    console.error('❌ Invalid coordinates on card:', destLat, destLng);
+                }
+            } else {
+                console.warn('⚠️ Could not find parent card with coordinates');
             }
         });
     });
