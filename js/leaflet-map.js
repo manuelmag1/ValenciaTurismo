@@ -321,31 +321,67 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function activateGPSMode() {
-        console.log('📍 Activating GPS mode');
+    // Master cleanup function to centralize state management
+    function clearMapState() {
+        console.log('🧹 Clearing map state...');
         
-        // Clean up previous pin mode
-        if (originMode === 'pin') {
-            map.off('click'); // Remove pin click listener
-            map.dragging.enable(); // Re-enable map dragging
-            map.cursor = 'grab';
+        // Stop GPS localization if active
+        if (gpsLocationRequest) {
+            map.stopLocate();
+            gpsLocationRequest = null;
         }
         
-        // Update button states
-        document.getElementById('origin-gps-btn').classList.add('bg-cyan-500', 'dark:bg-cyan-600', 'text-white');
-        document.getElementById('origin-gps-btn').classList.remove('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
-        document.getElementById('origin-pin-btn').classList.remove('bg-red-500', 'dark:bg-red-600', 'text-white');
-        document.getElementById('origin-pin-btn').classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
-        
-        // Set mode
-        originMode = 'gps';
-        updateOriginStatus('gps', '📍 Solicita GPS...');
-        
-        // Remove manual marker if exists
+        // Remove manual origin marker
         if (manualOriginMarker !== null) {
             map.removeLayer(manualOriginMarker);
             manualOriginMarker = null;
         }
+        
+        // Remove GPS user marker
+        if (userMarker !== null) {
+            map.removeLayer(userMarker);
+            userMarker = null;
+        }
+        
+        // Remove accuracy circle
+        if (userAccuracyCircle !== null) {
+            map.removeLayer(userAccuracyCircle);
+            userAccuracyCircle = null;
+        }
+        
+        // Remove active routing
+        if (currentRoutingControl !== null) {
+            map.removeControl(currentRoutingControl);
+            currentRoutingControl = null;
+        }
+        
+        // Disable map click events
+        map.off('click');
+        
+        // Reset cursor
+        document.querySelector('#map').style.cursor = 'grab';
+        
+        // Re-enable map dragging
+        if (map.dragging) {
+            map.dragging.enable();
+        }
+    }
+
+    function activateGPSMode() {
+        console.log('📍 Activating GPS mode');
+        
+        // Clear previous state
+        clearMapState();
+        
+        // Update button states
+        document.getElementById('location-btn').classList.add('bg-cyan-500', 'dark:bg-cyan-600', 'text-white');
+        document.getElementById('location-btn').classList.remove('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
+        document.getElementById('pin-mode-btn').classList.remove('bg-red-500', 'dark:bg-red-600', 'text-white');
+        document.getElementById('pin-mode-btn').classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
+        
+        // Set mode
+        originMode = 'gps';
+        updateOriginStatus('gps', '📍 Solicita GPS...');
         
         // Request GPS location
         initializeUserLocation(function() {
@@ -357,26 +393,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function activatePinMode() {
         console.log('🎯 Activating Pin mode');
         
-        // Stop GPS if active
-        if (originMode === 'gps' && gpsLocationRequest) {
-            map.stopLocate();
-        }
-        
-        // Clean GPS markers
-        if (userMarker) {
-            map.removeLayer(userMarker);
-            userMarker = null;
-        }
-        if (userAccuracyCircle) {
-            map.removeLayer(userAccuracyCircle);
-            userAccuracyCircle = null;
-        }
+        // Clear previous state
+        clearMapState();
         
         // Update button states
-        document.getElementById('origin-pin-btn').classList.add('bg-red-500', 'dark:bg-red-600', 'text-white');
-        document.getElementById('origin-pin-btn').classList.remove('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
-        document.getElementById('origin-gps-btn').classList.remove('bg-cyan-500', 'dark:bg-cyan-600', 'text-white');
-        document.getElementById('origin-gps-btn').classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
+        document.getElementById('pin-mode-btn').classList.add('bg-red-500', 'dark:bg-red-600', 'text-white');
+        document.getElementById('pin-mode-btn').classList.remove('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
+        document.getElementById('location-btn').classList.remove('bg-cyan-500', 'dark:bg-cyan-600', 'text-white');
+        document.getElementById('location-btn').classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
         
         // Set mode
         originMode = 'pin';
@@ -596,19 +620,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // ====================
     // ORIGIN MODE BUTTON HANDLERS
     // ====================
-    const gpsBtn = document.getElementById('origin-gps-btn');
-    const pinBtn = document.getElementById('origin-pin-btn');
+    const locationBtn = document.getElementById('location-btn');
+    const pinModeBtn = document.getElementById('pin-mode-btn');
 
-    if (gpsBtn) {
-        gpsBtn.addEventListener('click', function() {
+    if (locationBtn) {
+        console.log('✅ GPS button (location-btn) found and bound');
+        locationBtn.addEventListener('click', function() {
+            console.log('🖱️ GPS button clicked');
             activateGPSMode();
         });
+    } else {
+        console.warn('⚠️ GPS button (location-btn) not found in DOM');
     }
 
-    if (pinBtn) {
-        pinBtn.addEventListener('click', function() {
+    if (pinModeBtn) {
+        console.log('✅ Pin button (pin-mode-btn) found and bound');
+        pinModeBtn.addEventListener('click', function() {
+            console.log('🖱️ Pin button clicked');
             activatePinMode();
         });
+    } else {
+        console.warn('⚠️ Pin button (pin-mode-btn) not found in DOM');
     }
 
     // ====================
@@ -616,34 +648,35 @@ document.addEventListener('DOMContentLoaded', function() {
     // ====================
     const zoomInBtn = document.getElementById('zoom-in-btn');
     const zoomOutBtn = document.getElementById('zoom-out-btn');
-    const locationBtn = document.getElementById('location-btn');
     const layersBtn = document.getElementById('layers-btn');
 
     // Zoom controls
-    zoomInBtn.addEventListener('click', function() {
-        map.zoomIn();
-    });
+    if (zoomInBtn) {
+        zoomInBtn.addEventListener('click', function() {
+            map.zoomIn();
+        });
+    }
 
-    zoomOutBtn.addEventListener('click', function() {
-        map.zoomOut();
-    });
+    if (zoomOutBtn) {
+        zoomOutBtn.addEventListener('click', function() {
+            map.zoomOut();
+        });
+    }
 
-    // Location button - center map on user location (if available)
-    locationBtn.addEventListener('click', function() {
-        if (originMode === 'gps' && userLocation) {
-            map.setView(userLocation, 15);
-            console.log('📍 Centered on your location');
-            showToastNotification('📍 Mapa centrado en tu ubicación');
-        } else {
-            showToastNotification('📍 Activa GPS primero');
-        }
-    });
+    // Center map on current location (if GPS active)
+    if (locationBtn) {
+        // locationBtn is now dual-purpose: GPS activation AND centering
+        // The click handler above handles activation
+        // If user clicks again while in GPS mode, just center the map
+    }
 
     // Layers button - placeholder for future layer toggle functionality
-    layersBtn.addEventListener('click', function() {
-        console.log('Layers control clicked');
-        // Future implementation for toggling different map layers
-    });
+    if (layersBtn) {
+        layersBtn.addEventListener('click', function() {
+            console.log('Layers control clicked');
+            // Future implementation for toggling different map layers
+        });
+    }
 
     // ====================
     // MAP CLICK INTERACTION
