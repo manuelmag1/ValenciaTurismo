@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // GLOBAL VARIABLES
     // ====================
     let userLocation = null; // Store user's geolocation
+    let manualOriginMarker = null; // Store manually placed origin marker
     let currentRoutingControl = null; // Store current active routing control (single instance)
     let userMarker = null; // Store user location marker
     let userAccuracyCircle = null; // Store accuracy circle
@@ -168,6 +169,140 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ====================
+    // MANUAL ORIGIN MARKER FUNCTION
+    // ====================
+    function setManualOrigin(latlng) {
+        // Remove previous manual origin marker if it exists
+        if (manualOriginMarker !== null) {
+            map.removeLayer(manualOriginMarker);
+        }
+
+        // Create custom origin marker with 'Tu Inicio' label
+        const originIcon = L.divIcon({
+            html: `
+                <div style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 0;
+                ">
+                    <div style="
+                        background-color: #ef4444;
+                        color: white;
+                        padding: 8px;
+                        border-radius: 50%;
+                        border: 4px solid rgba(239, 68, 68, 0.3);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 36px;
+                        height: 36px;
+                        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+                    ">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: white;">location_on</span>
+                    </div>
+                    <div style="
+                        margin-top: 8px;
+                        background-color: white;
+                        padding: 6px 12px;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                        border: 1px solid #e2e8f0;
+                        white-space: nowrap;
+                        font-size: 12px;
+                        font-weight: 700;
+                        color: #1e293b;
+                    ">
+                        Tu Inicio
+                    </div>
+                </div>
+            `,
+            iconSize: [100, 90],
+            iconAnchor: [50, 90],
+            className: 'manual-origin-marker'
+        });
+
+        // Create draggable marker
+        manualOriginMarker = L.marker(latlng, {
+            icon: originIcon,
+            draggable: true,
+            title: 'Arrastra para cambiar punto de inicio'
+        }).addTo(map);
+
+        // Update userLocation with manual origin coordinates
+        userLocation = [latlng.lat, latlng.lng];
+
+        // Show temporary toast notification
+        showToastNotification('📍 Punto de inicio establecido');
+
+        // Clean up existing route when origin changes
+        removeExistingRoute();
+
+        // On dragend, update location and recalculate route if one exists
+        manualOriginMarker.on('dragend', function(event) {
+            const newLatlng = event.target.getLatLng();
+            userLocation = [newLatlng.lat, newLatlng.lng];
+            console.log('📍 Origin marker moved to:', userLocation);
+            
+            // If there's a current destination (from card click), recalculate route
+            if (window.lastDestination) {
+                showToastNotification('🔄 Recalculando ruta...');
+                drawRoute(userLocation[0], userLocation[1], window.lastDestination[0], window.lastDestination[1]);
+            }
+        });
+
+        console.log('📍 Manual origin set at:', userLocation);
+    }
+
+    // ====================
+    // TOAST NOTIFICATION FUNCTION
+    // ====================
+    function showToastNotification(message) {
+        // Create toast element
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 9999;
+            animation: slideUp 0.3s ease-out;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        // Add animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideUp {
+                from {
+                    transform: translateY(100px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Remove after 3 seconds
+        setTimeout(() => {
+            toast.style.animation = 'slideUp 0.3s ease-out reverse';
+            setTimeout(() => {
+                document.body.removeChild(toast);
+            }, 300);
+        }, 3000);
+    }
+
+    // ====================
     // GEOLOCATION FUNCTION
     // ====================
     function initializeUserLocation(callback) {
@@ -272,24 +407,32 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // If user hasn't shared location, request it first
-        if (!userLocation) {
-            console.log('📍 Requesting user location...');
+        // Store destination for potential recalculation on marker drag
+        window.lastDestination = [destLat, destLng];
+
+        // PRIORITY 1: Check if manual origin marker exists
+        if (manualOriginMarker !== null && userLocation && userLocation.length === 2) {
+            console.log('🎯 Using manual origin marker');
+            drawRoute(userLocation[0], userLocation[1], destLat, destLng);
+        } 
+        // PRIORITY 2: Check if user has GPS location
+        else if (userLocation && userLocation.length === 2 && !manualOriginMarker) {
+            console.log('📍 Using GPS location');
+            drawRoute(userLocation[0], userLocation[1], destLat, destLng);
+        }
+        // ERROR: No origin available
+        else {
+            console.warn('⚠️ No origin available');
+            showToastNotification('Haz clic en el mapa para poner un inicio o activa tu GPS');
             initializeUserLocation(function() {
                 // After location is obtained, calculate the route
                 if (userLocation && userLocation.length === 2) {
                     drawRoute(userLocation[0], userLocation[1], destLat, destLng);
                 } else {
                     console.warn('⚠️ User location could not be determined');
+                    showToastNotification('No se pudo obtener tu ubicación. Intenta haciendo clic en el mapa.');
                 }
             });
-        } else {
-            // User location already available, draw route immediately
-            if (userLocation && userLocation.length === 2) {
-                drawRoute(userLocation[0], userLocation[1], destLat, destLng);
-            } else {
-                console.warn('⚠️ Invalid user location format');
-            }
         }
     }
 
@@ -389,12 +532,35 @@ document.addEventListener('DOMContentLoaded', function() {
             map.setView(userLocation, 15);
             console.log('📍 Centered on your location');
         }
+        
+        // Clear manual origin marker to give priority to GPS again
+        if (manualOriginMarker !== null) {
+            map.removeLayer(manualOriginMarker);
+            manualOriginMarker = null;
+            showToastNotification('📍 Marcador manual eliminado - GPS activado');
+            console.log('🗺️ Manual origin marker removed, GPS priority restored');
+        }
     });
 
     // Layers button - placeholder for future layer toggle functionality
     layersBtn.addEventListener('click', function() {
         console.log('Layers control clicked');
         // Future implementation for toggling different map layers
+    });
+
+    // ====================
+    // MAP CLICK INTERACTION
+    // ====================
+    map.on('click', function(event) {
+        // Check if click is on a marker or control (not on empty map)
+        const clickedElement = event.originalEvent.target;
+        
+        // Only set manual origin if clicking on empty map area
+        if (clickedElement.tagName === 'CANVAS' || clickedElement.classList.contains('leaflet-map-pane')) {
+            const latlng = event.latlng;
+            console.log('🗺️ Map clicked at:', latlng.lat, latlng.lng);
+            setManualOrigin(latlng);
+        }
     });
 
     // ====================
