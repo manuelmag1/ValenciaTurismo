@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // GLOBAL VARIABLES
     // ====================
     let userLocation = null; // Store user's geolocation
-    let currentRoute = null; // Store current active route
+    let currentRoutingControl = null; // Store current active routing control (single instance)
     let userMarker = null; // Store user location marker
     let userAccuracyCircle = null; // Store accuracy circle
 
@@ -152,6 +152,22 @@ document.addEventListener('DOMContentLoaded', function() {
     );
 
     // ====================
+    // ROUTE CLEANUP FUNCTION
+    // ====================
+    function removeExistingRoute() {
+        if (currentRoutingControl !== null) {
+            try {
+                map.removeControl(currentRoutingControl);
+                currentRoutingControl = null;
+                console.log('✅ Previous route removed');
+            } catch (e) {
+                console.warn('⚠️ Error removing route control:', e);
+                currentRoutingControl = null;
+            }
+        }
+    }
+
+    // ====================
     // GEOLOCATION FUNCTION
     // ====================
     function initializeUserLocation(callback) {
@@ -243,6 +259,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // ROUTE CALCULATION FUNCTION
     // ====================
     function calculateRoute(destLat, destLng) {
+        // Clean up any existing route first
+        removeExistingRoute();
+
         // Ensure destination coordinates are parsed as numbers
         destLat = parseFloat(destLat);
         destLng = parseFloat(destLng);
@@ -282,23 +301,14 @@ document.addEventListener('DOMContentLoaded', function() {
         destLat = parseFloat(destLat);
         destLng = parseFloat(destLng);
 
-        // Remove previous route if it exists - prevent duplicates
-        if (currentRoute && map.hasLayer(currentRoute.getContainer ? currentRoute.getContainer() : currentRoute)) {
-            try {
-                map.removeControl(currentRoute);
-            } catch (e) {
-                console.warn('Could not remove control:', e);
-            }
-        }
-
         // Verify map is ready
         if (!map || !map._renderer) {
-            console.warn('Map not fully initialized yet');
+            console.warn('⚠️ Map not fully initialized yet');
             return;
         }
 
-        // Create route using Leaflet Routing Machine with stable configuration
-        currentRoute = L.Routing.control({
+        // Create route using Leaflet Routing Machine with strict visual configuration
+        currentRoutingControl = L.Routing.control({
             waypoints: [
                 L.latLng(startLat, startLng),
                 L.latLng(destLat, destLng)
@@ -309,6 +319,10 @@ document.addEventListener('DOMContentLoaded', function() {
             routeWhileDragging: false,
             showAlternatives: false, // Reduce OSRM server load
             addWaypoints: false, // Prevent adding intermediate waypoints
+            show: false, // Hide the itinerary panel completely
+            itinerary: { 
+                containerClassName: 'hidden' // Additional safeguard to hide instructions
+            },
             lineOptions: {
                 styles: [
                     {
@@ -321,33 +335,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 ]
             },
-            // Minimize instruction panel to not interfere with design
-            collapsible: true,
+            // Disable default Leaflet Routing markers (we have our own custom markers)
             createMarker: function(i, wp, nWps) {
-                if (i === 0) {
-                    // Start marker - keep user location
-                    return null;
-                } else if (i === nWps - 1) {
-                    // End marker - destination
-                    return null;
-                }
-                return null; // Hide waypoint markers
+                return null; // Return null to hide default A/B markers
             }
         }).addTo(map);
 
-        // Fit map bounds to show entire route
-        currentRoute.on('routesfound', function(e) {
+        // Fit map bounds to show entire route with user and destination visible
+        currentRoutingControl.on('routesfound', function(e) {
             if (e.routes && e.routes.length > 0) {
                 const route = e.routes[0];
                 if (route.coordinates && route.coordinates.length > 0) {
                     const bounds = L.latLngBounds(route.coordinates);
-                    map.fitBounds(bounds, { padding: [150, 150] });
-                    console.log('✅ Route calculated and displayed');
+                    // Fit bounds with padding to show both endpoints comfortably
+                    map.fitBounds(bounds, { 
+                        padding: [150, 150],
+                        maxZoom: 15
+                    });
+                    console.log('✅ Route calculated and displayed with auto-fitted bounds');
                 }
             }
         });
 
-        currentRoute.on('routingerror', function(e) {
+        currentRoutingControl.on('routingerror', function(e) {
             console.warn('⚠️ Routing error:', e);
         });
     }
