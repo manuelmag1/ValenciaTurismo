@@ -65,9 +65,9 @@ const headerHTML = `
                     </div>
                 </nav>
                 <div class="flex items-center gap-4">
-                    <button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all">
+                    <button id="language-toggle" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all" title="Toggle between English and Spanish / Cambiar entre Inglés y Español">
                         <span class="material-symbols-outlined text-sm">language</span>
-                        <span>ES / EN</span>
+                        <span id="lang-display">ES / EN</span>
                     </button>
                 </div>
             </div>
@@ -81,4 +81,62 @@ document.addEventListener('DOMContentLoaded', function() {
     if (headerContainer) {
         headerContainer.insertAdjacentHTML('beforeend', headerHTML);
     }
+
+    // Setup language toggle button
+    setupLanguageToggle();
+
+    // Listen for language changes from other pages
+    window.addEventListener('languageChanged', function(e) {
+        updateLanguageDisplay(e.detail.language);
+    });
 });
+
+/**
+ * Setup language toggle button functionality
+ */
+function setupLanguageToggle() {
+    const button = document.getElementById('language-toggle');
+    if (!button) return;
+
+    // Wait for i18nManager to be available
+    const waitForI18n = setInterval(() => {
+        if (typeof window.i18nManager !== 'undefined') {
+            clearInterval(waitForI18n);
+
+            // Update display on load
+            updateLanguageDisplay(window.i18nManager.getLanguage());
+
+            // Add click handler
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                toggleLanguage();
+            });
+        }
+    }, 100);
+}
+
+/**
+ * Toggle between English and Spanish
+ */
+function toggleLanguage() {
+    if (typeof window.i18nManager === 'undefined') {
+        console.error('i18nManager not initialized');
+        return;
+    }
+
+    const currentLang = window.i18nManager.getLanguage();
+    const newLang = currentLang === 'en' ? 'es' : 'en';
+
+    window.i18nManager.setLanguage(newLang);
+    updateLanguageDisplay(newLang);
+}
+
+/**
+ * Update language display on button
+ */
+function updateLanguageDisplay(lang) {
+    const display = document.getElementById('lang-display');
+    if (display) {
+        display.textContent = lang === 'es' ? 'EN / ES' : 'ES / EN';
+    }
+}
