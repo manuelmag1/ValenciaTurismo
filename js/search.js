@@ -1,4 +1,4 @@
-// Lightweight search functionality for index.html
+// Lightweight search functionality with real-time suggestions
 // Requires SEARCH_INDEX from search-data.js
 
 (function() {
@@ -8,12 +8,13 @@
     const CONFIG = {
         searchInputSelector: 'input[placeholder*="Discover Valencia"]',
         searchButtonSelector: 'button[data-i18n="index_search_button"]',
-        messageDisplayDuration: 4000, // 4 seconds
+        resultsContainerSelector: '#search-results',
+        minCharsToSearch: 2,
         debounceDelay: 300 // milliseconds
     };
 
-    let searchMessageTimeout = null;
     let debounceTimer = null;
+    let selectedIndex = -1; // For keyboard navigation
 
     /**
      * Initialize search functionality when DOM is ready
@@ -21,6 +22,7 @@
     function initSearch() {
         const searchInput = document.querySelector(CONFIG.searchInputSelector);
         const searchButton = document.querySelector(CONFIG.searchButtonSelector);
+        const resultsContainer = document.querySelector(CONFIG.resultsContainerSelector);
 
         // Verify elements exist before attaching listeners
         if (!searchInput) {
@@ -31,6 +33,10 @@
             console.warn('Search button not found:', CONFIG.searchButtonSelector);
             return;
         }
+        if (!resultsContainer) {
+            console.warn('Results container not found:', CONFIG.resultsContainerSelector);
+            return;
+        }
 
         // Verify SEARCH_INDEX is available
         if (typeof SEARCH_INDEX === 'undefined') {
@@ -38,142 +44,231 @@
             return;
         }
 
-        console.log('✅ Search functionality initialized');
+        console.log('✅ Search functionality initialized with real-time suggestions');
 
-        // Attach event listeners
-        searchButton.addEventListener('click', handleSearch);
-        searchInput.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                handleSearch();
-            }
-        });
-
-        // Optional: Live search as user types
-        searchInput.addEventListener('input', function() {
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(handleSearch, CONFIG.debounceDelay);
-        });
+        // Event Listeners
+        searchInput.addEventListener('input', handleLiveSearch);
+        searchButton.addEventListener('click', handleSearchButton);
+        searchInput.addEventListener('keypress', handleKeyPress);
+        searchInput.addEventListener('keydown', handleKeyDown);
+        
+        // Close results when clicking outside
+        document.addEventListener('click', handleClickOutside);
     }
 
     /**
-     * Main search handler
+     * Handle real-time search input
      */
-    function handleSearch() {
-        const searchInput = document.querySelector(CONFIG.searchInputSelector);
-        const query = searchInput.value.trim().toLowerCase();
+    function handleLiveSearch(event) {
+        const query = event.target.value.trim().toLowerCase();
+        const resultsContainer = document.querySelector(CONFIG.resultsContainerSelector);
+        
+        selectedIndex = -1; // Reset keyboard selection
 
-        // Clear previous message if exists
-        clearSearchMessage();
-
-        // Prevent empty searches
-        if (!query) {
-            showErrorMessage('Please enter a search term');
+        // Hide results if input is empty
+        if (!query || query.length < CONFIG.minCharsToSearch) {
+            resultsContainer.classList.add('hidden');
             return;
         }
 
         // Perform search
-        const result = performSearch(query);
+        const results = performSearch(query);
 
-        if (result) {
-            // Direct redirect on match
-            console.log('🔍 Search match found:', result.title);
-            redirectToPage(result.url);
+        // Display results or hide
+        if (results.length > 0) {
+            displayResults(results, resultsContainer);
+            resultsContainer.classList.remove('hidden');
         } else {
-            // Show "no results" message with suggestions
-            showErrorMessage('No results found, try "Albufera" or "Bioparc"');
+            resultsContainer.innerHTML = '';
+            resultsContainer.classList.add('hidden');
         }
+    }
+
+    /**
+     * Handle explicit search button click
+     */
+    function handleSearchButton(event) {
+        event.preventDefault();
+        const searchInput = document.querySelector(CONFIG.searchInputSelector);
+        const query = searchInput.value.trim().toLowerCase();
+
+        if (!query) {
+            showMessage('Please enter a search term');
+            return;
+        }
+
+        const results = performSearch(query);
+
+        if (results.length > 0) {
+            // Navigate to first result
+            redirectToPage(results[0].url);
+        } else {
+            showMessage('No results found, try "Albufera" or "Bioparc"');
+        }
+    }
+
+    /**
+     * Handle Enter key in search input
+     */
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            handleSearchButton(event);
+        }
+    }
+
+    /**
+     * Handle arrow keys for suggestion navigation
+     */
+    function handleKeyDown(event) {
+        const resultsContainer = document.querySelector(CONFIG.resultsContainerSelector);
+        const isResultsVisible = !resultsContainer.classList.contains('hidden');
+
+        if (!isResultsVisible) return;
+
+        const suggestions = resultsContainer.querySelectorAll('[data-result-url]');
+        const totalSuggestions = suggestions.length;
+
+        if (event.key === 'ArrowDown') {
+            event.preventDefault();
+            selectedIndex = Math.min(selectedIndex + 1, totalSuggestions - 1);
+            updateSelectedSuggestion(suggestions);
+        } else if (event.key === 'ArrowUp') {
+            event.preventDefault();
+            selectedIndex = Math.max(selectedIndex - 1, -1);
+            updateSelectedSuggestion(suggestions);
+        } else if (event.key === 'Enter' && selectedIndex >= 0) {
+            event.preventDefault();
+            const selectedSuggestion = suggestions[selectedIndex];
+            if (selectedSuggestion) {
+                redirectToPage(selectedSuggestion.getAttribute('data-result-url'));
+            }
+        }
+    }
+
+    /**
+     * Update visual indication of selected suggestion
+     */
+    function updateSelectedSuggestion(suggestions) {
+        suggestions.forEach((suggestion, index) => {
+            if (index === selectedIndex) {
+                suggestion.classList.add('bg-slate-100', 'dark:bg-slate-700');
+            } else {
+                suggestion.classList.remove('bg-slate-100', 'dark:bg-slate-700');
+            }
+        });
     }
 
     /**
      * Search algorithm - looks for title or keyword matches
-     * @param {string} query - User search query (lowercase)
-     * @returns {Object|null} - Matching page object or null
+     * Returns array of matching items (max 8 results)
      */
     function performSearch(query) {
-        // Priority 1: Exact title match (case-insensitive)
-        const exactMatch = SEARCH_INDEX.find(item =>
-            item.title.toLowerCase() === query
-        );
-        if (exactMatch) return exactMatch;
+        const results = [];
+        const seen = new Set();
 
-        // Priority 2: Title contains query
-        const titleMatch = SEARCH_INDEX.find(item =>
-            item.title.toLowerCase().includes(query)
-        );
-        if (titleMatch) return titleMatch;
+        // Priority 1: Title match
+        SEARCH_INDEX.forEach(item => {
+            if (item.title.toLowerCase().includes(query) && !seen.has(item.url)) {
+                results.push(item);
+                seen.add(item.url);
+            }
+        });
 
-        // Priority 3: Keyword matches
-        const keywordMatch = SEARCH_INDEX.find(item =>
-            item.keywords.some(keyword =>
-                keyword.toLowerCase().includes(query) ||
-                query.includes(keyword.toLowerCase())
-            )
-        );
-        if (keywordMatch) return keywordMatch;
+        // Priority 2: Keyword match
+        SEARCH_INDEX.forEach(item => {
+            if (item.keywords.some(kw => kw.toLowerCase().includes(query)) && !seen.has(item.url)) {
+                results.push(item);
+                seen.add(item.url);
+            }
+        });
 
-        // Priority 4: Description contains query
-        const descriptionMatch = SEARCH_INDEX.find(item =>
-            item.description.toLowerCase().includes(query)
-        );
-        if (descriptionMatch) return descriptionMatch;
+        // Priority 3: Description match
+        SEARCH_INDEX.forEach(item => {
+            if (item.description.toLowerCase().includes(query) && !seen.has(item.url)) {
+                results.push(item);
+                seen.add(item.url);
+            }
+        });
 
-        return null;
+        // Return max 8 results
+        return results.slice(0, 8);
     }
 
     /**
-     * Display error/no-results message below search bar
-     * @param {string} message - Message to display
+     * Display results as clickable suggestions
      */
-    function showErrorMessage(message) {
+    function displayResults(results, container) {
+        container.innerHTML = results.map((result, index) => `
+            <a href="#" data-result-url="${result.url}" class="block px-4 py-3 border-b border-slate-200 dark:border-slate-700 last:border-b-0 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors cursor-pointer group ${index === selectedIndex ? 'bg-slate-100 dark:bg-slate-700' : ''}">
+                <div class="flex items-start justify-between gap-2">
+                    <div class="flex-1 min-w-0">
+                        <p class="font-bold text-slate-900 dark:text-white text-sm truncate">${escapeHtml(result.title)}</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 mt-1">${escapeHtml(result.description)}</p>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors flex-shrink-0 text-base">arrow_outward</span>
+                </div>
+            </a>
+        `).join('');
+
+        // Attach click listeners to suggestions
+        container.querySelectorAll('[data-result-url]').forEach(suggestion => {
+            suggestion.addEventListener('click', handleSuggestionClick);
+        });
+    }
+
+    /**
+     * Handle suggestion click
+     */
+    function handleSuggestionClick(event) {
+        event.preventDefault();
+        const url = event.currentTarget.getAttribute('data-result-url');
+        redirectToPage(url);
+    }
+
+    /**
+     * Close results when clicking outside search area
+     */
+    function handleClickOutside(event) {
         const searchInput = document.querySelector(CONFIG.searchInputSelector);
+        const resultsContainer = document.querySelector(CONFIG.resultsContainerSelector);
         
-        if (!searchInput) return;
-
-        // Create message element
-        const messageEl = document.createElement('div');
-        messageEl.className = 'search-message search-message--error';
-        messageEl.setAttribute('role', 'alert');
-        messageEl.textContent = message;
-
-        // Insert after search container
-        const searchContainer = searchInput.closest('.flex');
-        if (searchContainer && searchContainer.parentNode) {
-            searchContainer.parentNode.insertBefore(messageEl, searchContainer.nextSibling);
+        // Check if click is outside search area
+        if (!searchInput.contains(event.target) && !resultsContainer.contains(event.target)) {
+            resultsContainer.classList.add('hidden');
         }
-
-        // Add visual feedback
-        searchInput.classList.add('search-input--error');
-
-        // Auto-remove after timeout
-        searchMessageTimeout = setTimeout(() => {
-            clearSearchMessage();
-        }, CONFIG.messageDisplayDuration);
     }
 
     /**
-     * Clear any displayed search message
+     * Escape HTML to prevent XSS
      */
-    function clearSearchMessage() {
-        const messageEl = document.querySelector('.search-message');
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    /**
+     * Show temporary message (error or info)
+     */
+    function showMessage(message) {
         const searchInput = document.querySelector(CONFIG.searchInputSelector);
+        const resultsContainer = document.querySelector(CONFIG.resultsContainerSelector);
+        
+        resultsContainer.innerHTML = `
+            <div class="px-4 py-3 text-center text-slate-600 dark:text-slate-400 text-sm">
+                ${escapeHtml(message)}
+            </div>
+        `;
+        resultsContainer.classList.remove('hidden');
 
-        if (messageEl) {
-            messageEl.remove();
-        }
-
-        if (searchInput) {
-            searchInput.classList.remove('search-input--error');
-        }
-
-        if (searchMessageTimeout) {
-            clearTimeout(searchMessageTimeout);
-            searchMessageTimeout = null;
-        }
+        // Auto-hide after 4 seconds
+        setTimeout(() => {
+            resultsContainer.classList.add('hidden');
+        }, 4000);
     }
 
     /**
      * Redirect to search result page
-     * @param {string} url - Page URL to navigate to
      */
     function redirectToPage(url) {
         // Add small delay for visual feedback

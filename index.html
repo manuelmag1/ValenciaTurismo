@@ -46,7 +46,7 @@
                             </p>
                         </div>
                         <!-- Search Bar -->
-                        <div class="w-full max-w-2xl mx-auto mt-4">
+                        <div class="w-full max-w-2xl mx-auto mt-4 relative">
                             <div
                                 class="flex bg-white dark:bg-slate-900 rounded-xl p-1.5 shadow-xl border border-white/20">
                                 <div class="flex items-center px-4 text-slate-400">
@@ -59,6 +59,10 @@
                                     class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg transition-colors shadow-lg" data-i18n="index_search_button">
                                     Search
                                 </button>
+                            </div>
+                            <!-- Search Results Suggestions -->
+                            <div id="search-results" class="absolute w-full bg-white dark:bg-slate-800 rounded-b-xl shadow-2xl border border-slate-200 dark:border-slate-700 z-50 hidden max-h-96 overflow-y-auto">
+                                <!-- Results will be populated here by JavaScript -->
                             </div>
                         </div>
                     </div>
