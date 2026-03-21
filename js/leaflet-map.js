@@ -236,7 +236,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Show temporary toast notification
         showToastNotification('🎯 Punto de inicio fijado');
-        updateOriginStatus('pin', '🎯 Punto de inicio fijado');
 
         // Clean up existing route when origin changes
         removeExistingRoute();
@@ -309,15 +308,32 @@ document.addEventListener('DOMContentLoaded', function() {
     // ====================
     // ORIGIN MODE FUNCTIONS
     // ====================
-    function updateOriginStatus(mode, message) {
-        const statusDiv = document.getElementById('origin-status');
-        const statusText = document.getElementById('origin-status-text');
+    // Toggle active button visual state
+    function toggleActiveButton(activeId) {
+        console.log('🎨 Toggling active button to:', activeId);
         
-        if (message) {
-            statusText.textContent = message;
-            statusDiv.classList.remove('hidden');
-        } else {
-            statusDiv.classList.add('hidden');
+        // Get all map control buttons
+        const locationBtn = document.getElementById('location-btn');
+        const pinModeBtn = document.getElementById('pin-mode-btn');
+        
+        // Remove active styles from all buttons
+        [locationBtn, pinModeBtn].forEach(btn => {
+            if (btn) {
+                btn.classList.remove('bg-cyan-500', 'dark:bg-cyan-600', 'bg-red-500', 'dark:bg-red-600', 'text-white');
+                btn.classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
+            }
+        });
+        
+        // Add active styles to the selected button based on mode
+        const activeBtn = document.getElementById(activeId);
+        if (activeBtn) {
+            activeBtn.classList.remove('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
+            
+            if (activeId === 'location-btn') {
+                activeBtn.classList.add('bg-cyan-500', 'dark:bg-cyan-600', 'text-white');
+            } else if (activeId === 'pin-mode-btn') {
+                activeBtn.classList.add('bg-red-500', 'dark:bg-red-600', 'text-white');
+            }
         }
     }
 
@@ -325,11 +341,9 @@ document.addEventListener('DOMContentLoaded', function() {
     function clearMapState() {
         console.log('🧹 Clearing map state...');
         
-        // Stop GPS localization if active
-        if (gpsLocationRequest) {
-            map.stopLocate();
-            gpsLocationRequest = null;
-        }
+        // Stop GPS localization if active - ESSENTIAL for exclusivity
+        map.stopLocate();
+        gpsLocationRequest = null;
         
         // Remove manual origin marker
         if (manualOriginMarker !== null) {
@@ -355,11 +369,14 @@ document.addEventListener('DOMContentLoaded', function() {
             currentRoutingControl = null;
         }
         
-        // Disable map click events
+        // Disable all map click events - ESSENTIAL for exclusivity
         map.off('click');
         
         // Reset cursor
-        document.querySelector('#map').style.cursor = 'grab';
+        const mapEl = document.querySelector('#map');
+        if (mapEl) {
+            mapEl.style.cursor = 'grab';
+        }
         
         // Re-enable map dragging
         if (map.dragging) {
@@ -370,22 +387,17 @@ document.addEventListener('DOMContentLoaded', function() {
     function activateGPSMode() {
         console.log('📍 Activating GPS mode');
         
-        // Clear previous state
+        // Clear previous state - stops GPS and removes all click listeners
         clearMapState();
         
-        // Update button states
-        document.getElementById('location-btn').classList.add('bg-cyan-500', 'dark:bg-cyan-600', 'text-white');
-        document.getElementById('location-btn').classList.remove('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
-        document.getElementById('pin-mode-btn').classList.remove('bg-red-500', 'dark:bg-red-600', 'text-white');
-        document.getElementById('pin-mode-btn').classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
+        // Update button visual state
+        toggleActiveButton('location-btn');
         
         // Set mode
         originMode = 'gps';
-        updateOriginStatus('gps', '📍 Solicita GPS...');
         
         // Request GPS location
         initializeUserLocation(function() {
-            updateOriginStatus('gps', '✅ GPS activado - Listo');
             showToastNotification('✅ Tu ubicación ha sido establecida');
         });
     }
@@ -393,31 +405,34 @@ document.addEventListener('DOMContentLoaded', function() {
     function activatePinMode() {
         console.log('🎯 Activating Pin mode');
         
-        // Clear previous state
+        // Clear previous state - stops GPS and removes all click listeners
         clearMapState();
         
-        // Update button states
-        document.getElementById('pin-mode-btn').classList.add('bg-red-500', 'dark:bg-red-600', 'text-white');
-        document.getElementById('pin-mode-btn').classList.remove('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
-        document.getElementById('location-btn').classList.remove('bg-cyan-500', 'dark:bg-cyan-600', 'text-white');
-        document.getElementById('location-btn').classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
+        // Update button visual state
+        toggleActiveButton('pin-mode-btn');
         
         // Set mode
         originMode = 'pin';
-        updateOriginStatus('pin', '🎯 Haz clic en el mapa para marcar inicio');
         
         // Change cursor to crosshair
         map.dragging.disable(); // Disable dragging while in pin mode
-        document.querySelector('#map').style.cursor = 'crosshair';
+        const mapEl = document.querySelector('#map');
+        if (mapEl) {
+            mapEl.style.cursor = 'crosshair';
+        }
         
-        // Enable one-time click event for pin placement
+        // Enable ONE-TIME click event for pin placement with proper cleanup
         map.once('click', function(event) {
             setManualOrigin(event.latlng);
+            // Automatically clean up - disable map click after pin is placed
+            map.off('click');
             map.dragging.enable(); // Re-enable dragging after pin placed
-            document.querySelector('#map').style.cursor = 'grab';
+            if (mapEl) {
+                mapEl.style.cursor = 'grab';
+            }
         });
         
-        showToastNotification('🎯 Modo de marcador activado');
+        showToastNotification('🎯 Click en el mapa para marcar tu punto de inicio');
     }
 
     // ====================
@@ -505,7 +520,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         map.on('locationerror', function(e) {
             console.warn('❌ Geolocation denied or unavailable:', e.message);
-            updateOriginStatus('gps', '❌ Permiso denegado');
             showToastNotification('❌ Permiso denegado. Usa "Marcar punto".');
             originMode = null;
         });
@@ -516,9 +530,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // ====================
     function calculateRoute(destLat, destLng) {
         // Validate that user has selected an origin
-        if (!originMode || !userLocation) {
-            console.warn('⚠️ No origin selected');
-            showToastNotification('⚠️ Primero selecciona tu punto de partida en el mapa');
+        if (!originMode) {
+            console.warn('⚠️ No origin mode selected');
+            showToastNotification('⚠️ Activa GPS o Pin primero');
+            return;
+        }
+        
+        // Verify userLocation is set (if not, silently wait for user action)
+        if (!userLocation) {
+            console.warn('⏳ Esperando que se establezca la ubicación de origen...');
+            showToastNotification('⏳ Esperando ubicación de origen...');
             return;
         }
 
