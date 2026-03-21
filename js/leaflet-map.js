@@ -339,40 +339,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Master cleanup function to centralize state management
     function clearMapState() {
-        console.log('🧹 Clearing map state...');
+        console.log('🧹 Clearing map state - Total reset...');
         
-        // Stop GPS localization if active - ESSENTIAL for exclusivity
+        // CRITICAL: Stop GPS localization if active - prevents listener leaks
         map.stopLocate();
         gpsLocationRequest = null;
         
+        // CRITICAL: Remove all map click listeners - prev pin mode cleanup
+        map.off('click');
+        
         // Remove manual origin marker
         if (manualOriginMarker !== null) {
-            map.removeLayer(manualOriginMarker);
+            try {
+                map.removeLayer(manualOriginMarker);
+            } catch (e) {
+                console.warn('⚠️ Error removing manual marker:', e);
+            }
             manualOriginMarker = null;
         }
         
         // Remove GPS user marker
         if (userMarker !== null) {
-            map.removeLayer(userMarker);
+            try {
+                map.removeLayer(userMarker);
+            } catch (e) {
+                console.warn('⚠️ Error removing user marker:', e);
+            }
             userMarker = null;
         }
         
         // Remove accuracy circle
         if (userAccuracyCircle !== null) {
-            map.removeLayer(userAccuracyCircle);
+            try {
+                map.removeLayer(userAccuracyCircle);
+            } catch (e) {
+                console.warn('⚠️ Error removing accuracy circle:', e);
+            }
             userAccuracyCircle = null;
         }
         
-        // Remove active routing
+        // Remove active routing - critical for memory
         if (currentRoutingControl !== null) {
-            map.removeControl(currentRoutingControl);
+            try {
+                map.removeControl(currentRoutingControl);
+            } catch (e) {
+                console.warn('⚠️ Error removing routing control:', e);
+            }
             currentRoutingControl = null;
         }
         
-        // Disable all map click events - ESSENTIAL for exclusivity
-        map.off('click');
+        // CRITICAL: Reset user location - allows fresh origin selection
+        userLocation = null;
         
-        // Reset cursor
+        // Reset origin mode
+        originMode = null;
+        
+        // Reset cursor and map interaction
         const mapEl = document.querySelector('#map');
         if (mapEl) {
             mapEl.style.cursor = 'grab';
@@ -382,15 +404,20 @@ document.addEventListener('DOMContentLoaded', function() {
         if (map.dragging) {
             map.dragging.enable();
         }
+        
+        console.log('✅ Map state cleared completely');
     }
 
     function activateGPSMode() {
         console.log('📍 Activating GPS mode');
         
-        // Clear previous state - stops GPS and removes all click listeners
-        clearMapState();
+        // If already in GPS mode, skip cleanup to avoid listener leaks
+        if (originMode !== 'gps') {
+            // Clear previous state - stops GPS and removes all click listeners
+            clearMapState();
+        }
         
-        // Update button visual state
+        // Update button visual state - highlight GPS, deactivate Pin
         toggleActiveButton('location-btn');
         
         // Set mode
@@ -399,6 +426,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Request GPS location
         initializeUserLocation(function() {
             showToastNotification('✅ Tu ubicación ha sido establecida');
+            console.log('📍 GPS location confirmed:', userLocation);
         });
     }
 
@@ -408,31 +436,45 @@ document.addEventListener('DOMContentLoaded', function() {
         // Clear previous state - stops GPS and removes all click listeners
         clearMapState();
         
-        // Update button visual state
+        // Update button visual state - highlight Pin, deactivate GPS
         toggleActiveButton('pin-mode-btn');
         
         // Set mode
         originMode = 'pin';
         
-        // Change cursor to crosshair
-        map.dragging.disable(); // Disable dragging while in pin mode
+        // Change cursor to crosshair and disable dragging
+        map.dragging.disable();
         const mapEl = document.querySelector('#map');
         if (mapEl) {
             mapEl.style.cursor = 'crosshair';
+            console.log('✏️ Map cursor changed to crosshair - ready for pin placement');
         }
         
-        // Enable ONE-TIME click event for pin placement with proper cleanup
+        // Enable ONE-TIME click event for pin placement with automatic cleanup
         map.once('click', function(event) {
+            console.log('📌 Pin clicked at:', event.latlng);
+            
+            // Place the marker and set origin
             setManualOrigin(event.latlng);
-            // Automatically clean up - disable map click after pin is placed
-            map.off('click');
-            map.dragging.enable(); // Re-enable dragging after pin placed
+            
+            // Automatic cleanup after pin placement
+            try {
+                map.off('click'); // Remove any residual click listeners
+            } catch (e) {
+                console.warn('⚠️ Error removing click listener after pin:', e);
+            }
+            
+            // Re-enable map dragging
+            map.dragging.enable();
+            
+            // Reset cursor
             if (mapEl) {
                 mapEl.style.cursor = 'grab';
+                console.log('✅ Pin placed - map restored to grab mode');
             }
         });
         
-        showToastNotification('🎯 Click en el mapa para marcar tu punto de inicio');
+        showToastNotification('🎯 Haz clic en el mapa para marcar tu punto de inicio');
     }
 
     // ====================
@@ -529,17 +571,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // ROUTE CALCULATION FUNCTION
     // ====================
     function calculateRoute(destLat, destLng) {
-        // Validate that user has selected an origin
+        // Validate that user has selected an origin mode
         if (!originMode) {
-            console.warn('⚠️ No origin mode selected');
-            showToastNotification('⚠️ Activa GPS o Pin primero');
+            console.warn('⚠️ No origin mode selected - GPS or Pin not activated');
+            showToastNotification('⚠️ Selecciona tu origen (GPS o Pin) primero');
             return;
         }
         
-        // Verify userLocation is set (if not, silently wait for user action)
+        // Verify userLocation is actually set (wait for GPS confirmation or pin placement)
         if (!userLocation) {
-            console.warn('⏳ Esperando que se establezca la ubicación de origen...');
-            showToastNotification('⏳ Esperando ubicación de origen...');
+            console.warn('⏳ Origin location not yet established - waiting for GPS/Pin');
+            showToastNotification('⚠️ Selecciona tu origen (GPS o Pin) primero');
             return;
         }
 
@@ -647,21 +689,21 @@ document.addEventListener('DOMContentLoaded', function() {
     if (locationBtn) {
         console.log('✅ GPS button (location-btn) found and bound');
         locationBtn.addEventListener('click', function() {
-            console.log('🖱️ GPS button clicked');
+            console.log('🖱️ GPS button clicked - activating GPS mode');
             activateGPSMode();
         });
     } else {
-        console.warn('⚠️ GPS button (location-btn) not found in DOM');
+        console.error('❌ GPS button (location-btn) NOT FOUND in DOM');
     }
 
     if (pinModeBtn) {
         console.log('✅ Pin button (pin-mode-btn) found and bound');
         pinModeBtn.addEventListener('click', function() {
-            console.log('🖱️ Pin button clicked');
+            console.log('🖱️ Pin button clicked - activating Pin mode');
             activatePinMode();
         });
     } else {
-        console.warn('⚠️ Pin button (pin-mode-btn) not found in DOM');
+        console.error('❌ Pin button (pin-mode-btn) NOT FOUND in DOM');
     }
 
     // ====================
@@ -791,6 +833,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     console.log('🗺️ Leaflet map initialized with routing capabilities');
+    
+    // ====================
+    // AUTO-ACTIVATE GPS ON PAGE LOAD
+    // ====================
+    console.log('📍 Auto-activating GPS mode on page load...');
+    activateGPSMode();
+    console.log('✅ GPS auto-activation triggered - waiting for user permission');
 });
 
 
