@@ -1069,7 +1069,87 @@ const translations = {
         "om_led_lighting_value": "100%",
         "om_bike_lanes": "Carriles para Bicicletas",
         "om_bike_lanes_value": "200km",
-        "om_carbon_2030": "Carbono Cero 2030"
+        "om_carbon_2030": "Carbono Cero 2030",
+
+        // Itineraries.html - Route Cards
+        "turia_card_title": "Cinturón Verde del Turia",
+        "turia_card_desc": "Pedalea a través de 9 km de paraíso urbano en el famoso Jardín del Turia, un antiguo lecho de río transformado en el corazón verde palpitante de la ciudad.",
+        "turia_card_duration": "Duración",
+        "turia_card_distance": "Distancia",
+        "turia_card_difficulty": "Dificultad",
+        "turia_card_eco_badge": "Ruta en Bici",
+        
+        "albufera_card_title": "Escape Natural de la Albufera",
+        "albufera_card_desc": "Explora la icónica laguna rodeada de arrozales y pueblos de pescadores tradicionales. Un paraíso para observadores de aves justo fuera de la ciudad.",
+        "albufera_card_duration": "Duración",
+        "albufera_card_distance": "Distancia",
+        "albufera_card_difficulty": "Dificultad",
+        "albufera_card_eco_badge": "Reserva Natural",
+        
+        "bioparc_card_title": "Bioparc de Valencia",
+        "bioparc_card_desc": "Sumérgete en un zoológico de clase mundial dedicado a la conservación animal y la educación ecológica. Experiencia cero residuos.",
+        "bioparc_card_duration": "Duración",
+        "bioparc_card_distance": "Distancia",
+        "bioparc_card_difficulty": "Dificultad",
+        "bioparc_card_eco_badge": "Vida Salvaje",
+        
+        "dehesa_card_title": "Dehesa del Saler",
+        "dehesa_card_desc": "Descubre humedales vírgenes con increíble biodiversidad. Camina entre dunas y lagunas, observando flora y fauna nativa.",
+        "dehesa_card_duration": "Duración",
+        "dehesa_card_distance": "Distancia",
+        "dehesa_card_difficulty": "Dificultad",
+        "dehesa_card_eco_badge": "Reserva de Humedales",
+        
+        "birdwatch_card_title": "Aventuras de Observación de Aves",
+        "birdwatch_card_desc": "Únete a naturalistas expertos en expediciones guiadas para avistar especies migratorias raras y aves endémicas. Perfecto para entusiastas de la naturaleza.",
+        "birdwatch_card_duration": "Duración",
+        "birdwatch_card_distance": "Distancia",
+        "birdwatch_card_difficulty": "Dificultad",
+        "birdwatch_card_eco_badge": "Tour Guiado",
+        
+        "view_on_map_btn": "Ver en el Mapa",
+        "map_origin_gps": "Usar mi ubicación",
+        "map_origin_pin": "Marcar punto en mapa",
+
+        // Itineraries.html - Route Cards
+        "turia_card_title": "Turia Green Belt",
+        "turia_card_desc": "Pedal through 9 km of urban paradise on the famous Turia Garden, a former riverbed transformed into the city's beating green heart.",
+        "turia_card_duration": "Duration",
+        "turia_card_distance": "Distance",
+        "turia_card_difficulty": "Difficulty",
+        "turia_card_eco_badge": "Bike Route",
+        
+        "albufera_card_title": "Albufera Natural Escape",
+        "albufera_card_desc": "Explore the iconic lagoon surrounded by rice paddies and traditional fishing villages. A birdwatcher's paradise just outside the city.",
+        "albufera_card_duration": "Duration",
+        "albufera_card_distance": "Distance",
+        "albufera_card_difficulty": "Difficulty",
+        "albufera_card_eco_badge": "Nature Reserve",
+        
+        "bioparc_card_title": "Bioparc Valencia",
+        "bioparc_card_desc": "Immerse yourself in a world-class zoo dedicated to animal conservation and ecological education. Zero-waste experience.",
+        "bioparc_card_duration": "Duration",
+        "bioparc_card_distance": "Distance",
+        "bioparc_card_difficulty": "Difficulty",
+        "bioparc_card_eco_badge": "Wildlife",
+        
+        "dehesa_card_title": "Dehesa del Saler",
+        "dehesa_card_desc": "Discover pristine wetlands with incredible biodiversity. Walk among sand dunes and lagoons, spotting native flora and fauna.",
+        "dehesa_card_duration": "Duration",
+        "dehesa_card_distance": "Distance",
+        "dehesa_card_difficulty": "Difficulty",
+        "dehesa_card_eco_badge": "Wetland Reserve",
+        
+        "birdwatch_card_title": "Bird Watching Adventures",
+        "birdwatch_card_desc": "Join expert naturalists on guided expeditions to spot rare migratory species and endemic birds. Perfect for nature enthusiasts.",
+        "birdwatch_card_duration": "Duration",
+        "birdwatch_card_distance": "Distance",
+        "birdwatch_card_difficulty": "Difficulty",
+        "birdwatch_card_eco_badge": "Guided Tour",
+        
+        "view_on_map_btn": "View on Map",
+        "map_origin_gps": "Use my location",
+        "map_origin_pin": "Mark point on map"
     }
 };
 

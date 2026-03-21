@@ -332,9 +332,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Update button states
-        document.getElementById('origin-gps-btn').classList.add('bg-blue-500', 'dark:bg-blue-600', 'text-white');
+        document.getElementById('origin-gps-btn').classList.add('bg-cyan-500', 'dark:bg-cyan-600', 'text-white');
         document.getElementById('origin-gps-btn').classList.remove('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
-        document.getElementById('origin-pin-btn').classList.remove('bg-blue-500', 'dark:bg-blue-600', 'text-white');
+        document.getElementById('origin-pin-btn').classList.remove('bg-red-500', 'dark:bg-red-600', 'text-white');
         document.getElementById('origin-pin-btn').classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
         
         // Set mode
@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update button states
         document.getElementById('origin-pin-btn').classList.add('bg-red-500', 'dark:bg-red-600', 'text-white');
         document.getElementById('origin-pin-btn').classList.remove('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
-        document.getElementById('origin-gps-btn').classList.remove('bg-blue-500', 'dark:bg-blue-600', 'text-white');
+        document.getElementById('origin-gps-btn').classList.remove('bg-cyan-500', 'dark:bg-cyan-600', 'text-white');
         document.getElementById('origin-gps-btn').classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
         
         // Set mode
