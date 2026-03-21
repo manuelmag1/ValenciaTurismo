@@ -2,8 +2,6 @@
 // with Real-Time Routing and Geolocation
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🗺️ DOMContentLoaded event fired - initializing map...');
-    
     // ====================
     // GLOBAL VARIABLES
     // ====================
@@ -15,66 +13,19 @@ document.addEventListener('DOMContentLoaded', function() {
     let originMode = null; // Store selected origin mode: 'gps' or 'pin'
     let gpsLocationRequest = null; // Store GPS location request ID
 
-    // Verify map container exists in DOM
-    const mapContainer = document.getElementById('map');
-    if (!mapContainer) {
-        console.error('❌ ERROR: Map container #map not found in DOM!');
-        return;
-    }
-    
-    console.log('✅ Map container found in DOM');
-    
-    // Verify container has proper dimensions
-    const containerParent = mapContainer.parentElement;
-    if (containerParent) {
-        const parentStyle = window.getComputedStyle(containerParent);
-        console.log('📏 Map container parent dimensions:', {
-            width: parentStyle.width,
-            height: parentStyle.height,
-            display: parentStyle.display,
-            position: parentStyle.position
-        });
-    }
-
     // Initialize map centered on Valencia
-    let map = null;
-    try {
-        map = L.map('map', {
-            center: [39.4697, -0.3774],
-            zoom: 13,
-            zoomControl: false, // Disable default Leaflet zoom control
-            attributionControl: true
-        });
-        console.log('✅ Leaflet map object created successfully');
-    } catch (e) {
-        console.error('❌ Error creating Leaflet map:', e);
-        return;
-    }
+    const map = L.map('map', {
+        center: [39.4697, -0.3774],
+        zoom: 13,
+        zoomControl: false // Disable default Leaflet zoom control
+    });
 
     // Add CartoDB DarkMatter tile layer for dark theme consistency
-    // Using standard CartoDB endpoint for reliability
-    try {
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '© OpenStreetMap contributors, © CartoDB',
-            maxZoom: 19,
-            minZoom: 2,
-            subdomains: 'abcd',
-            ext: 'png'
-        }).addTo(map);
-        console.log('✅ CartoDB DarkMatter tile layer loaded successfully');
-    } catch (e) {
-        console.error('❌ Error loading tile layer:', e);
-    }
-    
-    // Force map to recalculate size after small delay to ensure DOM is ready
-    setTimeout(function() {
-        try {
-            map.invalidateSize();
-            console.log('✅ Map size recalculated via invalidateSize()');
-        } catch (e) {
-            console.error('⚠️ Error calling invalidateSize():', e);
-        }
-    }, 100);
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap, © CartoDB',
+        maxZoom: 19,
+        subdomains: ['a', 'b', 'c']
+    }).addTo(map);
 
     // Custom marker creation function with inline styling for Tailwind compatibility
     function createCustomMarker(lat, lng, name, icon, bgColor, ringColor) {
@@ -358,87 +309,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // ====================
     // ORIGIN MODE FUNCTIONS
     // ====================
-    
-    /**
-     * Resets all origin mode states and cleans up the map
-     * Ensures only one mode can be active at a time
-     */
-    function resetOriginMode() {
-        console.log('🔄 Resetting origin mode states');
-        
-        // Stop GPS location tracking if active
-        if (gpsLocationRequest !== null) {
-            try {
-                map.stopLocate();
-                gpsLocationRequest = null;
-                console.log('✅ GPS location tracking stopped');
-            } catch (e) {
-                console.warn('⚠️ Error stopping GPS:', e);
-            }
-        }
-        
-        // Remove all origin markers from map
-        if (userMarker !== null) {
-            try {
-                map.removeLayer(userMarker);
-                userMarker = null;
-                console.log('✅ User GPS marker removed');
-            } catch (e) {
-                console.warn('⚠️ Error removing user marker:', e);
-            }
-        }
-        
-        if (userAccuracyCircle !== null) {
-            try {
-                map.removeLayer(userAccuracyCircle);
-                userAccuracyCircle = null;
-                console.log('✅ Accuracy circle removed');
-            } catch (e) {
-                console.warn('⚠️ Error removing accuracy circle:', e);
-            }
-        }
-        
-        if (manualOriginMarker !== null) {
-            try {
-                map.removeLayer(manualOriginMarker);
-                manualOriginMarker = null;
-                console.log('✅ Manual origin marker removed');
-            } catch (e) {
-                console.warn('⚠️ Error removing manual marker:', e);
-            }
-        }
-        
-        // Remove all map click listeners
-        try {
-            map.off('click');
-            console.log('✅ Map click listeners removed');
-        } catch (e) {
-            console.warn('⚠️ Error removing click listeners:', e);
-        }
-        
-        // Re-enable map dragging (in case it was disabled)
-        try {
-            map.dragging.enable();
-            console.log('✅ Map dragging re-enabled');
-        } catch (e) {
-            console.warn('⚠️ Error enabling dragging:', e);
-        }
-        
-        // Restore cursor to default
-        const mapElement = document.querySelector('#map');
-        if (mapElement) {
-            mapElement.style.cursor = 'grab';
-        }
-        
-        // Reset origin mode variable
-        originMode = null;
-        
-        // Reset user location is NOT done here - only reset when switching modes
-        // This preserves location if user switches between GPS and Pin
-        
-        console.log('🔄 Origin mode reset complete');
-    }
-    
     function updateOriginStatus(mode, message) {
         const statusDiv = document.getElementById('origin-status');
         const statusText = document.getElementById('origin-status-text');
@@ -454,155 +324,107 @@ document.addEventListener('DOMContentLoaded', function() {
     function activateGPSMode() {
         console.log('📍 Activating GPS mode');
         
-        // First, reset all previous mode states
-        resetOriginMode();
-        
-        // Update button states to GPS active
-        const gpsBtns = document.querySelectorAll('#origin-gps-btn');
-        const pinBtns = document.querySelectorAll('#origin-pin-btn');
-        
-        gpsBtns.forEach(btn => {
-            btn.classList.add('bg-blue-500', 'dark:bg-blue-600', 'text-white');
-            btn.classList.remove('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
-        });
-        
-        pinBtns.forEach(btn => {
-            btn.classList.remove('bg-red-500', 'dark:bg-red-600', 'text-white');
-            btn.classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
-        });
-        
-        // Set mode to GPS
-        originMode = 'gps';
-        updateOriginStatus('gps', '📍 Solicitando ubicación...');
-        showToastNotification('📍 Activando GPS...');
-        
-        // Request GPS location with setView enabled
-        if (map) {
-            initializeUserLocation(function() {
-                updateOriginStatus('gps', '✅ GPS activado - Listo');
-                showToastNotification('✅ Tu ubicación ha sido establecida');
-                console.log('✅ GPS mode activated successfully with location:', userLocation);
-            });
-        } else {
-            console.error('❌ Map not initialized');
-            showToastNotification('❌ Error: Mapa no disponible');
+        // Clean up previous pin mode
+        if (originMode === 'pin') {
+            map.off('click'); // Remove pin click listener
+            map.dragging.enable(); // Re-enable map dragging
+            map.cursor = 'grab';
         }
+        
+        // Update button states
+        document.getElementById('origin-gps-btn').classList.add('bg-blue-500', 'dark:bg-blue-600', 'text-white');
+        document.getElementById('origin-gps-btn').classList.remove('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
+        document.getElementById('origin-pin-btn').classList.remove('bg-blue-500', 'dark:bg-blue-600', 'text-white');
+        document.getElementById('origin-pin-btn').classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
+        
+        // Set mode
+        originMode = 'gps';
+        updateOriginStatus('gps', '📍 Solicita GPS...');
+        
+        // Remove manual marker if exists
+        if (manualOriginMarker !== null) {
+            map.removeLayer(manualOriginMarker);
+            manualOriginMarker = null;
+        }
+        
+        // Request GPS location
+        initializeUserLocation(function() {
+            updateOriginStatus('gps', '✅ GPS activado - Listo');
+            showToastNotification('✅ Tu ubicación ha sido establecida');
+        });
     }
 
     function activatePinMode() {
         console.log('🎯 Activating Pin mode');
         
-        // First, reset all previous mode states
-        resetOriginMode();
+        // Stop GPS if active
+        if (originMode === 'gps' && gpsLocationRequest) {
+            map.stopLocate();
+        }
         
-        // Update button states to Pin active
-        const gpsBtns = document.querySelectorAll('#origin-gps-btn');
-        const pinBtns = document.querySelectorAll('#origin-pin-btn');
+        // Clean GPS markers
+        if (userMarker) {
+            map.removeLayer(userMarker);
+            userMarker = null;
+        }
+        if (userAccuracyCircle) {
+            map.removeLayer(userAccuracyCircle);
+            userAccuracyCircle = null;
+        }
         
-        gpsBtns.forEach(btn => {
-            btn.classList.remove('bg-blue-500', 'dark:bg-blue-600', 'text-white');
-            btn.classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
-        });
+        // Update button states
+        document.getElementById('origin-pin-btn').classList.add('bg-red-500', 'dark:bg-red-600', 'text-white');
+        document.getElementById('origin-pin-btn').classList.remove('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
+        document.getElementById('origin-gps-btn').classList.remove('bg-blue-500', 'dark:bg-blue-600', 'text-white');
+        document.getElementById('origin-gps-btn').classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
         
-        pinBtns.forEach(btn => {
-            btn.classList.add('bg-red-500', 'dark:bg-red-600', 'text-white');
-            btn.classList.remove('bg-slate-100', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
-        });
-        
-        // Set mode to Pin
+        // Set mode
         originMode = 'pin';
         updateOriginStatus('pin', '🎯 Haz clic en el mapa para marcar inicio');
-        showToastNotification('🎯 Modo de marcador activado');
         
-        // Disable map dragging while in pin mode
-        if (map) {
-            try {
-                map.dragging.disable();
-                const mapElement = document.querySelector('#map');
-                if (mapElement) {
-                    mapElement.style.cursor = 'crosshair';
-                }
-                console.log('✅ Map dragging disabled, cursor changed to crosshair');
-            } catch (e) {
-                console.warn('⚠️ Error disabling dragging:', e);
-            }
-            
-            // Enable map click listener for ONE click only
-            map.once('click', function(event) {
-                console.log('📍 Map clicked for pin placement at:', event.latlng);
-                if (event.latlng) {
-                    setManualOrigin(event.latlng);
-                    
-                    // Re-enable map dragging and restore cursor
-                    try {
-                        map.dragging.enable();
-                        const mapElement = document.querySelector('#map');
-                        if (mapElement) {
-                            mapElement.style.cursor = 'grab';
-                        }
-                        console.log('✅ Map dragging re-enabled after pin placement');
-                    } catch (e) {
-                        console.warn('⚠️ Error re-enabling dragging:', e);
-                    }
-                }
-            });
-        } else {
-            console.error('❌ Map not initialized');
-            showToastNotification('❌ Error: Mapa no disponible');
-        }
+        // Change cursor to crosshair
+        map.dragging.disable(); // Disable dragging while in pin mode
+        document.querySelector('#map').style.cursor = 'crosshair';
+        
+        // Enable one-time click event for pin placement
+        map.once('click', function(event) {
+            setManualOrigin(event.latlng);
+            map.dragging.enable(); // Re-enable dragging after pin placed
+            document.querySelector('#map').style.cursor = 'grab';
+        });
+        
+        showToastNotification('🎯 Modo de marcador activado');
     }
 
     // ====================
     // GEOLOCATION FUNCTION
     // ====================
     function initializeUserLocation(callback) {
-        // Validate map is ready
-        if (!map) {
-            console.error('❌ Map not initialized yet');
-            showToastNotification('❌ Error: Mapa no disponible');
-            return;
-        }
-        
-        // Only request location if not already obtained in GPS mode
+        // Only request location if not already obtained
         if (userLocation && originMode === 'gps') {
             console.log('📍 User location already available:', userLocation);
             if (callback && typeof callback === 'function') callback();
             return;
         }
 
-        console.log('📍 Requesting GPS location from device...');
-        
-        // Create handlers with proper event binding
-        const handleLocationFound = function(e) {
+        console.log('📍 Requesting GPS location...');
+        gpsLocationRequest = map.locate({ setView: false, maxZoom: 16, timeout: 10000 });
+
+        map.on('locationfound', function(e) {
             // Validate geolocation data
             if (!e.latlng || typeof e.latlng.lat !== 'number' || typeof e.latlng.lng !== 'number') {
                 console.error('❌ Invalid geolocation data:', e);
                 return;
             }
 
-            // Only process if still in GPS mode
-            if (originMode !== 'gps') {
-                console.warn('⚠️ Location found but GPS mode was deactivated');
-                return;
-            }
-
             userLocation = [e.latlng.lat, e.latlng.lng];
-            console.log('✅ User location obtained:', userLocation);
 
-            // Remove previous markers if any
+            // Remove previous user marker if it exists
             if (userMarker) {
-                try {
-                    map.removeLayer(userMarker);
-                } catch (e) {
-                    console.warn('⚠️ Error removing previous marker:', e);
-                }
+                map.removeLayer(userMarker);
             }
             if (userAccuracyCircle) {
-                try {
-                    map.removeLayer(userAccuracyCircle);
-                } catch (e) {
-                    console.warn('⚠️ Error removing previous circle:', e);
-                }
+                map.removeLayer(userAccuracyCircle);
             }
 
             // Create blue user location marker
@@ -636,336 +458,192 @@ document.addEventListener('DOMContentLoaded', function() {
                 className: 'user-location-marker'
             });
 
-            try {
-                userMarker = L.marker([e.latlng.lat, e.latlng.lng], {
-                    icon: userIcon,
-                    title: 'Tu ubicación'
-                }).addTo(map);
+            userMarker = L.marker([e.latlng.lat, e.latlng.lng], {
+                icon: userIcon,
+                title: 'Your Location'
+            }).addTo(map);
 
-                // Add accuracy circle
-                userAccuracyCircle = L.circle([e.latlng.lat, e.latlng.lng], {
-                    radius: e.accuracy || 50,
-                    color: '#3b82f6',
-                    fillColor: '#3b82f6',
-                    fillOpacity: 0.1,
-                    weight: 1
-                }).addTo(map);
-                
-                console.log('✅ GPS marker and accuracy circle added to map');
-            } catch (e) {
-                console.error('❌ Error adding markers to map:', e);
-            }
+            // Add accuracy circle
+            userAccuracyCircle = L.circle([e.latlng.lat, e.latlng.lng], {
+                radius: e.accuracy || 50,
+                color: '#3b82f6',
+                fillColor: '#3b82f6',
+                fillOpacity: 0.1,
+                weight: 1
+            }).addTo(map);
 
-            // Remove listeners to prevent duplicate processing
-            map.off('locationfound', handleLocationFound);
-            map.off('locationerror', handleLocationError);
+            console.log('✅ User location detected:', userLocation);
 
             if (callback && typeof callback === 'function') {
                 callback();
             }
-        };
-        
-        const handleLocationError = function(e) {
-            console.warn('❌ Geolocation error:', e.message);
-            updateOriginStatus('gps', '❌ Permiso denegado');
-            showToastNotification('❌ Permiso denegado o no disponible');
-            originMode = null;
-            
-            // Remove listeners
-            map.off('locationfound', handleLocationFound);
-            map.off('locationerror', handleLocationError);
-        };
+        });
 
-        // Attach event handlers
-        map.on('locationfound', handleLocationFound);
-        map.on('locationerror', handleLocationError);
-        
-        // Request location with proper timeout
-        try {
-            gpsLocationRequest = map.locate({ setView: true, maxZoom: 16, timeout: 10000 });
-            console.log('📍 GPS location request initiated');
-        } catch (e) {
-            console.error('❌ Error initiating GPS request:', e);
-            showToastNotification('❌ Error al solicitar ubicación');
-        }
+        map.on('locationerror', function(e) {
+            console.warn('❌ Geolocation denied or unavailable:', e.message);
+            updateOriginStatus('gps', '❌ Permiso denegado');
+            showToastNotification('❌ Permiso denegado. Usa "Marcar punto".');
+            originMode = null;
+        });
     }
 
     // ====================
     // ROUTE CALCULATION FUNCTION
     // ====================
     function calculateRoute(destLat, destLng) {
-        // Validate origin mode is selected
-        if (!originMode) {
-            console.warn('⚠️ No origin mode selected');
-            showToastNotification('🚨 Por favor, selecciona primero tu punto de partida (GPS o Pin)');
-            return;
-        }
-        
-        // Validate user location exists
-        if (!userLocation || !Array.isArray(userLocation) || userLocation.length !== 2) {
-            console.warn('⚠️ Invalid user location');
-            showToastNotification('🚨 Por favor, selecciona primero tu punto de partida (GPS o Pin)');
+        // Validate that user has selected an origin
+        if (!originMode || !userLocation) {
+            console.warn('⚠️ No origin selected');
+            showToastNotification('⚠️ Primero selecciona tu punto de partida en el mapa');
             return;
         }
 
-        // Validate destination coordinates
-        destLat = parseFloat(destLat);
-        destLng = parseFloat(destLng);
-        
-        if (isNaN(destLat) || isNaN(destLng)) {
-            console.error('❌ Invalid destination coordinates:', destLat, destLng);
-            showToastNotification('❌ Coordenadas de destino inválidas');
-            return;
-        }
-        
-        // Validate coordinates are within reasonable bounds (approximately the Earth)
-        if (Math.abs(destLat) > 90 || Math.abs(destLng) > 180) {
-            console.error('❌ Coordinates out of bounds:', destLat, destLng);
-            showToastNotification('❌ Coordenadas fuera de rango');
-            return;
-        }
-
-        console.log('🎯 Calculating route from', originMode, 'origin:', userLocation, 'to destination:', [destLat, destLng]);
-        
-        // Store destination for potential recalculation on marker drag
-        window.lastDestination = [destLat, destLng];
-        
         // Clean up any existing route first
         removeExistingRoute();
 
-        // Draw the route
-        drawRoute(userLocation[0], userLocation[1], destLat, destLng);
+        // Ensure destination coordinates are parsed as numbers
+        destLat = parseFloat(destLat);
+        destLng = parseFloat(destLng);
+
+        // Validate coordinates are valid numbers
+        if (isNaN(destLat) || isNaN(destLng)) {
+            console.error('❌ Invalid destination coordinates:', destLat, destLng);
+            return;
+        }
+
+        // Store destination for potential recalculation on marker drag
+        window.lastDestination = [destLat, destLng];
+
+        // Use the stored userLocation
+        if (userLocation && userLocation.length === 2) {
+            console.log('🎯 Calculating route from:', originMode);
+            drawRoute(userLocation[0], userLocation[1], destLat, destLng);
+        } else {
+            console.warn('⚠️ Invalid user location');
+            showToastNotification('⚠️ No se pudo determinar tu origen');
+        }
     }
 
     // Helper function to draw the route using Leaflet Routing Machine
     function drawRoute(startLat, startLng, destLat, destLng) {
-        // Validate map is ready
-        if (!map || !map._renderer) {
-            console.warn('⚠️ Map not fully initialized yet');
-            showToastNotification('⚠️ Mapa no está completamente cargado');
-            return;
-        }
-        
-        // Validate origin location exists
-        if (!userLocation || !Array.isArray(userLocation)) {
-            console.warn('⚠️ No valid origin location');
-            showToastNotification('⚠️ Por favor, selecciona primero un punto de inicio (GPS o Pin)');
-            return;
-        }
-        
         // Ensure coordinates are numbers, not strings
         startLat = parseFloat(startLat);
         startLng = parseFloat(startLng);
         destLat = parseFloat(destLat);
         destLng = parseFloat(destLng);
-        
-        // Validate all coordinates are numbers
-        if (isNaN(startLat) || isNaN(startLng) || isNaN(destLat) || isNaN(destLng)) {
-            console.error('❌ Invalid route coordinates');
-            showToastNotification('❌ Coordenadas de ruta inválidas');
+
+        // Verify map is ready
+        if (!map || !map._renderer) {
+            console.warn('⚠️ Map not fully initialized yet');
             return;
-        }
-        
-        // Validate coordinates are within geographical bounds
-        if (Math.abs(startLat) > 90 || Math.abs(startLng) > 180 || 
-            Math.abs(destLat) > 90 || Math.abs(destLng) > 180) {
-            console.error('❌ Route coordinates out of bounds');
-            showToastNotification('❌ Coordenadas fuera de rango válido');
-            return;
-        }
-        
-        // Prevent if start and destination are the same
-        if (Math.abs(startLat - destLat) < 0.001 && Math.abs(startLng - destLng) < 0.001) {
-            console.warn('⚠️ Start and destination are the same');
-            showToastNotification('⚠️ El origen y destino no pueden ser el mismo');\n            return;
         }
 
         // Create route using Leaflet Routing Machine with strict visual configuration
-        try {
-            currentRoutingControl = L.Routing.control({
-                waypoints: [
-                    L.latLng(startLat, startLng),
-                    L.latLng(destLat, destLng)
-                ],
-                router: L.Routing.osrmv1({
-                    serviceUrl: 'https://router.project-osrm.org/route/v1'
-                }),
-                routeWhileDragging: false,
-                showAlternatives: false,
-                addWaypoints: false,
-                show: false,
-                itinerary: { 
-                    containerClassName: 'hidden'
-                },
-                lineOptions: {
-                    styles: [
-                        {
-                            color: '#10b981', // emerald-500
-                            opacity: 0.85,
-                            weight: 5,
-                            lineCap: 'round',
-                            lineJoin: 'round',
-                            dashArray: '5,5'
-                        }
-                    ]
-                },
-                createMarker: function(i, wp, nWps) {
-                    return null; // Hide default A/B markers
-                }
-            }).addTo(map);
-
-            // Handle route found event
-            currentRoutingControl.on('routesfound', function(e) {
-                if (e.routes && e.routes.length > 0) {
-                    const route = e.routes[0];
-                    if (route.coordinates && route.coordinates.length > 0) {
-                        const bounds = L.latLngBounds(route.coordinates);
-                        // Fit bounds to show entire route
-                        map.fitBounds(bounds, { 
-                            padding: [150, 150],
-                            maxZoom: 15
-                        });
-                        console.log('✅ Route calculated and displayed');
-                        showToastNotification('✅ Ruta calculada y mostrada en el mapa');
+        currentRoutingControl = L.Routing.control({
+            waypoints: [
+                L.latLng(startLat, startLng),
+                L.latLng(destLat, destLng)
+            ],
+            router: L.Routing.osrmv1({
+                serviceUrl: 'https://router.project-osrm.org/route/v1' // Demo service - add API key for production
+            }),
+            routeWhileDragging: false,
+            showAlternatives: false, // Reduce OSRM server load
+            addWaypoints: false, // Prevent adding intermediate waypoints
+            show: false, // Hide the itinerary panel completely
+            itinerary: { 
+                containerClassName: 'hidden' // Additional safeguard to hide instructions
+            },
+            lineOptions: {
+                styles: [
+                    {
+                        color: '#10b981', // emerald-500 - visible on dark/light backgrounds
+                        opacity: 0.85,
+                        weight: 5,
+                        lineCap: 'round',
+                        lineJoin: 'round',
+                        dashArray: '5,5'
                     }
-                }
-            });
+                ]
+            },
+            // Disable default Leaflet Routing markers (we have our own custom markers)
+            createMarker: function(i, wp, nWps) {
+                return null; // Return null to hide default A/B markers
+            }
+        }).addTo(map);
 
-            // Handle routing errors
-            currentRoutingControl.on('routingerror', function(e) {
-                console.warn('⚠️ Routing error:', e);
-                showToastNotification('⚠️ No se pudo calcular la ruta');
-            });
-            
-            console.log('✅ Route control created and added to map');
-        } catch (e) {
-            console.error('❌ Error creating route control:', e);
-            showToastNotification('❌ Error al calcular la ruta');
-        }
+        // Fit map bounds to show entire route with user and destination visible
+        currentRoutingControl.on('routesfound', function(e) {
+            if (e.routes && e.routes.length > 0) {
+                const route = e.routes[0];
+                if (route.coordinates && route.coordinates.length > 0) {
+                    const bounds = L.latLngBounds(route.coordinates);
+                    // Fit bounds with padding to show both endpoints comfortably
+                    map.fitBounds(bounds, { 
+                        padding: [150, 150],
+                        maxZoom: 15
+                    });
+                    console.log('✅ Route calculated and displayed with auto-fitted bounds');
+                }
+            }
+        });
+
+        currentRoutingControl.on('routingerror', function(e) {
+            console.warn('⚠️ Routing error:', e);
+        });
     }
 
     // ====================
     // ORIGIN MODE BUTTON HANDLERS
     // ====================
-    // These are wrapped in DOMContentLoaded to ensure DOM is ready
-    const initializeOriginModeButtons = function() {
-        const gpsBtn = document.getElementById('origin-gps-btn');
-        const pinBtn = document.getElementById('origin-pin-btn');
+    const gpsBtn = document.getElementById('origin-gps-btn');
+    const pinBtn = document.getElementById('origin-pin-btn');
 
-        if (gpsBtn) {
-            gpsBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                console.log('🔵 GPS button clicked');
-                activateGPSMode();
-            });
-            console.log('✅ GPS button handler attached');
-        } else {
-            console.warn('⚠️ GPS button not found in DOM');
-        }
+    if (gpsBtn) {
+        gpsBtn.addEventListener('click', function() {
+            activateGPSMode();
+        });
+    }
 
-        if (pinBtn) {
-            pinBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                console.log('🔴 Pin button clicked');
-                activatePinMode();
-            });
-            console.log('✅ Pin button handler attached');
-        } else {
-            console.warn('⚠️ Pin button not found in DOM');
-        }
-    };
-    
-    // Initialize button handlers only if map is ready
-    if (map && map._renderer) {
-        initializeOriginModeButtons();
-    } else {
-        console.warn('⚠️ Map not fully rendered yet, deferring button initialization');
-        map.once('load', function() {
-            console.log('✅ Map load event - initializing origin buttons');
-            initializeOriginModeButtons();
+    if (pinBtn) {
+        pinBtn.addEventListener('click', function() {
+            activatePinMode();
         });
     }
 
     // ====================
     // MAP CONTROLS
     // ====================
-    const initializeMapControls = function() {
-        const zoomInBtn = document.getElementById('zoom-in-btn');
-        const zoomOutBtn = document.getElementById('zoom-out-btn');
-        const locationBtn = document.getElementById('location-btn');
-        const layersBtn = document.getElementById('layers-btn');
+    const zoomInBtn = document.getElementById('zoom-in-btn');
+    const zoomOutBtn = document.getElementById('zoom-out-btn');
+    const locationBtn = document.getElementById('location-btn');
+    const layersBtn = document.getElementById('layers-btn');
 
-        // Zoom controls
-        if (zoomInBtn) {
-            zoomInBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (map) map.zoomIn();
-            });
-        }
+    // Zoom controls
+    zoomInBtn.addEventListener('click', function() {
+        map.zoomIn();
+    });
 
-        if (zoomOutBtn) {
-            zoomOutBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (map) map.zoomOut();
-            });
-        }
+    zoomOutBtn.addEventListener('click', function() {
+        map.zoomOut();
+    });
 
-        // Location button - center map on user location (only in GPS mode)
-        if (locationBtn) {
-            locationBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                if (!map) {
-                    console.warn('⚠️ Map not initialized');
-                    return;
-                }
-                
-                if (originMode === 'gps' && userLocation && userLocation.length === 2) {
-                    try {
-                        map.setView(userLocation, 15);
-                        console.log('📍 Map centered on user location:', userLocation);
-                        showToastNotification('📍 Mapa centrado en tu ubicación');
-                    } catch (e) {
-                        console.error('❌ Error centering map:', e);
-                    }
-                } else if (originMode === 'pin' && userLocation) {
-                    // In pin mode, just center on the placed pin
-                    try {
-                        map.setView(userLocation, 15);
-                        console.log('📍 Map centered on pin marker:', userLocation);
-                        showToastNotification('📍 Mapa centrado en tu marcador');
-                    } catch (e) {
-                        console.error('❌ Error centering map:', e);
-                    }
-                } else {
-                    console.warn('⚠️ No origin location available');
-                    showToastNotification('⚠️ Primero selecciona tu punto de partida');
-                }
-            });
+    // Location button - center map on user location (if available)
+    locationBtn.addEventListener('click', function() {
+        if (originMode === 'gps' && userLocation) {
+            map.setView(userLocation, 15);
+            console.log('📍 Centered on your location');
+            showToastNotification('📍 Mapa centrado en tu ubicación');
+        } else {
+            showToastNotification('📍 Activa GPS primero');
         }
+    });
 
-        // Layers button - placeholder for future layer toggle functionality
-        if (layersBtn) {
-            layersBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                console.log('Layers control clicked');
-                // Future implementation for toggling different map layers
-            });
-        }
-        
-        console.log('✅ Map control handlers initialized');
-    };
-    
-    // Initialize map controls only if map is ready
-    if (map && map._renderer) {
-        initializeMapControls();
-    } else {
-        console.warn('⚠️ Map not fully rendered yet, deferring control initialization');
-        map.once('load', function() {
-            console.log('✅ Map load event - initializing controls');
-            initializeMapControls();
-        });
-    }
+    // Layers button - placeholder for future layer toggle functionality
+    layersBtn.addEventListener('click', function() {
+        console.log('Layers control clicked');
+        // Future implementation for toggling different map layers
+    });
 
     // ====================
     // MAP CLICK INTERACTION
@@ -1058,13 +736,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    console.log('🗺️ Leaflet map fully initialized with routing capabilities');
-    console.log('📊 Map state:', {
-        center: map.getCenter(),
-        zoom: map.getZoom(),
-        bounds: map.getBounds(),
-        size: map.getSize()
-    });
+    console.log('🗺️ Leaflet map initialized with routing capabilities');
 });
 
 
