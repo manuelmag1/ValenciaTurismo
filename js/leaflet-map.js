@@ -2,6 +2,8 @@
 // with Real-Time Routing and Geolocation
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('🗺️ DOMContentLoaded event fired - initializing map...');
+    
     // ====================
     // GLOBAL VARIABLES
     // ====================
@@ -13,19 +15,66 @@ document.addEventListener('DOMContentLoaded', function() {
     let originMode = null; // Store selected origin mode: 'gps' or 'pin'
     let gpsLocationRequest = null; // Store GPS location request ID
 
+    // Verify map container exists in DOM
+    const mapContainer = document.getElementById('map');
+    if (!mapContainer) {
+        console.error('❌ ERROR: Map container #map not found in DOM!');
+        return;
+    }
+    
+    console.log('✅ Map container found in DOM');
+    
+    // Verify container has proper dimensions
+    const containerParent = mapContainer.parentElement;
+    if (containerParent) {
+        const parentStyle = window.getComputedStyle(containerParent);
+        console.log('📏 Map container parent dimensions:', {
+            width: parentStyle.width,
+            height: parentStyle.height,
+            display: parentStyle.display,
+            position: parentStyle.position
+        });
+    }
+
     // Initialize map centered on Valencia
-    const map = L.map('map', {
-        center: [39.4697, -0.3774],
-        zoom: 13,
-        zoomControl: false // Disable default Leaflet zoom control
-    });
+    let map = null;
+    try {
+        map = L.map('map', {
+            center: [39.4697, -0.3774],
+            zoom: 13,
+            zoomControl: false, // Disable default Leaflet zoom control
+            attributionControl: true
+        });
+        console.log('✅ Leaflet map object created successfully');
+    } catch (e) {
+        console.error('❌ Error creating Leaflet map:', e);
+        return;
+    }
 
     // Add CartoDB DarkMatter tile layer for dark theme consistency
-    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap, © CartoDB',
-        maxZoom: 19,
-        subdomains: ['a', 'b', 'c']
-    }).addTo(map);
+    // Using standard CartoDB endpoint for reliability
+    try {
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '© OpenStreetMap contributors, © CartoDB',
+            maxZoom: 19,
+            minZoom: 2,
+            subdomains: 'abcd',
+            ext: 'png'
+        }).addTo(map);
+        console.log('✅ CartoDB DarkMatter tile layer loaded successfully');
+    } catch (e) {
+        console.error('❌ Error loading tile layer:', e);
+    }
+    
+    // Force map to recalculate size after small delay to ensure DOM is ready
+    setTimeout(function() {
+        try {
+            map.invalidateSize();
+            console.log('✅ Map size recalculated via invalidateSize()');
+        } catch (e) {
+            console.error('⚠️ Error calling invalidateSize():', e);
+        }
+    }, 100);
 
     // Custom marker creation function with inline styling for Tailwind compatibility
     function createCustomMarker(lat, lng, name, icon, bgColor, ringColor) {
@@ -826,8 +875,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
     
-    // Initialize button handlers
-    initializeOriginModeButtons();
+    // Initialize button handlers only if map is ready
+    if (map && map._renderer) {
+        initializeOriginModeButtons();
+    } else {
+        console.warn('⚠️ Map not fully rendered yet, deferring button initialization');
+        map.once('load', function() {
+            console.log('✅ Map load event - initializing origin buttons');
+            initializeOriginModeButtons();
+        });
+    }
 
     // ====================
     // MAP CONTROLS
@@ -899,8 +956,16 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('✅ Map control handlers initialized');
     };
     
-    // Initialize map controls
-    initializeMapControls();
+    // Initialize map controls only if map is ready
+    if (map && map._renderer) {
+        initializeMapControls();
+    } else {
+        console.warn('⚠️ Map not fully rendered yet, deferring control initialization');
+        map.once('load', function() {
+            console.log('✅ Map load event - initializing controls');
+            initializeMapControls();
+        });
+    }
 
     // ====================
     // MAP CLICK INTERACTION
@@ -993,7 +1058,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    console.log('🗺️ Leaflet map initialized with routing capabilities');
+    console.log('🗺️ Leaflet map fully initialized with routing capabilities');
+    console.log('📊 Map state:', {
+        center: map.getCenter(),
+        zoom: map.getZoom(),
+        bounds: map.getBounds(),
+        size: map.getSize()
+    });
 });
 
 
