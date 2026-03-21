@@ -65,6 +65,12 @@ const headerHTML = `
                     </div>
                 </nav>
                 <div class="flex items-center gap-4">
+                    <!-- Mobile Menu Toggle Button -->
+                    <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                        <span class="material-symbols-outlined text-slate-700 dark:text-slate-200">menu</span>
+                    </button>
+                    
+                    <!-- Language Toggle -->
                     <button id="language-toggle" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all" title="Toggle between English and Spanish / Cambiar entre Inglés y Español">
                         <span class="material-symbols-outlined text-sm">language</span>
                         <span id="lang-display">ES / EN</span>
@@ -73,6 +79,63 @@ const headerHTML = `
             </div>
         </div>
     </header>
+    
+    <!-- Mobile Navigation Menu -->
+    <nav id="mobile-navigation" class="hidden md:hidden flex-col bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-xl">
+        <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 space-y-2">
+            <!-- Mobile: Discover Section -->
+            <div class="mobile-nav-group">
+                <button class="mobile-nav-toggle w-full text-left px-4 py-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium flex items-center justify-between transition-colors">
+                    <span data-i18n="header_discover">Discover</span>
+                    <span class="material-symbols-outlined text-sm transition-transform">expand_more</span>
+                </button>
+                <div class="mobile-nav-submenu hidden flex-col bg-slate-50 dark:bg-slate-800 ml-4 mt-1 rounded-lg overflow-hidden">
+                    <a href="albufera.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_albufera_park">Albufera Natural Park</a>
+                    <a href="turia_garden.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="index_turia_garden">Turia Garden</a>
+                    <a href="bioparc_valencia.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_bioparc">Bioparc Valencia</a>
+                    <a href="dehesa_saler.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_dehesa_saler">Dehesa del Saler</a>
+                    <a href="eco_friendly_activities.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_eco_friendly">Eco-Friendly Activities</a>
+                    <a href="itineraries.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_itineraries">Itineraries</a>
+                </div>
+            </div>
+            
+            <!-- Mobile: Gastronomy Section -->
+            <div class="mobile-nav-group">
+                <button class="mobile-nav-toggle w-full text-left px-4 py-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium flex items-center justify-between transition-colors">
+                    <span data-i18n="index_gastronomy">Gastronomy</span>
+                    <span class="material-symbols-outlined text-sm transition-transform">expand_more</span>
+                </button>
+                <div class="mobile-nav-submenu hidden flex-col bg-slate-50 dark:bg-slate-800 ml-4 mt-1 rounded-lg overflow-hidden">
+                    <a href="traditional_dishes.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_traditional_dishes">Traditional Dishes</a>
+                    <a href="central_markets.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_central_markets">Central Markets</a>
+                </div>
+            </div>
+            
+            <!-- Mobile: Events Section -->
+            <div class="mobile-nav-group">
+                <button class="mobile-nav-toggle w-full text-left px-4 py-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium flex items-center justify-between transition-colors">
+                    <span data-i18n="index_events">Events</span>
+                    <span class="material-symbols-outlined text-sm transition-transform">expand_more</span>
+                </button>
+                <div class="mobile-nav-submenu hidden flex-col bg-slate-50 dark:bg-slate-800 ml-4 mt-1 rounded-lg overflow-hidden">
+                    <a href="cultural_festivals.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_cultural_festivals">Cultural Festivals</a>
+                    <a href="local_workshops.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_local_workshops">Local Workshops</a>
+                </div>
+            </div>
+            
+            <!-- Mobile: About Section -->
+            <div class="mobile-nav-group">
+                <button class="mobile-nav-toggle w-full text-left px-4 py-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium flex items-center justify-between transition-colors">
+                    <span data-i18n="header_about">About</span>
+                    <span class="material-symbols-outlined text-sm transition-transform">expand_more</span>
+                </button>
+                <div class="mobile-nav-submenu hidden flex-col bg-slate-50 dark:bg-slate-800 ml-4 mt-1 rounded-lg overflow-hidden">
+                    <a href="history_heritage.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_history_heritage">History &amp; Heritage</a>
+                    <a href="our_mission.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_our_mission">Our Mission</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 `;
 
 // Load header on page ready
@@ -95,6 +158,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Setup language toggle button
     setupLanguageToggle();
+    
+    // Setup mobile menu functionality
+    setupMobileMenu();
 
     // Listen for language changes from other pages
     window.addEventListener('languageChanged', function(e) {
@@ -149,5 +215,104 @@ function updateLanguageDisplay(lang) {
     const display = document.getElementById('lang-display');
     if (display) {
         display.textContent = lang === 'es' ? 'ES/EN' : 'EN/ES';
+    }
+}
+
+/**
+ * Setup mobile menu toggle functionality
+ */
+function setupMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileNavigation = document.getElementById('mobile-navigation');
+    
+    if (!mobileMenuBtn || !mobileNavigation) {
+        console.warn('Mobile menu elements not found');
+        return;
+    }
+    
+    // Toggle mobile menu on button click
+    mobileMenuBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const isHidden = mobileNavigation.classList.contains('hidden');
+        
+        if (isHidden) {
+            // Open menu
+            mobileNavigation.classList.remove('hidden');
+            mobileNavigation.classList.add('flex');
+            changeMobileMenuIcon(true);
+        } else {
+            // Close menu
+            mobileNavigation.classList.add('hidden');
+            mobileNavigation.classList.remove('flex');
+            changeMobileMenuIcon(false);
+        }
+    });
+    
+    // Setup submenu toggles
+    const mobileNavGroups = document.querySelectorAll('.mobile-nav-group');
+    mobileNavGroups.forEach(group => {
+        const toggle = group.querySelector('.mobile-nav-toggle');
+        const submenu = group.querySelector('.mobile-nav-submenu');
+        
+        if (toggle && submenu) {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const isHidden = submenu.classList.contains('hidden');
+                const icon = toggle.querySelector('.material-symbols-outlined');
+                
+                if (isHidden) {
+                    // Open submenu
+                    submenu.classList.remove('hidden');
+                    submenu.classList.add('flex');
+                    if (icon) icon.classList.add('rotate-180');
+                } else {
+                    // Close submenu
+                    submenu.classList.add('hidden');
+                    submenu.classList.remove('flex');
+                    if (icon) icon.classList.remove('rotate-180');
+                }
+            });
+        }
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        const isClickInside = mobileNavigation.contains(e.target) || mobileMenuBtn.contains(e.target);
+        
+        if (!isClickInside && !mobileNavigation.classList.contains('hidden')) {
+            mobileNavigation.classList.add('hidden');
+            mobileNavigation.classList.remove('flex');
+            changeMobileMenuIcon(false);
+        }
+    });
+    
+    // Close menu when clicking on a link
+    const mobileLinks = mobileNavigation.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileNavigation.classList.add('hidden');
+            mobileNavigation.classList.remove('flex');
+            changeMobileMenuIcon(false);
+        });
+    });
+}
+
+/**
+ * Change mobile menu button icon between menu and close
+ */
+function changeMobileMenuIcon(isOpen) {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    if (!mobileMenuBtn) return;
+    
+    const icon = mobileMenuBtn.querySelector('.material-symbols-outlined');
+    if (!icon) return;
+    
+    if (isOpen) {
+        icon.textContent = 'close';
+    } else {
+        icon.textContent = 'menu';
     }
 }
