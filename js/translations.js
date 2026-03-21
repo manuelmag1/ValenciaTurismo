@@ -52,6 +52,22 @@ const translations = {
         "index_terms_use": "Terms of Use",
         "index_cookie_settings": "Cookie Settings",
         
+        // Header & Footer Navigation
+        "header_discover": "Discover",
+        "header_sustainable_natural": "Sustainable Natural",
+        "header_albufera_park": "Albufera Natural Park",
+        "header_bioparc": "Bioparc Valencia",
+        "header_dehesa_saler": "Dehesa del Saler",
+        "header_eco_friendly": "Eco-Friendly Activities",
+        "header_itineraries": "Itineraries",
+        "header_traditional_dishes": "Traditional Dishes",
+        "header_central_markets": "Central Markets",
+        "header_cultural_festivals": "Cultural Festivals",
+        "header_local_workshops": "Local Workshops",
+        "header_about": "About",
+        "header_history_heritage": "History & Heritage",
+        "header_our_mission": "Our Mission",
+        
         // About.html / History & Heritage
         "soul_valencia": "The Soul of Valencia",
         "soul_subtitle": "A city where over 2,000 years of history seamlessly blend with avant-garde innovation. Discover the roots, traditions, and the radiant culture that define us.",
@@ -280,6 +296,22 @@ const translations = {
         "index_privacy_policy": "Política de Privacidad",
         "index_terms_use": "Términos de Uso",
         "index_cookie_settings": "Configuración de Cookies",
+
+        // Header & Footer Navigation
+        "header_discover": "Descubre",
+        "header_sustainable_natural": "Naturaleza Sostenible",
+        "header_albufera_park": "Parque Natural de la Albufera",
+        "header_bioparc": "Bioparc de Valencia",
+        "header_dehesa_saler": "Dehesa del Saler",
+        "header_eco_friendly": "Actividades Ecológicas",
+        "header_itineraries": "Itinerarios",
+        "header_traditional_dishes": "Platos Tradicionales",
+        "header_central_markets": "Mercado Central",
+        "header_cultural_festivals": "Festivales Culturales",
+        "header_local_workshops": "Talleres Locales",
+        "header_about": "Acerca de",
+        "header_history_heritage": "Historia y Patrimonio",
+        "header_our_mission": "Nuestra Misión",
 
         // About.html / History & Heritage
         "soul_valencia": "El Alma de Valencia",

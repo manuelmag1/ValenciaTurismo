@@ -10,57 +10,57 @@ const headerHTML = `
                 <nav class="hidden md:flex items-center gap-8 z-50">
                     <div class="relative group">
                         <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4" href="discover.html">
-                            Discover
+                            <span data-i18n="header_discover">Discover</span>
                             <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
                         </a>
                         <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
                             <div class="relative group/sub">
                                 <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words flex items-center justify-between">
-                                    Sustainable Natural
+                                    <span data-i18n="header_sustainable_natural">Sustainable Natural</span>
                                     <span class="material-symbols-outlined text-sm">chevron_right</span>
                                 </a>
                                 <div class="absolute left-full top-0 w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-300 z-50">
-                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1" href="albufera.html">Albufera Natural Park</a>
-                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1" href="turia_garden.html">Turia Garden</a>
-                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1" href="bioparc_valencia.html">Bioparc Valencia</a>
-                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1" href="dehesa_saler.html">Dehesa del Saler</a>
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1" href="albufera.html" data-i18n="header_albufera_park">Albufera Natural Park</a>
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1" href="turia_garden.html" data-i18n="index_turia_garden">Turia Garden</a>
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1" href="bioparc_valencia.html" data-i18n="header_bioparc">Bioparc Valencia</a>
+                                    <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1" href="dehesa_saler.html" data-i18n="header_dehesa_saler">Dehesa del Saler</a>
                                 </div>
                             </div>
-                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="eco_friendly_activities.html">Eco-Friendly Activities</a>
-                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="itineraries.html">Itineraries</a>
+                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="eco_friendly_activities.html" data-i18n="header_eco_friendly">Eco-Friendly Activities</a>
+                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="itineraries.html" data-i18n="header_itineraries">Itineraries</a>
                         </div>
                     </div>
 
                     <div class="relative group">
                         <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4" href="gastronomy.html">
-                            Gastronomy
+                            <span data-i18n="index_gastronomy">Gastronomy</span>
                             <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
                         </a>
                         <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
-                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="traditional_dishes.html">Traditional Dishes</a>
-                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="central_markets.html">Central Markets</a>
+                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="traditional_dishes.html" data-i18n="header_traditional_dishes">Traditional Dishes</a>
+                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="central_markets.html" data-i18n="header_central_markets">Central Markets</a>
                         </div>
                     </div>
 
                     <div class="relative group">
                         <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4" href="events.html">
-                            Events
+                            <span data-i18n="index_events">Events</span>
                             <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
                         </a>
                         <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
-                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="cultural_festivals.html">Cultural Festivals</a>
-                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="local_workshops.html">Local Workshops</a>
+                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="cultural_festivals.html" data-i18n="header_cultural_festivals">Cultural Festivals</a>
+                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="local_workshops.html" data-i18n="header_local_workshops">Local Workshops</a>
                         </div>
                     </div>
 
                     <div class="relative group">
                         <a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 py-4" href="about.html">
-                            About
+                            <span data-i18n="header_about">About</span>
                             <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
                         </a>
                         <div class="absolute left-0 top-[100%] w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
-                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="history_heritage.html">History &amp; Heritage</a>
-                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="our_mission.html">Our Mission</a>
+                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="history_heritage.html" data-i18n="header_history_heritage">History &amp; Heritage</a>
+                            <a class="block px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-primary transition-colors rounded-xl m-1 break-words" href="our_mission.html" data-i18n="header_our_mission">Our Mission</a>
                         </div>
                     </div>
                 </nav>
@@ -137,6 +137,6 @@ function toggleLanguage() {
 function updateLanguageDisplay(lang) {
     const display = document.getElementById('lang-display');
     if (display) {
-        display.textContent = lang === 'es' ? 'EN / ES' : 'ES / EN';
+        display.textContent = lang === 'es' ? 'ES/EN' : 'EN/ES';
     }
 }
