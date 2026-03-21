@@ -82,10 +82,18 @@ document.addEventListener('DOMContentLoaded', function() {
             className: 'custom-marker'
         });
 
-        return L.marker([lat, lng], {
+        const marker = L.marker([lat, lng], {
             icon: customIcon,
             title: name
         }).addTo(map);
+
+        // Add click event to calculate route to this marker
+        marker.on('click', function() {
+            console.log('🎯 Marker clicked:', name, '- Calculating route to', [lat, lng]);
+            calculateRoute(lat, lng);
+        });
+
+        return marker;
     }
 
     // Color configuration (matching Tailwind palette)
@@ -833,6 +841,47 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     console.log('🗺️ Leaflet map initialized with routing capabilities');
+
+    // ====================
+    // SIDEBAR TOGGLE FUNCTIONALITY
+    // ====================
+    const sidebarPanel = document.getElementById('sidebar-panel');
+    const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
+    const toggleIcon = document.getElementById('toggle-icon');
+    let sidebarCollapsed = false;
+
+    if (sidebarToggleBtn) {
+        sidebarToggleBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            sidebarCollapsed = !sidebarCollapsed;
+            
+            if (sidebarCollapsed) {
+                // Collapse sidebar - apply translateX-full to panel
+                sidebarPanel.classList.add('-translate-x-full');
+                // Apply class to body for button styling sync
+                document.body.classList.add('sidebar-collapsed');
+                toggleIcon.textContent = 'chevron_right';
+                console.log('📦 Sidebar collapsed - button persistent on left edge');
+            } else {
+                // Expand sidebar - remove translateX-full from panel
+                sidebarPanel.classList.remove('-translate-x-full');
+                // Remove class from body
+                document.body.classList.remove('sidebar-collapsed');
+                toggleIcon.textContent = 'chevron_left';
+                console.log('📦 Sidebar expanded - button at panel edge');
+            }
+            
+            // Invalidate map size after transition completes
+            setTimeout(() => {
+                if (map && map.invalidateSize) {
+                    map.invalidateSize();
+                    console.log('🗺️ Map resized after sidebar toggle');
+                }
+            }, 300);
+        });
+    } else {
+        console.warn('⚠️ Sidebar toggle button not found');
+    }
     
     // ====================
     // AUTO-ACTIVATE GPS ON PAGE LOAD

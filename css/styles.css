@@ -125,3 +125,70 @@
         transform: translateY(0);
     }
 }
+
+/* Sidebar Panel Responsive Styles */
+@media (max-width: 768px) {
+    #sidebar-panel {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        transform-origin: left center;
+    }
+    
+    #sidebar-panel.hidden-mobile {
+        transform: translateX(-100%);
+    }
+}
+
+/* Sidebar Toggle Button Styles - Persistent Tab */
+#sidebar-toggle-btn {
+    will-change: left;
+    cursor: pointer;
+    border: none;
+    font-size: 1.25rem;
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* When sidebar is OPEN (default) - button at right edge of full-width sidebar (mobile) */
+@media (max-width: 768px) {
+    #sidebar-toggle-btn {
+        left: calc(100vw - 40px);
+        border-radius: 0 8px 8px 0;
+        transition: left 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+    }
+
+    #sidebar-toggle-btn:hover {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* When sidebar is COLLAPSED - button persists at left edge of screen */
+    body.sidebar-collapsed #sidebar-toggle-btn {
+        left: 0;
+        border-radius: 8px 0 0 8px;
+    }
+}
+
+/* Desktop: button hidden */
+@media (min-width: 769px) {
+    #sidebar-toggle-btn {
+        display: none;
+    }
+}
+
+#sidebar-toggle-btn:active {
+    transform: translateY(-50%) scale(0.95);
+    transition: transform 0.1s ease-out;
+}
+
+#sidebar-toggle-btn:focus {
+    outline: none;
+}

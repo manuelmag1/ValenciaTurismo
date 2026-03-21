@@ -34,8 +34,8 @@
     <div id="header-container"></div>
         <main class="flex flex-1 overflow-hidden relative">
             <!-- Sidebar: Filters and Route Cards -->
-            <aside
-                class="w-full md:w-[420px] bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 overflow-y-auto z-10">
+            <aside id="sidebar-panel"
+                class="absolute md:relative h-full w-full md:w-[420px] bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 overflow-y-auto z-30 transition-transform duration-300">
                 <div class="p-6">
                     <h1 class="text-2xl font-bold mb-1">Route Explorer</h1>
                     <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Sustainable paths through Valencia</p>
@@ -235,9 +235,14 @@
                     </div>
                 </div>
             </aside>
+            <!-- Toggle Button (Persistent Tab) -->
+            <button id="sidebar-toggle-btn"
+                class="md:hidden bg-primary dark:bg-primary text-white shadow-lg hover:shadow-xl z-40">
+                <span class="material-symbols-outlined" id="toggle-icon">chevron_left</span>
+            </button>
             <!-- Map Interface -->
             <section
-                class="hidden md:flex flex-1 relative bg-slate-900 items-center justify-center overflow-hidden">
+                class="flex flex-1 relative bg-slate-900 items-center justify-center overflow-hidden">
                 <!-- Leaflet Map Container -->
                 <div id="map" class="absolute inset-0"></div>
                 
