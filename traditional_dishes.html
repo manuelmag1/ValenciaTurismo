@@ -30,10 +30,10 @@
             <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
             <div class="relative z-10 max-w-3xl">
                 <span class="inline-flex items-center gap-2 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold mb-4 uppercase tracking-wider">
-                    <span class="material-symbols-outlined text-sm">restaurant</span> Local Food
+                    <span class="material-symbols-outlined text-sm">restaurant</span> <span data-i18n="local_food">Local Food</span>
                 </span>
-                <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-tight mb-4">Traditional Dishes</h1>
-                <p class="text-slate-200 text-lg md:text-xl font-medium max-w-2xl mb-8 leading-relaxed">
+                <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-tight mb-4" data-i18n="traditional_dishes_title">Traditional Dishes</h1>
+                <p class="text-slate-200 text-lg md:text-xl font-medium max-w-2xl mb-8 leading-relaxed" data-i18n="dishes_subtitle">
                     From the world-famous Paella to our sweet Horchata. Discover the historic flavors that define our vivid and delicious Mediterranean cuisine.
                 </p>
             </div>
@@ -47,8 +47,8 @@
             <button onclick="openModal('paella')" class="group bg-white dark:bg-slate-900 flex flex-col rounded-xl overflow-hidden shadow-md border border-slate-100 dark:border-slate-800 hover:shadow-lg hover:border-primary/40 transition-all cursor-pointer text-left">
                 <div class="h-48 overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="img/traditional_dishes/image_2.jpg" alt="Paella"></div>
                 <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Authentic Paella</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm">Born in the fields of Albufera, true Valencian paella features rabbit, chicken, flat green beans, and garrofó beans slowly cooked over wood fire.</p>
+                    <h3 class="text-xl font-bold mb-2" data-i18n="authentic_paella_title">Authentic Paella</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm" data-i18n="paella_desc">Born in the fields of Albufera, true Valencian paella features rabbit, chicken, flat green beans, and garrofó beans slowly cooked over wood fire.</p>
                 </div>
             </button>
             
@@ -56,8 +56,8 @@
             <button onclick="openModal('fideua')" class="group bg-white dark:bg-slate-900 flex flex-col rounded-xl overflow-hidden shadow-md border border-slate-100 dark:border-slate-800 hover:shadow-lg hover:border-primary/40 transition-all cursor-pointer text-left">
                 <div class="h-48 overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="img/traditional_dishes/fideua.jpg" alt="Seafood"></div>
                 <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Fideuà de Gandia</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm">A delightful seafood dish similar to paella but made with short noodles, bursting with the flavors of the Mediterranean sea.</p>
+                    <h3 class="text-xl font-bold mb-2" data-i18n="fideua_gandia">Fideuà de Gandia</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm" data-i18n="fideua_desc">A delightful seafood dish similar to paella but made with short noodles, bursting with the flavors of the Mediterranean sea.</p>
                 </div>
             </button>
             
@@ -67,8 +67,8 @@
                     <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="img/traditional_dishes/horchata.jpeg" alt="Horchata">
                 </div>
                 <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Horchata & Fartons</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm">Our most beloved sweet treat. A refreshing drink made from tiger nuts (chufas) served ice-cold with long, sweet pastries meant for dipping.</p>
+                    <h3 class="text-xl font-bold mb-2" data-i18n="horchata_fartons">Horchata & Fartons</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm" data-i18n="horchata_desc">Our most beloved sweet treat. A refreshing drink made from tiger nuts (chufas) served ice-cold with long, sweet pastries meant for dipping.</p>
                 </div>
             </button>
         </div>
@@ -96,14 +96,14 @@
                 <!-- Paella Modal -->
                 <div id="paella-content" class="hidden">
                     <img src="img/traditional_dishes/image_2.jpg" alt="Authentic Paella" class="w-full h-96 object-cover rounded-xl mb-6">
-                    <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Authentic Paella</h2>
-                    <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                    <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100" data-i18n="authentic_paella_title">Authentic Paella</h2>
+                    <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed" data-i18n="paella_modal_desc">
                         Born in the fields of Albufera, true Valencian paella is a masterpiece of Mediterranean cuisine. This iconic dish features tender rabbit and chicken, fresh flat green beans (judías verdes), and garrofó beans (a local variety), all slowly cooked together in a wide, shallow pan called a "paellera" over a crackling wood fire.
                     </p>
-                    <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                    <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed" data-i18n="paella_modal_2">
                         The magic of paella lies in the socarrat - that crispy, golden layer of rice that forms at the bottom of the pan. Each region of Valencia has its own variation, but the authentic Valencian paella reflects centuries of agricultural tradition and the bounty of the surrounding wetlands.
                     </p>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="paella_modal_3">
                         Today, paella remains not just a dish, but a symbol of Valencian identity, bringing families and communities together for celebrations and shared meals.
                     </p>
                 </div>
@@ -111,14 +111,14 @@
                 <!-- Fideuà Modal -->
                 <div id="fideua-content" class="hidden">
                     <img src="img/traditional_dishes/fideua.jpg" alt="Fideuà de Gandia" class="w-full h-96 object-cover rounded-xl mb-6">
-                    <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Fideuà de Gandia</h2>
-                    <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                    <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100" data-i18n="fideua_modal_title">Fideuà de Gandia</h2>
+                    <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed" data-i18n="fideua_modal_1">
                         Fideuà is a beloved variation of paella that replaces rice with short, thin noodles, creating a unique texture and flavor profile. This seafood-focused dish originated in the coastal town of Gandia and represents the marriage of Mediterranean bounty with Spanish culinary tradition.
                     </p>
-                    <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                    <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed" data-i18n="fideua_modal_2">
                         Fresh seafood such as shrimp, mussels, squid, and fish are cooked together with the noodles in a rich, aromatic broth infused with saffron and garlic. The result is a delightful dish that bursts with the flavors of the sea, with a texture that combines the tenderness of the noodles with the succulence of the seafood.
                     </p>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="fideua_modal_3">
                         Like paella, fideuà is best enjoyed with family and friends, served directly from the pan to create an authentic Mediterranean dining experience.
                     </p>
                 </div>
@@ -126,14 +126,14 @@
                 <!-- Horchata Modal -->
                 <div id="horchata-content" class="hidden">
                     <img src="img/traditional_dishes/horchata.jpeg" alt="Horchata & Fartons" class="w-full h-96 object-cover rounded-xl mb-6">
-                    <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Horchata & Fartons</h2>
-                    <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                    <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100" data-i18n="horchata_modal_title">Horchata & Fartons</h2>
+                    <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed" data-i18n="horchata_modal_1">
                         Horchata is Valencia's most beloved sweet treat and a tradition that dates back centuries. This refreshing beverage is made from tiger nuts (chufas), a small tuber native to Valencia that has been cultivated here since the 9th century. The nuts are ground, mixed with water and sugar, and filtered to create a creamy, slightly sweet drink.
                     </p>
-                    <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                    <p class="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed" data-i18n="horchata_modal_2">
                         Horchata is traditionally served ice-cold, often on warm summer afternoons, and is perfectly accompanied by fartons - long, decorative pastries that are meant for dipping. These soft, slightly sweet pastries have a light glaze and are the ideal complement to the creamy horchata.
                     </p>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="horchata_modal_3">
                         The pairing of horchata and fartons is so iconic that it's declared a Protected Designation of Origin (PDO) product when made in Valencia. It's a simple pleasure that captures the essence of Valencian hospitality and sweet living.
                     </p>
                 </div>

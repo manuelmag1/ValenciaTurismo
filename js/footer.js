@@ -68,5 +68,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const footerContainer = document.getElementById('footer-container');
     if (footerContainer) {
         footerContainer.insertAdjacentHTML('beforeend', footerHTML);
+        
+        // Apply translations to the newly inserted footer
+        const applyFooterTranslations = () => {
+            if (typeof window.i18nManager !== 'undefined') {
+                window.i18nManager.applyLanguage(window.i18nManager.getLanguage());
+            } else {
+                // Wait a bit more for i18nManager to be available
+                setTimeout(applyFooterTranslations, 50);
+            }
+        };
+        applyFooterTranslations();
     }
 });

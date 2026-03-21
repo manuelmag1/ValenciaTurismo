@@ -80,6 +80,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const headerContainer = document.getElementById('header-container');
     if (headerContainer) {
         headerContainer.insertAdjacentHTML('beforeend', headerHTML);
+        
+        // Apply translations to the newly inserted header
+        const applyHeaderTranslations = () => {
+            if (typeof window.i18nManager !== 'undefined') {
+                window.i18nManager.applyLanguage(window.i18nManager.getLanguage());
+            } else {
+                // Wait a bit more for i18nManager to be available
+                setTimeout(applyHeaderTranslations, 50);
+            }
+        };
+        applyHeaderTranslations();
     }
 
     // Setup language toggle button

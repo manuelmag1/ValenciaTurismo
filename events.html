@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     <script src="js/scripts.js"></script>
     <link href="css/styles.css" rel="stylesheet" />
+    <script src="js/translations.js"></script>
+    <script src="js/i18n-init.js"></script>
     <script src="js/header.js"></script>
     <script src="js/footer.js"></script>
     <title>Valencia Events | Festivals & Celebrations</title>
@@ -28,10 +30,10 @@
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                         <div class="relative z-10 max-w-3xl">
                             <span class="inline-flex items-center gap-2 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold mb-4 uppercase tracking-wider">
-                                <span class="material-symbols-outlined text-sm">celebration</span> Global Festivals
+                                <span class="material-symbols-outlined text-sm">celebration</span> <span data-i18n="global_festivals">Global Festivals</span>
                             </span>
-                            <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-tight mb-4">Feel the <span class="text-primary italic">Energy</span></h1>
-                            <p class="text-slate-200 text-lg md:text-xl font-medium max-w-2xl leading-relaxed">
+                            <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-tight mb-4"><span data-i18n="feel_energy">Feel the</span> <span class="text-primary italic" data-i18n="feel_energy_energy">Energy</span></h1>
+                            <p class="text-slate-200 text-lg md:text-xl font-medium max-w-2xl leading-relaxed" data-i18n="events_subtitle">
                                 Join us in the streets. From the roaring flames of Las Fallas to the exhilarating Valencia Marathon, our city never stops celebrating life.
                             </p>
                         </div>
@@ -41,21 +43,21 @@
                 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                     <div class="flex items-center justify-between mb-10">
                         <div>
-                            <h2 class="text-3xl font-bold text-slate-900 dark:text-slate-100">Featured Events</h2>
-                            <p class="text-slate-500 mt-2">The most anticipated celebrations of the year</p>
+                            <h2 class="text-3xl font-bold text-slate-900 dark:text-slate-100" data-i18n="featured_events">Featured Events</h2>
+                            <p class="text-slate-500 mt-2" data-i18n="most_anticipated">The most anticipated celebrations of the year</p>
                         </div>
                         <div class="hidden md:flex gap-2">
                             <select class="rounded-lg border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm font-medium py-2 px-4 shadow-sm focus:ring-primary focus:border-primary">
-                                <option>All Categories</option>
-                                <option>Culture & Heritage</option>
-                                <option>Sports</option>
-                                <option>Music & Arts</option>
+                                <option data-i18n="all_categories">All Categories</option>
+                                <option data-i18n="culture_heritage">Culture & Heritage</option>
+                                <option data-i18n="sports">Sports</option>
+                                <option data-i18n="music_arts">Music & Arts</option>
                             </select>
                             <select class="rounded-lg border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm font-medium py-2 px-4 shadow-sm focus:ring-primary focus:border-primary">
-                                <option>Any Month</option>
-                                <option>March</option>
-                                <option>August</option>
-                                <option>December</option>
+                                <option data-i18n="any_month">Any Month</option>
+                                <option data-i18n="march">March</option>
+                                <option data-i18n="august">August</option>
+                                <option data-i18n="december">December</option>
                             </select>
                         </div>
                     </div>
@@ -68,21 +70,21 @@
                                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/50 to-transparent opacity-80"></div>
                                 <div class="absolute top-4 left-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-lg flex flex-col items-center justify-center p-3 rounded-xl border border-primary/20 text-primary min-w-[70px]">
                                     <span class="text-xl font-black leading-none">19</span>
-                                    <span class="text-[10px] font-bold uppercase mt-1">March</span>
+                                    <span class="text-[10px] font-bold uppercase mt-1" data-i18n="march">March</span>
                                 </div>
                             </div>
                             <div class="p-6 md:p-8 md:w-7/12 flex flex-col justify-center">
-                                <span class="text-primary font-bold text-xs uppercase tracking-widest mb-2">Heritage • Festival</span>
-                                <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3">Las Fallas</h3>
-                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                                <span class="text-primary font-bold text-xs uppercase tracking-widest mb-2" data-i18n="fallas_heritage">Heritage • Festival</span>
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3" data-i18n="las_fallas_event">Las Fallas</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6" data-i18n="fallas_desc">
                                     The ultimate festival of fire and art. Witness gigantic sculptures filling the streets before being burned in an epic nocturnal spectacle.
                                 </p>
                                 <div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
                                     <div class="flex items-center gap-1 text-slate-500 text-sm font-medium">
-                                        <span class="material-symbols-outlined text-[18px]">location_on</span> City Center
+                                        <span class="material-symbols-outlined text-[18px]">location_on</span> <span data-i18n="city_center">City Center</span>
                                     </div>
                                     <button onclick="openModal('fallas-modal')" class="text-primary font-bold text-sm hover:underline flex items-center gap-1">
-                                        Details <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                        <span data-i18n="details">Details</span> <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
                                     </button>
                                 </div>
                             </div>
@@ -95,21 +97,21 @@
                                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/50 to-transparent opacity-80"></div>
                                 <div class="absolute top-4 left-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-lg flex flex-col items-center justify-center p-3 rounded-xl border border-rose-500/20 text-rose-600 min-w-[70px]">
                                     <span class="text-xl font-black leading-none">28</span>
-                                    <span class="text-[10px] font-bold uppercase mt-1">August</span>
+                                    <span class="text-[10px] font-bold uppercase mt-1" data-i18n="august">August</span>
                                 </div>
                             </div>
                             <div class="p-6 md:p-8 md:w-7/12 flex flex-col justify-center">
-                                <span class="text-rose-600 font-bold text-xs uppercase tracking-widest mb-2">Tradition • Fun</span>
-                                <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3">La Tomatina</h3>
-                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                                <span class="text-rose-600 font-bold text-xs uppercase tracking-widest mb-2" data-i18n="tomatina_tradition">Tradition • Fun</span>
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3" data-i18n="la_tomatina_event">La Tomatina</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6" data-i18n="tomatina_desc">
                                     Join thousands of people in the nearby town of Buñol for the world's largest food fight, throwing over a hundred metric tons of tomatoes.
                                 </p>
                                 <div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
                                     <div class="flex items-center gap-1 text-slate-500 text-sm font-medium">
-                                        <span class="material-symbols-outlined text-[18px]">location_on</span> Buñol
+                                        <span class="material-symbols-outlined text-[18px]">location_on</span> <span data-i18n="bunol">Buñol</span>
                                     </div>
                                     <button onclick="openModal('tomatina-modal')" class="text-rose-600 font-bold text-sm hover:underline flex items-center gap-1">
-                                        Details <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                        <span data-i18n="details">Details</span> <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
                                     </button>
                                 </div>
                             </div>
@@ -122,21 +124,21 @@
                                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/50 to-transparent opacity-80"></div>
                                 <div class="absolute top-4 left-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-lg flex flex-col items-center justify-center p-3 rounded-xl border border-blue-500/20 text-blue-600 min-w-[70px]">
                                     <span class="text-xl font-black leading-none">01</span>
-                                    <span class="text-[10px] font-bold uppercase mt-1">Dec</span>
+                                    <span class="text-[10px] font-bold uppercase mt-1" data-i18n="december_short">Dec</span>
                                 </div>
                             </div>
                             <div class="p-6 md:p-8 md:w-7/12 flex flex-col justify-center">
-                                <span class="text-blue-600 font-bold text-xs uppercase tracking-widest mb-2">Sports • Global</span>
-                                <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3">Valencia Marathon</h3>
-                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                                <span class="text-blue-600 font-bold text-xs uppercase tracking-widest mb-2" data-i18n="marathon_sports">Sports • Global</span>
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3" data-i18n="valencia_marathon">Valencia Marathon</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6" data-i18n="marathon_desc">
                                     Known as "The City of Running," Valencia hosts one of the fastest and highly acclaimed marathons on a completely flat, beautiful course.
                                 </p>
                                 <div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
                                     <div class="flex items-center gap-1 text-slate-500 text-sm font-medium">
-                                        <span class="material-symbols-outlined text-[18px]">location_on</span> Turia Garden
+                                        <span class="material-symbols-outlined text-[18px]">location_on</span> <span data-i18n="turia_location">Turia Garden</span>
                                     </div>
                                     <button onclick="openModal('maraton-modal')" class="text-blue-600 font-bold text-sm hover:underline flex items-center gap-1">
-                                        Details <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                        <span data-i18n="details">Details</span> <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
                                     </button>
                                 </div>
                             </div>
@@ -149,21 +151,21 @@
                                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/50 to-transparent opacity-80"></div>
                                 <div class="absolute top-4 left-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-lg flex flex-col items-center justify-center p-3 rounded-xl border border-amber-500/20 text-amber-600 min-w-[70px]">
                                     <span class="text-xl font-black leading-none">28</span>
-                                    <span class="text-[10px] font-bold uppercase mt-1">July</span>
+                                    <span class="text-[10px] font-bold uppercase mt-1" data-i18n="july">July</span>
                                 </div>
                             </div>
                             <div class="p-6 md:p-8 md:w-7/12 flex flex-col justify-center">
-                                <span class="text-amber-600 font-bold text-xs uppercase tracking-widest mb-2">Culture • Summer</span>
-                                <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3">Gran Feria (Batalla de Flores)</h3>
-                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                                <span class="text-amber-600 font-bold text-xs uppercase tracking-widest mb-2" data-i18n="batalla_culture">Culture • Summer</span>
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3" data-i18n="gran_feria">Gran Feria (Batalla de Flores)</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6" data-i18n="batalla_desc">
                                     A spectacular summer fair culminating in the Battle of Flowers, where a million marigolds are thrown in a breathtaking parade.
                                 </p>
                                 <div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
                                     <div class="flex items-center gap-1 text-slate-500 text-sm font-medium">
-                                        <span class="material-symbols-outlined text-[18px]">location_on</span> Paseo de la Alameda
+                                        <span class="material-symbols-outlined text-[18px]">location_on</span> <span data-i18n="paseo_alameda">Paseo de la Alameda</span>
                                     </div>
                                     <button onclick="openModal('granferia-modal')" class="text-amber-600 font-bold text-sm hover:underline flex items-center gap-1">
-                                        Details <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                        <span data-i18n="details">Details</span> <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
                                     </button>
                                 </div>
                             </div>
@@ -182,7 +184,7 @@
     <div id="fallas-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50" onclick="closeModal('fallas-modal')">
         <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
             <div class="sticky top-0 flex items-center justify-between p-6 border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
-                <h2 class="text-2xl font-bold">Las Fallas</h2>
+                <h2 class="text-2xl font-bold" data-i18n="las_fallas_modal_title">Las Fallas</h2>
                 <button onclick="closeModal('fallas-modal')" class="text-slate-500 hover:text-slate-900 dark:hover:text-slate-100">
                     <span class="material-symbols-outlined">close</span>
                 </button>
@@ -190,19 +192,19 @@
             <div class="p-6">
                 <img src="img/events/fallas.jpg" alt="Las Fallas" class="w-full h-64 object-cover rounded-xl mb-6">
                 <div class="space-y-4 text-slate-600 dark:text-slate-400">
-                    <p class="text-lg"><strong>Date:</strong> March 15-19 | <strong>Location:</strong> City Center, Valencia</p>
-                    <p class="leading-relaxed">
+                    <p class="text-lg"><strong><span data-i18n="date_label">Date:</span></strong> <span data-i18n="event_date_fallas">March 15-19</span> | <strong><span data-i18n="location_label">Location:</span></strong> <span data-i18n="event_location_fallas">City Center, Valencia</span></p>
+                    <p class="leading-relaxed" data-i18n="fallas_modal_desc">
                         Las Fallas is the most important festival in Valencia and one of Spain's most spectacular celebrations. This ancient tradition, dating back centuries, transforms the city into an open-air gallery of impressive wooden sculptures called "fallas."
                     </p>
-                    <p class="leading-relaxed">
+                    <p class="leading-relaxed" data-i18n="fallas_modal_2">
                         Each neighborhood creates elaborate monuments, some reaching up to 20 meters in height, depicting satirical scenes of current events and social issues. The streets fill with fireworks, parades, and celebrations day and night for five days.
                     </p>
-                    <p class="leading-relaxed font-semibold text-slate-900 dark:text-slate-100">
+                    <p class="leading-relaxed font-semibold text-slate-900 dark:text-slate-100" data-i18n="fallas_modal_3">
                         The climax comes on March 19 when all fallas are set on fire simultaneously in "la Cremà" (The Burning) - a magical, chaotic, and unforgettable spectacle that lights up the night sky.
                     </p>
                     <div class="pt-4 flex gap-4">
-                        <a href="https://www.visitvalencia.com" target="_blank" class="px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90">Learn More</a>
-                        <button onclick="closeModal('fallas-modal')" class="px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Close</button>
+                        <a href="https://www.visitvalencia.com" target="_blank" class="px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90" data-i18n="learn_more">Learn More</a>
+                        <button onclick="closeModal('fallas-modal')" class="px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" data-i18n="close">Close</button>
                     </div>
                 </div>
             </div>
@@ -213,7 +215,7 @@
     <div id="tomatina-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50" onclick="closeModal('tomatina-modal')">
         <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
             <div class="sticky top-0 flex items-center justify-between p-6 border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
-                <h2 class="text-2xl font-bold">La Tomatina</h2>
+                <h2 class="text-2xl font-bold" data-i18n="la_tomatina_modal">La Tomatina</h2>
                 <button onclick="closeModal('tomatina-modal')" class="text-slate-500 hover:text-slate-900 dark:hover:text-slate-100">
                     <span class="material-symbols-outlined">close</span>
                 </button>
@@ -221,19 +223,19 @@
             <div class="p-6">
                 <img src="img/events/tomatina.jpeg" alt="La Tomatina" class="w-full h-64 object-cover rounded-xl mb-6">
                 <div class="space-y-4 text-slate-600 dark:text-slate-400">
-                    <p class="text-lg"><strong>Date:</strong> Last Wednesday of August | <strong>Location:</strong> Buñol (30km from Valencia)</p>
-                    <p class="leading-relaxed">
+                    <p class="text-lg"><strong><span data-i18n="date_label">Date:</span></strong> <span data-i18n="event_date_tomatina">Last Wednesday of August</span> | <strong><span data-i18n="location_label">Location:</span></strong> <span data-i18n="event_location_tomatina">Buñol (30km from Valencia)</span></p>
+                    <p class="leading-relaxed" data-i18n="tomatina_modal_1">
                         La Tomatina is the world's largest food fight festival, where thousands of people gather in the streets of Buñol to throw over 150,000 kilos of ripe tomatoes at each other. It's a chaotic, joyful, and utterly unique celebration that attracts visitors from around the globe.
                     </p>
-                    <p class="leading-relaxed">
+                    <p class="leading-relaxed" data-i18n="tomatina_modal_2">
                         The festival begins when participants climb a ham pole to grab a hanging ham, signaling the start of one hour of tomato-throwing madness. The streets become rivers of red pulp, and everyone gets completely drenched in tomato juice.
                     </p>
-                    <p class="leading-relaxed font-semibold text-slate-900 dark:text-slate-100">
+                    <p class="leading-relaxed font-semibold text-slate-900 dark:text-slate-100" data-i18n="tomatina_modal_3">
                         At the end, fire trucks wash the streets clean with their hoses. It's not just about the mess - it's a celebration of abundance, fun, and community spirit that has made Buñol famous worldwide.
                     </p>
                     <div class="pt-4 flex gap-4">
-                        <a href="https://www.tomatina.info" target="_blank" class="px-4 py-2 bg-rose-600 text-white rounded-lg hover:opacity-90">Learn More</a>
-                        <button onclick="closeModal('tomatina-modal')" class="px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Close</button>
+                        <a href="https://www.tomatina.info" target="_blank" class="px-4 py-2 bg-rose-600 text-white rounded-lg hover:opacity-90" data-i18n="learn_more">Learn More</a>
+                        <button onclick="closeModal('tomatina-modal')" class="px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" data-i18n="close">Close</button>
                     </div>
                 </div>
             </div>
@@ -244,7 +246,7 @@
     <div id="maraton-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50" onclick="closeModal('maraton-modal')">
         <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
             <div class="sticky top-0 flex items-center justify-between p-6 border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
-                <h2 class="text-2xl font-bold">Valencia Marathon</h2>
+                <h2 class="text-2xl font-bold" data-i18n="valencia_marathon">Valencia Marathon</h2>
                 <button onclick="closeModal('maraton-modal')" class="text-slate-500 hover:text-slate-900 dark:hover:text-slate-100">
                     <span class="material-symbols-outlined">close</span>
                 </button>
@@ -252,19 +254,19 @@
             <div class="p-6">
                 <img src="img/events/maraton.jpg" alt="Valencia Marathon" class="w-full h-64 object-cover rounded-xl mb-6">
                 <div class="space-y-4 text-slate-600 dark:text-slate-400">
-                    <p class="text-lg"><strong>Date:</strong> December 1st | <strong>Location:</strong> Throughout the City</p>
-                    <p class="leading-relaxed">
+                    <p class="text-lg"><strong><span data-i18n="date_label">Date:</span></strong> <span data-i18n="event_date_maraton">December 1st</span> | <strong><span data-i18n="location_label">Location:</span></strong> <span data-i18n="event_location_maraton">Throughout the City</span></p>
+                    <p class="leading-relaxed" data-i18n="maraton_modal_1">
                         The Valencia Marathon is known as "The City of Running" event and ranks among the fastest and most beautiful marathons in the world. Run on a completely flat course with perfect conditions, thousands of runners from every continent gather to participate.
                     </p>
-                    <p class="leading-relaxed">
+                    <p class="leading-relaxed" data-i18n="maraton_modal_2">
                         The 42.195km route takes participants through Valencia's most iconic locations, including the stunning Turia Gardens - a 9km linear park built on a former riverbed that winds through the entire city.
                     </p>
-                    <p class="leading-relaxed font-semibold text-slate-900 dark:text-slate-100">
+                    <p class="leading-relaxed font-semibold text-slate-900 dark:text-slate-100" data-i18n="maraton_modal_3">
                         The marathon attracts elite runners and recreational athletes alike. The combination of Valencia's pleasant weather, enthusiastic crowds, and architectural beauty makes this one of the most memorable marathon experiences in the world.
                     </p>
                     <div class="pt-4 flex gap-4">
-                        <a href="https://www.valenciamarathon.com" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:opacity-90">Learn More</a>
-                        <button onclick="closeModal('maraton-modal')" class="px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Close</button>
+                        <a href="https://www.valenciamarathon.com" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:opacity-90" data-i18n="learn_more">Learn More</a>
+                        <button onclick="closeModal('maraton-modal')" class="px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" data-i18n="close">Close</button>
                     </div>
                 </div>
             </div>
@@ -275,7 +277,7 @@
     <div id="granferia-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50" onclick="closeModal('granferia-modal')">
         <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
             <div class="sticky top-0 flex items-center justify-between p-6 border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
-                <h2 class="text-2xl font-bold">Gran Feria - Batalla de Flores</h2>
+                <h2 class="text-2xl font-bold" data-i18n="gran_feria">Gran Feria - Batalla de Flores</h2>
                 <button onclick="closeModal('granferia-modal')" class="text-slate-500 hover:text-slate-900 dark:hover:text-slate-100">
                     <span class="material-symbols-outlined">close</span>
                 </button>
@@ -283,19 +285,19 @@
             <div class="p-6">
                 <img src="img/events/flores.jpg" alt="Batalla de Flores" class="w-full h-64 object-cover rounded-xl mb-6">
                 <div class="space-y-4 text-slate-600 dark:text-slate-400">
-                    <p class="text-lg"><strong>Date:</strong> July 28th | <strong>Location:</strong> Paseo de la Alameda, Valencia</p>
-                    <p class="leading-relaxed">
+                    <p class="text-lg"><strong><span data-i18n="date_label">Date:</span></strong> <span data-i18n="event_date_granferia">July 28th</span> | <strong><span data-i18n="location_label">Location:</span></strong> <span data-i18n="event_location_granferia">Paseo de la Alameda, Valencia</span></p>
+                    <p class="leading-relaxed" data-i18n="granferia_modal_1">
                         The Battle of Flowers (Batalla de Flores) is the grand finale of Valencia's summer fair and one of the most beautiful parades in the world. Elaborate floats decorated with millions of fresh flowers move through the streets of Valencia while crowds throw flowers at each other.
                     </p>
-                    <p class="leading-relaxed">
+                    <p class="leading-relaxed" data-i18n="granferia_modal_2">
                         This unique festival blends the traditions of Spanish fairs with an explosion of color and natural beauty. The main parade takes place along Paseo de la Alameda, where specially designed floats carry people dressed in traditional and contemporary costumes, showering the crowd with flowers.
                     </p>
-                    <p class="leading-relaxed font-semibold text-slate-900 dark:text-slate-100">
+                    <p class="leading-relaxed font-semibold text-slate-900 dark:text-slate-100" data-i18n="granferia_modal_3">
                         The atmosphere is magical - the air fills with petals, the fragrance of fresh flowers surrounds you, and the joy is infectious. It's a celebration of summer, nature, and the artistic spirit of Valencia that leaves visitors mesmerized.
                     </p>
                     <div class="pt-4 flex gap-4">
-                        <a href="https://www.visitvalencia.com" target="_blank" class="px-4 py-2 bg-amber-600 text-white rounded-lg hover:opacity-90">Learn More</a>
-                        <button onclick="closeModal('granferia-modal')" class="px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Close</button>
+                        <a href="https://www.visitvalencia.com" target="_blank" class="px-4 py-2 bg-amber-600 text-white rounded-lg hover:opacity-90" data-i18n="learn_more">Learn More</a>
+                        <button onclick="closeModal('granferia-modal')" class="px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" data-i18n="close">Close</button>
                     </div>
                 </div>
             </div>
