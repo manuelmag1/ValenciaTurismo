@@ -1,5 +1,15 @@
 // Leaflet Map Configuration for Valencia Sustainable Tourism
+// with Real-Time Routing and Geolocation
+
 document.addEventListener('DOMContentLoaded', function() {
+    // ====================
+    // GLOBAL VARIABLES
+    // ====================
+    let userLocation = null; // Store user's geolocation
+    let currentRoute = null; // Store current active route
+    let userMarker = null; // Store user location marker
+    let userAccuracyCircle = null; // Store accuracy circle
+
     // Initialize map centered on Valencia
     const map = L.map('map', {
         center: [39.4697, -0.3774],
@@ -141,7 +151,169 @@ document.addEventListener('DOMContentLoaded', function() {
         emeraldRing
     );
 
-    // Map Controls - Zoom In/Out buttons
+    // ====================
+    // GEOLOCATION FUNCTION
+    // ====================
+    function initializeUserLocation(callback) {
+        map.locate({ setView: false, maxZoom: 16 });
+
+        map.on('locationfound', function(e) {
+            userLocation = [e.latlng.lat, e.latlng.lng];
+
+            // Remove previous user marker if it exists
+            if (userMarker) {
+                map.removeLayer(userMarker);
+            }
+            if (userAccuracyCircle) {
+                map.removeLayer(userAccuracyCircle);
+            }
+
+            // Create blue user location marker
+            const userIcon = L.divIcon({
+                html: `
+                    <div style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 0;
+                    ">
+                        <div style="
+                            background-color: #3b82f6;
+                            color: white;
+                            padding: 8px;
+                            border-radius: 50%;
+                            border: 4px solid rgba(59, 130, 246, 0.3);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 32px;
+                            height: 32px;
+                            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+                        ">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">my_location</span>
+                        </div>
+                    </div>
+                `,
+                iconSize: [48, 48],
+                iconAnchor: [24, 48],
+                className: 'user-location-marker'
+            });
+
+            userMarker = L.marker([e.latlng.lat, e.latlng.lng], {
+                icon: userIcon,
+                title: 'Your Location'
+            }).addTo(map);
+
+            // Add accuracy circle
+            userAccuracyCircle = L.circle([e.latlng.lat, e.latlng.lng], {
+                radius: e.accuracy,
+                color: '#3b82f6',
+                fillColor: '#3b82f6',
+                fillOpacity: 0.1,
+                weight: 1
+            }).addTo(map);
+
+            console.log('User location detected:', userLocation);
+
+            if (callback) {
+                callback();
+            }
+        });
+
+        map.on('locationerror', function(e) {
+            console.warn('❌ Geolocation denied or unavailable:', e.message);
+            alert('Para trazar la ruta, necesitamos acceso a tu ubicación. Por favor, habilita el GPS en tu navegador.');
+        });
+    }
+
+    // ====================
+    // ROUTE CALCULATION FUNCTION
+    // ====================
+    function calculateRoute(destLat, destLng) {
+        // If user hasn't shared location, request it first
+        if (!userLocation) {
+            console.log('📍 Requesting user location...');
+            initializeUserLocation(function() {
+                // After location is obtained, calculate the route
+                drawRoute(userLocation[0], userLocation[1], destLat, destLng);
+            });
+        } else {
+            // User location already available, draw route immediately
+            drawRoute(userLocation[0], userLocation[1], destLat, destLng);
+        }
+    }
+
+    // Helper function to draw the route using Leaflet Routing Machine
+    function drawRoute(startLat, startLng, destLat, destLng) {
+        // Remove previous route if it exists
+        if (currentRoute) {
+            map.removeControl(currentRoute);
+        }
+
+        // Create route using Leaflet Routing Machine
+        currentRoute = L.Routing.control({
+            waypoints: [
+                L.latLng(startLat, startLng),
+                L.latLng(destLat, destLng)
+            ],
+            router: L.Routing.osrmv1({
+                serviceUrl: 'https://router.project-osrm.org/route/v1'
+            }),
+            routeWhileDragging: false,
+            showAlternatives: false,
+            lineOptions: {
+                styles: [
+                    {
+                        color: '#0ea5e9', // primary color (cyan-500)
+                        opacity: 0.8,
+                        weight: 4,
+                        lineCap: 'round',
+                        lineJoin: 'round'
+                    }
+                ]
+            },
+            // Hide/minimize the instruction panel for minimal design impact
+            createMarker: function(i, wp, nWps) {
+                const icon = (i === 0) ? '📍' : '🎯';
+                const marker = L.marker(wp.latLng, {
+                    icon: L.divIcon({
+                        html: `<div style="font-size: 20px; text-align: center;">${icon}</div>`,
+                        iconSize: [24, 24],
+                        className: 'waypoint-marker'
+                    })
+                });
+                return marker;
+            },
+            // Keep the instruction summary panel invisible/minimal
+            plan: L.Routing.Plan([], {
+                createMarker: function(i, wp, nWps) {
+                    const icon = (i === 0) ? 'my_location' : 'pin_drop';
+                    return L.marker(wp.latLng, {
+                        icon: L.icon({
+                            iconUrl: '#',
+                            className: 'hidden'
+                        })
+                    });
+                }
+            })
+        }).addTo(map);
+
+        // Fit map bounds to show entire route
+        currentRoute.on('routesfound', function(e) {
+            const route = e.routes[0];
+            const bounds = L.latLngBounds(route.coordinates);
+            map.fitBounds(bounds, { padding: [100, 100], duration: 1.5 });
+            console.log('✅ Route calculated and displayed');
+        });
+
+        currentRoute.on('routingerror', function(e) {
+            console.warn('⚠️ Routing error:', e.error);
+        });
+    }
+
+    // ====================
+    // MAP CONTROLS
+    // ====================
     const zoomInBtn = document.getElementById('zoom-in-btn');
     const zoomOutBtn = document.getElementById('zoom-out-btn');
     const locationBtn = document.getElementById('location-btn');
@@ -156,9 +328,16 @@ document.addEventListener('DOMContentLoaded', function() {
         map.zoomOut();
     });
 
-    // Location button - center map on Valencia
+    // Location button - now requests user's GPS location
     locationBtn.addEventListener('click', function() {
-        map.setView([39.4697, -0.3774], 13);
+        if (!userLocation) {
+            console.log('📍 Requesting user location...');
+            initializeUserLocation();
+        } else {
+            // If location already available, center map on user
+            map.setView(userLocation, 15);
+            console.log('📍 Centered on your location');
+        }
     });
 
     // Layers button - placeholder for future layer toggle functionality
@@ -167,13 +346,16 @@ document.addEventListener('DOMContentLoaded', function() {
         // Future implementation for toggling different map layers
     });
 
-    // Card Click Handlers - FlyTo functionality
+    // ====================
+    // CARD CLICK HANDLERS - FlyTo + Route
+    // ====================
     const turiCard = document.querySelector('.turia-card');
     const albufCard = document.querySelector('.albufera-card');
     const bioparcCard = document.querySelector('.bioparc-card');
     const dehesCard = document.querySelector('.dehesa-card');
     const birdwatchCard = document.querySelector('.birdwatch-card');
 
+    // FlyTo functionality for cards (click anywhere on card)
     if (turiCard) {
         turiCard.addEventListener('click', function() {
             const lat = parseFloat(this.getAttribute('data-lat'));
@@ -218,6 +400,31 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Flying to Bird Watching');
         });
     }
+
+    // ====================
+    // VIEW ON MAP BUTTON HANDLERS
+    // ====================
+    const viewMapButtons = document.querySelectorAll('.view-on-map-btn');
+
+    viewMapButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent card click event
+            
+            // Get parent card to extract coordinates
+            const card = this.closest('[data-lat][data-lng]');
+            if (card) {
+                const destLat = parseFloat(card.getAttribute('data-lat'));
+                const destLng = parseFloat(card.getAttribute('data-lng'));
+                
+                console.log('🗺️ View on Map clicked for destination:', destLat, destLng);
+                
+                // Calculate and display route to destination
+                calculateRoute(destLat, destLng);
+            }
+        });
+    });
+
+    console.log('🗺️ Leaflet map initialized with routing capabilities');
 });
 
 
