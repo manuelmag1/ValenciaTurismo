@@ -93,8 +93,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add markers for routes
     // 1. Turia Green Belt - Bike Route (Primary cyan color)
     markers.turia = createCustomMarker(
-        39.4720,
-        -0.3680,
+        39.476,
+        -0.385,
         'Turia Garden Green Belt',
         'directions_bike',
         primaryColor,
@@ -103,8 +103,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 2. Albufera Natural Park - Water Route (Blue)
     markers.albufera = createCustomMarker(
-        39.3515,
-        -0.3300,
+        39.332,
+        -0.334,
         'Albufera Natural Park',
         'favorite',
         blueColor,
@@ -113,8 +113,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 3. Bioparc Valencia - Conservation (Amber)
     markers.bioparc = createCustomMarker(
-        39.5,
-        -0.35,
+        39.478,
+        -0.407,
         'Bioparc Valencia',
         'pets',
         amberColor,
@@ -123,8 +123,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 4. Dehesa del Saler - Coastal (Teal)
     markers.dehesa = createCustomMarker(
-        39.32,
-        -0.35,
+        39.340,
+        -0.330,
         'Dehesa del Saler',
         'nature',
         tealColor,
@@ -133,8 +133,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 5. Bird Watching Adventures - Albufera (Emerald)
     markers.birdwatch = createCustomMarker(
-        39.3515,
-        -0.3300,
+        39.358,
+        -0.331,
         'Bird Watching Adventures',
         'favorite',
         emeraldColor,
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
         turiCard.addEventListener('click', function() {
             const lat = parseFloat(this.getAttribute('data-lat'));
             const lng = parseFloat(this.getAttribute('data-lng'));
-            map.flyTo([lat, lng], 15, { duration: 2 });
+            map.flyTo([lat, lng], 14, { duration: 2 });
             console.log('Flying to Turia Garden');
         });
     }
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
         bioparcCard.addEventListener('click', function() {
             const lat = parseFloat(this.getAttribute('data-lat'));
             const lng = parseFloat(this.getAttribute('data-lng'));
-            map.flyTo([lat, lng], 15, { duration: 2 });
+            map.flyTo([lat, lng], 14, { duration: 2 });
             console.log('Flying to Bioparc Valencia');
         });
     }
