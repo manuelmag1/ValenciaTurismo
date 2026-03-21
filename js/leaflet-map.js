@@ -80,26 +80,65 @@ document.addEventListener('DOMContentLoaded', function() {
     const primaryRing = 'rgba(6, 182, 212, 0.2)';
     const blueColor = '#3b82f6'; // blue-500
     const blueRing = 'rgba(59, 130, 246, 0.2)';
+    const amberColor = '#f59e0b'; // amber-500
+    const amberRing = 'rgba(245, 158, 11, 0.2)';
+    const tealColor = '#14b8a6'; // teal-500
+    const tealRing = 'rgba(20, 184, 166, 0.2)';
+    const emeraldColor = '#10b981'; // emerald-600
+    const emeraldRing = 'rgba(16, 185, 129, 0.2)';
+
+    // Store markers in an object for easy reference
+    const markers = {};
 
     // Add markers for routes
-    // Turia Green Belt - Bike Route (Primary cyan color)
-    createCustomMarker(
+    // 1. Turia Green Belt - Bike Route (Primary cyan color)
+    markers.turia = createCustomMarker(
         39.4720,
         -0.3680,
-        'Turia Green Belt',
+        'Turia Garden Green Belt',
         'directions_bike',
         primaryColor,
         primaryRing
     );
 
-    // Albufera Boat Route - Water Route (Blue)
-    createCustomMarker(
+    // 2. Albufera Natural Park - Water Route (Blue)
+    markers.albufera = createCustomMarker(
         39.3515,
         -0.3300,
-        'Albufera Boat Route',
-        'directions_boat',
+        'Albufera Natural Park',
+        'favorite',
         blueColor,
         blueRing
+    );
+
+    // 3. Bioparc Valencia - Conservation (Amber)
+    markers.bioparc = createCustomMarker(
+        39.5,
+        -0.35,
+        'Bioparc Valencia',
+        'pets',
+        amberColor,
+        amberRing
+    );
+
+    // 4. Dehesa del Saler - Coastal (Teal)
+    markers.dehesa = createCustomMarker(
+        39.32,
+        -0.35,
+        'Dehesa del Saler',
+        'nature',
+        tealColor,
+        tealRing
+    );
+
+    // 5. Bird Watching Adventures - Albufera (Emerald)
+    markers.birdwatch = createCustomMarker(
+        39.3515,
+        -0.3300,
+        'Bird Watching Adventures',
+        'favorite',
+        emeraldColor,
+        emeraldRing
     );
 
     // Map Controls - Zoom In/Out buttons
@@ -127,5 +166,58 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Layers control clicked');
         // Future implementation for toggling different map layers
     });
+
+    // Card Click Handlers - FlyTo functionality
+    const turiCard = document.querySelector('.turia-card');
+    const albufCard = document.querySelector('.albufera-card');
+    const bioparcCard = document.querySelector('.bioparc-card');
+    const dehesCard = document.querySelector('.dehesa-card');
+    const birdwatchCard = document.querySelector('.birdwatch-card');
+
+    if (turiCard) {
+        turiCard.addEventListener('click', function() {
+            const lat = parseFloat(this.getAttribute('data-lat'));
+            const lng = parseFloat(this.getAttribute('data-lng'));
+            map.flyTo([lat, lng], 15, { duration: 2 });
+            console.log('Flying to Turia Garden');
+        });
+    }
+
+    if (albufCard) {
+        albufCard.addEventListener('click', function() {
+            const lat = parseFloat(this.getAttribute('data-lat'));
+            const lng = parseFloat(this.getAttribute('data-lng'));
+            map.flyTo([lat, lng], 14, { duration: 2 });
+            console.log('Flying to Albufera');
+        });
+    }
+
+    if (bioparcCard) {
+        bioparcCard.addEventListener('click', function() {
+            const lat = parseFloat(this.getAttribute('data-lat'));
+            const lng = parseFloat(this.getAttribute('data-lng'));
+            map.flyTo([lat, lng], 15, { duration: 2 });
+            console.log('Flying to Bioparc Valencia');
+        });
+    }
+
+    if (dehesCard) {
+        dehesCard.addEventListener('click', function() {
+            const lat = parseFloat(this.getAttribute('data-lat'));
+            const lng = parseFloat(this.getAttribute('data-lng'));
+            map.flyTo([lat, lng], 14, { duration: 2 });
+            console.log('Flying to Dehesa del Saler');
+        });
+    }
+
+    if (birdwatchCard) {
+        birdwatchCard.addEventListener('click', function() {
+            const lat = parseFloat(this.getAttribute('data-lat'));
+            const lng = parseFloat(this.getAttribute('data-lng'));
+            map.flyTo([lat, lng], 14, { duration: 2 });
+            console.log('Flying to Bird Watching');
+        });
+    }
 });
+
 
