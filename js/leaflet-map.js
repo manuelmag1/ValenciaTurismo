@@ -13,41 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let originMode = null; // Store selected origin mode: 'gps' or 'pin'
     let gpsLocationRequest = null; // Store GPS location request ID
 
-    // ====================
-    // MOBILE SIDEBAR MANAGEMENT FUNCTIONS
-    // ====================
-    function openSidebar() {
-        const sidebar = document.getElementById('sidebar-panel');
-        const backdrop = document.getElementById('sidebar-backdrop');
-        
-        if (sidebar && backdrop) {
-            sidebar.classList.remove('-translate-x-full');
-            backdrop.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Prevent body scroll on mobile
-            console.log('📂 Sidebar opened');
-        }
-    }
-
-    function closeSidebar() {
-        const sidebar = document.getElementById('sidebar-panel');
-        const backdrop = document.getElementById('sidebar-backdrop');
-        
-        if (sidebar && backdrop) {
-            sidebar.classList.add('-translate-x-full');
-            backdrop.classList.add('hidden');
-            document.body.style.overflow = ''; // Restore body scroll
-            console.log('📂 Sidebar closed');
-            
-            // Invalidate map size to ensure proper rendering on mobile
-            setTimeout(() => {
-                if (map && typeof map.invalidateSize === 'function') {
-                    map.invalidateSize();
-                    console.log('🗺️ Map size invalidated after sidebar close');
-                }
-            }, 300); // Wait for transition to complete
-        }
-    }
-
     // Initialize map centered on Valencia
     const map = L.map('map', {
         center: [39.4697, -0.3774],
@@ -783,36 +748,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // (GPS mode and Pin mode set their own event listeners)
 
     // ====================
-    // MOBILE SIDEBAR EVENT LISTENERS
-    // ====================
-    const openSidebarBtn = document.getElementById('open-sidebar-btn');
-    const closeSidebarBtn = document.getElementById('close-sidebar-btn');
-    const sidebarBackdrop = document.getElementById('sidebar-backdrop');
-
-    if (openSidebarBtn) {
-        openSidebarBtn.addEventListener('click', function() {
-            openSidebar();
-        });
-        console.log('✅ Open sidebar button listener attached');
-    }
-
-    if (closeSidebarBtn) {
-        closeSidebarBtn.addEventListener('click', function() {
-            closeSidebar();
-        });
-        console.log('✅ Close sidebar button listener attached');
-    }
-
-    if (sidebarBackdrop) {
-        sidebarBackdrop.addEventListener('click', function(e) {
-            if (e.target === sidebarBackdrop) {
-                closeSidebar();
-            }
-        });
-        console.log('✅ Sidebar backdrop click listener attached');
-    }
-
-    // ====================
     // CARD CLICK HANDLERS - FlyTo + Route
     // ====================
     const turiCard = document.querySelector('.turia-card');
@@ -888,16 +823,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log('🗺️ View on Map clicked for destination:', destLat, destLng);
                     // Calculate and display route to destination
                     calculateRoute(destLat, destLng);
-                    
-                    // Auto-close sidebar on mobile to reveal map with route
-                    closeSidebar();
-                    
-                    // Ensure map invalidates size after transition completes
-                    setTimeout(() => {
-                        if (map && typeof map.invalidateSize === 'function') {
-                            map.invalidateSize(false);
-                        }
-                    }, 350);
                 } else {
                     console.error('❌ Invalid coordinates on card:', destLat, destLng);
                 }
