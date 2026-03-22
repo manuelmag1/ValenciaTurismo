@@ -85,10 +85,12 @@ const headerHTML = `
         <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 space-y-2">
             <!-- Mobile: Discover Section -->
             <div class="mobile-nav-group">
-                <button class="mobile-nav-toggle w-full text-left px-4 py-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium flex items-center justify-between transition-colors">
-                    <span data-i18n="header_discover">Discover</span>
-                    <span class="material-symbols-outlined text-sm transition-transform">expand_more</span>
-                </button>
+                <div class="flex items-center justify-between w-full border-b border-transparent">
+                    <a href="discover.html" class="flex-1 px-4 py-3 text-left font-medium text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-lg" data-i18n="header_discover">Discover</a>
+                    <button class="mobile-nav-toggle p-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-sm transition-transform">expand_more</span>
+                    </button>
+                </div>
                 <div class="mobile-nav-submenu hidden flex-col bg-slate-50 dark:bg-slate-800 ml-4 mt-1 rounded-lg overflow-hidden">
                     <a href="albufera.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_albufera_park">Albufera Natural Park</a>
                     <a href="turia_garden.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="index_turia_garden">Turia Garden</a>
@@ -101,10 +103,12 @@ const headerHTML = `
             
             <!-- Mobile: Gastronomy Section -->
             <div class="mobile-nav-group">
-                <button class="mobile-nav-toggle w-full text-left px-4 py-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium flex items-center justify-between transition-colors">
-                    <span data-i18n="index_gastronomy">Gastronomy</span>
-                    <span class="material-symbols-outlined text-sm transition-transform">expand_more</span>
-                </button>
+                <div class="flex items-center justify-between w-full border-b border-transparent">
+                    <a href="gastronomy.html" class="flex-1 px-4 py-3 text-left font-medium text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-lg" data-i18n="index_gastronomy">Gastronomy</a>
+                    <button class="mobile-nav-toggle p-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-sm transition-transform">expand_more</span>
+                    </button>
+                </div>
                 <div class="mobile-nav-submenu hidden flex-col bg-slate-50 dark:bg-slate-800 ml-4 mt-1 rounded-lg overflow-hidden">
                     <a href="traditional_dishes.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_traditional_dishes">Traditional Dishes</a>
                     <a href="central_markets.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_central_markets">Central Markets</a>
@@ -113,10 +117,12 @@ const headerHTML = `
             
             <!-- Mobile: Events Section -->
             <div class="mobile-nav-group">
-                <button class="mobile-nav-toggle w-full text-left px-4 py-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium flex items-center justify-between transition-colors">
-                    <span data-i18n="index_events">Events</span>
-                    <span class="material-symbols-outlined text-sm transition-transform">expand_more</span>
-                </button>
+                <div class="flex items-center justify-between w-full border-b border-transparent">
+                    <a href="events.html" class="flex-1 px-4 py-3 text-left font-medium text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-lg" data-i18n="index_events">Events</a>
+                    <button class="mobile-nav-toggle p-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-sm transition-transform">expand_more</span>
+                    </button>
+                </div>
                 <div class="mobile-nav-submenu hidden flex-col bg-slate-50 dark:bg-slate-800 ml-4 mt-1 rounded-lg overflow-hidden">
                     <a href="cultural_festivals.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_cultural_festivals">Cultural Festivals</a>
                     <a href="local_workshops.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_local_workshops">Local Workshops</a>
@@ -125,10 +131,12 @@ const headerHTML = `
             
             <!-- Mobile: About Section -->
             <div class="mobile-nav-group">
-                <button class="mobile-nav-toggle w-full text-left px-4 py-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium flex items-center justify-between transition-colors">
-                    <span data-i18n="header_about">About</span>
-                    <span class="material-symbols-outlined text-sm transition-transform">expand_more</span>
-                </button>
+                <div class="flex items-center justify-between w-full border-b border-transparent">
+                    <a href="about.html" class="flex-1 px-4 py-3 text-left font-medium text-slate-700 dark:text-slate-300 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-lg" data-i18n="header_about">About</a>
+                    <button class="mobile-nav-toggle p-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-sm transition-transform">expand_more</span>
+                    </button>
+                </div>
                 <div class="mobile-nav-submenu hidden flex-col bg-slate-50 dark:bg-slate-800 ml-4 mt-1 rounded-lg overflow-hidden">
                     <a href="history_heritage.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_history_heritage">History &amp; Heritage</a>
                     <a href="our_mission.html" class="px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary transition-colors" data-i18n="header_our_mission">Our Mission</a>
