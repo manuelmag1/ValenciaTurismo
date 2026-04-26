@@ -554,7 +554,7 @@ const translations = {
         "index_gastronomy_desc": "Sabores Mediterráneos de la granja a la mesa.",
         "index_local_heritage": "Patrimonio Local",
         "index_culture": "Cultura",
-        "index_culture_desc": "Siglos de historia preservada.",
+        "index_culture_desc": "Siglos de historia cuidadosamente conservados hoy en día.",
         "index_eco_spaces": "Espacios Ecológicos",
         "index_nature": "Naturaleza",
         "index_nature_desc": "Explora los 9 km del pulmón verde de la ciudad.",

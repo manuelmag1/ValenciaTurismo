@@ -506,6 +506,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
+            // Validate distance from Valencia center
+            const valenciaCenter = L.latLng(39.4697, -0.3774);
+            const distance = e.latlng.distanceTo(valenciaCenter);
+            const MAX_DISTANCE = 50000; // 50 km in meters
+
+            if (distance > MAX_DISTANCE) {
+                console.warn('⚠️ User location is outside Valencia (', Math.round(distance / 1000), 'km away)');
+                showLocationModal();
+                originMode = null;
+                return;
+            }
+
             userLocation = [e.latlng.lat, e.latlng.lng];
 
             // Remove previous user marker if it exists
@@ -570,7 +582,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         map.on('locationerror', function(e) {
             console.warn('❌ Geolocation denied or unavailable:', e.message);
-            showToastNotification('❌ Permiso denegado. Usa "Marcar punto".');
+            showLocationModal();
             originMode = null;
         });
     }
@@ -883,6 +895,29 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn('⚠️ Sidebar toggle button not found');
     }
     
+    // ====================
+    // LOCATION VALIDATION MODAL HANDLER
+    // ====================
+    function showLocationModal() {
+        const locationModal = document.getElementById('location-modal');
+        if (!locationModal) {
+            console.error('❌ Location modal element not found');
+            return;
+        }
+
+        locationModal.classList.remove('hidden');
+        console.log('📍 Location validation modal opened');
+
+        const understandBtn = document.getElementById('modal-understand-btn');
+        if (understandBtn) {
+            understandBtn.addEventListener('click', function(e) {
+                locationModal.classList.add('hidden');
+                console.log('✅ User confirmed to use Pin mode');
+                activatePinMode();
+            }, { once: true });
+        }
+    }
+
     // ====================
     // AUTO-ACTIVATE GPS ON PAGE LOAD
     // ====================
